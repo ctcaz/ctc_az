@@ -1,0 +1,65 @@
+		  <div class="level-1">
+		  	<div class="container-fluid">
+		    	<p>При проблем, свързан с работата на системата, достъп на потребители или предоставената функционалност на частните трудови посредници, свържете се със служителите на дирекция "Разрешения за работа и регистрация на частни посредници" на адрес <strong><script>
+					document.write(unescape('%3C%61%20%68%72%65%66%3D%22%6D%61%69%6C%74%6F%3A%61%7A%5F%73%75%70%70%6F%72%74%5F%70%6F%73%72%65%64%6E%69%63%69%40%61%7A%2E%67%6F%76%65%72%6E%6D%65%6E%74%2E%62%67%22%3E%61%7A%5F%73%75%70%70%6F%72%74%5F%70%6F%73%72%65%64%6E%69%63%69%40%61%7A%2E%67%6F%76%65%72%6E%6D%65%6E%74%2E%62%67%3C%2F%61%3E'));
+			  	</script></strong></p>
+		    </div>
+		  </div>
+
+		  <div class="level-2">
+		  	<div class="container-fluid">
+		    	<span class="flag float-left"><i><svg xmlns="http://www.w3.org/2000/svg" width="70" height="48"><path fill="#039" d="M0 0h70v48H0z"/><path d="M34.2 10.3l-1.4-1h1.7l.5-1.6.5 1.6h1.7l-1.4 1 .5 1.6-1.4-1-1.4 1 .7-1.6zm-7.7 3.5l1.4-1 1.4 1-.5-1.6 1.4-1h-1.7L28 9.6l-.5 1.6h-1.7l1.4 1-.7 1.6zm-3.8 1l-.5 1.6h-1.7l1.4 1-.6 1.6 1.4-1 1.4 1-.5-1.6 1.4-1h-1.7l-.6-1.6zm-1.9 10.3l1.4 1-.5-1.6 1.4-1h-1.7l-.5-1.6-.5 1.6h-1.7l1.4 1-.5 1.6 1.2-1zm2.4 5.5l-.5-1.6-.5 1.6h-1.7l1.4 1-.5 1.6 1.4-1 1.4 1-.5-1.6 1.4-1h-1.9zm5.2 5.2l-.5-1.6-.5 1.6h-1.7l1.4 1-.5 1.6 1.4-1 1.4 1-.5-1.6 1.4-1h-1.9zm7.1 1.9l-.5-1.6-.5 1.6h-1.7l1.4 1-.5 1.6 1.4-1 1.4 1-.5-1.6 1.4-1h-1.9zm7.1-1.9l-.5-1.6-.5 1.6h-1.7l1.4 1-.5 1.6 1.4-1 1.4 1-.5-1.6 1.4-1h-1.9zm5.2-5.2l-.5-1.6-.5 1.6h-1.7l1.4 1-.5 1.6 1.4-1 1.4 1-.5-1.6 1.4-1h-1.9zm3.6-7.1h-1.7l-.5-1.6-.5 1.6H47l1.4 1-.5 1.6 1.4-1 1.4 1-.7-1.6 1.4-1zM45.9 19l1.4-1 1.4 1-.5-1.6 1.4-1h-1.7l-.5-1.6-.5 1.6h-1.7l1.4 1-.7 1.6zm-3.8-9.4l-.5 1.6h-1.7l1.4 1-.5 1.6 1.4-1 1.4 1-.6-1.6 1.4-1h-1.7l-.6-1.6z" fill="#fc0"/></svg></i><small class="title">Европейски съюз</small></span>
+		        <span class="flag float-right"><i><img src="../img/esf-logo-bg.png" alt="Европейски социален фонд"/></i><small class="title">Европейски социален фонд</small></span>
+		        <p>Оперативна програма "Развитие на човешките ресурси"(2007-2013), Агенция по заетостта
+						BG 0501 РО001-6.1.05- <strong>"ПОВИШАВАНЕ КАЧЕСТВОТО НА ПРЕДСТАВЯНИТЕ ОТ АГЕНЦИЯ ПО ЗАЕТОСТТА УСЛУГИ НА ГРАЖДАНИТЕ И БИЗНЕСА С ФОКУС ВЪРХУ УЯЗВИМИТЕ ГРУПИ НА ПАЗАРА НА ТРУДА" - "ДА УСПЕЕМ ЗАЕДНО"</strong><br>
+						Проектът се осъществява с финансовата подкрепа на Оперативна програма "Развитие на човешките ресурси", съфинансирана от Европейския социален фонд на Европейския съюз<br>
+						<strong>Инвестира във вашето бъдеще!</strong></p>
+						<p><small>Този подсайт е изготвен с финансовата помощ на Европейския социален фонд. Агенция по заетостта носи цялата отговорност за съдържанието на настоящия подсайт, и при никакви обстоятелства не може да се приеме като официална позиция на Европейския съюз или Договарящия орган.</small></p>
+		    </div>
+		  </div>
+
+
+
+			                    <form>
+			                      <div class="form-group">
+			                        <label for="e-mail">Email</label>
+			                        <input type="email" class="form-control form-control-lg" id="e-mail">
+
+															 <label for="email" class="col-md-4 col-form-label text-md-right>">{{ __('E-Mail') }}</label>
+
+															 <div class="col-md-6">
+																	 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+																	 @error('email')
+																			 <span class="invalid-feedback" role="alert">
+																					 <strong>{{ $message }}</strong>
+																			 </span>
+																	 @enderror
+															 </div>
+
+
+
+
+			                      </div>
+			                      <div class="form-group">
+			                        <label for="password">Парола</label>
+			                        <input type="password" class="form-control form-control-lg" id="password">
+			                      </div>
+
+														<label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Парола') }}</label>
+
+														<div class="col-md-6">
+																<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+																@error('password')
+																		<span class="invalid-feedback" role="alert">
+																				<strong>{{ $message }}</strong>
+																		</span>
+																@enderror
+														</div>
+
+
+
+			                      <div class="form-group"><a href="inside-01.htm" class="btn btn-primary btn-block btn-lg">Вход</a><!--<button type="submit" class="btn btn-primary btn-block btn-lg">Вход</button>--></div>
+			                      <p class="text-right m-0"><a href="#">Забравена парола</a></p>
+			                    </form>
