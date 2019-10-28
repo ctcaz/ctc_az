@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Role;
 use App\User;
+use Auth;
+use Gate;
+
 
 class HomeController extends Controller
 {
@@ -14,6 +18,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        //$gate->define('see-home', fn ($user) => $user->IsActive);
+
         $this->middleware('auth');
     }
 
@@ -24,7 +30,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('home', compact('users'));
+
+        return view('home');
     }
 }

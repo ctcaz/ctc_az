@@ -1,0 +1,42 @@
+<!--
+		File:	resources\views\powr\home\index.blade.php
+		 Ver:	1.00.000
+ Purpose:	Home content for POWR index blade
+Author/s:	Christopher Georgiev
+ Created:	2019-10-07
+	Modify:	2019-10-26
+-->
+
+@extends('powr.form')
+
+@section('navigation')
+  @include('powr.nav')
+@endsection
+
+@section('contents')
+  <div class="container-fluid clearfix">
+
+    <h2 class="h3 main-heading">Текст за "Предприятията, осигуряващи временна заетост"</h2>
+		
+		<div class="content col-70">
+		  <p>ЗДРАВЕЙТЕ</p>
+		</div>
+		
+		<aside class="side-bar col-25 float-right">
+		  <p class="m-0">
+			  <a href="{{route('powr.srm.index')}}" class="btn btn-outline btn-outline-primary btn-block"  type="file" id="myFile" multiple size="50">
+			    <i class="icon-add-doc">
+				    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+			        <g fill="none" stroke="#1e8bc3" stroke-width="2" stroke-miterlimit="10">
+			          <path stroke-linecap="round" d="M21 22H3V2h12.1L21 9z"/><path d="M14 2v7h7"/>
+			        </g>
+			      </svg>
+			    </i>Подай СРМ</a>
+		   </p>
+			<input type="file" id="myFile" multiple size="50" onchange="myFunction()">
+    </aside>
+ 
+
+  </div>
+
+@endsection

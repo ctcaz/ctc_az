@@ -1,0 +1,1 @@
+@extends('intermediary.requests.form')
