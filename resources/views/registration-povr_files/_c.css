@@ -1,0 +1,119 @@
+
+
+/* :: Backgrounds :: */ 
+
+html, body,
+.pagination a:hover, .side-bar .btn-outline-primary,
+.site-nav .sub-menu-wrapper li:hover > a, .tabs .active > a:before {
+	background-color: white;
+}
+
+.site-nav .sub-menu .sub-menu-wrapper, .tabs a:hover,
+.btn-light, .login-bar, .side-bar, .form-items section, #footer .level-1 {
+	background-color: #f5f5f5;
+}
+
+.site-nav, .site-nav .sub-menu-wrapper .active > a {
+	background: linear-gradient(to bottom, #f86924 0%,#ff8245 60%);
+}
+
+.site-nav li:hover > a, .site-nav .nav-x a:active {
+	background-color: rgba(0,0,0,.1);
+}
+
+.site-nav .active > a, .tabs .active > a {
+	background: linear-gradient(to bottom, #eee 0%,#fff 100%);
+}
+
+#header .level-1, #header .meta .lang ul .current a {
+	background-color: #333;
+}
+
+.lang, .lang ul {
+	background-color: #666;
+}
+
+.logged-in .header-btn, .header-btn:hover, .lang.on > a, .lang:hover > a, #header .meta .lang ul a:hover, #footer .level-3,
+.success-bgr, .btn-outline-success:hover {
+	background-color: #0b6c63;
+}
+
+.site-nav > ul > .active > a:before, .warning-bgr,
+.form-elements legend, .btn-outline-warning:hover {
+	background-color: #f86924;
+}
+
+.btn-primary, .primary-bgr, .side-bar .btn-outline-primary:hover, .btn-outline-primary:hover {
+	background-color: #1e8bc3;
+}
+
+.btn .icon-add-doc {
+	background-color: #e8f3f9;
+}
+
+/* :: Borders :: */
+
+.header-btn {
+	border-color: hsla(0,0%,100%,.15);
+}
+
+.nav-x .sub-menu li a, .nav-x .sub-menu-wrapper {
+	border-color: white;
+}
+
+#header .level-2 .container-fluid {
+	border-color: #ccc;
+}
+
+.btn-outline-success, .btn-outline-success:hover {
+	border-color: #0b6c63;
+}
+
+.btn-outline-warning, .tabs, .tabs .active a, .btn-outline-warning:hover {
+	border-color: #f86924;
+}
+
+.btn-outline-primary, .btn-outline-primary:hover {
+	border-color: #1e8bc3;
+}
+
+/* :: Colors :: */
+
+body, a, .site-nav .active:hover > a {
+	color: #333;
+}
+
+#header .level-1 a:hover, #header .meta .lang ul a, .logged-in .login-btn .user, 
+.site-nav > ul > li:hover > a, .site-nav .sub-menu-wrapper .active:hover > a,
+.pagination strong,
+.success-bgr, .warning-bgr, .primary-bgr, .btn-outline-warning:hover, .btn-outline-warning:not(:disabled):not(.disabled):active {
+	color: white;
+}
+
+.site-logo h1, main h1, main h2, main h3,
+.btn-outline-success,
+#footer .level-1 a {
+	color: #0b6c63;
+}
+
+.btn-outline-warning, .main-heading,
+.site-nav .sub-menu-wrapper li:hover > a {
+	color: #f86924;
+}
+
+.btn-outline-primary, .form-items h6 strong,
+.text-primary {
+	color: #1e8bc3;
+}
+
+.text-primary {color: #1e8bc3 !important;}
+
+#footer .level-2 .flag {
+	color: #039;
+}
+
+#header .level-1 a,
+#footer .level-3, #footer level-3 a {
+	color: hsla(0,0%,100%,.6);
+}
+

@@ -1,0 +1,10 @@
+/* :: Media
+===================================================================================================== :: */
+@media only screen and (min-width: 1280px) {
+	.index-items .row {margin-left: -20px; margin-right: -20px;}
+		.index-items .col-md-4 {padding-left: 24px; padding-right: 24px;}
+}
+
+@media only screen and (max-width: 1280px) {
+.index-items h4, :root .btn-more {font-size: 1.1rem;}
+}

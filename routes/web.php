@@ -19,6 +19,11 @@ Route::resource('/application', 'ApplicationController');
 Route::get('/application/getMuni/{id}', 'ApplicationController@getMuni');
 Route::get('/application/getCity/{id}', 'ApplicationController@getCity');
 
+Route::resource('/powr_regreq', 'POWRregReqController');
+Route::get('/powr_regreq/getMuni/{id}', 'POWRregReqController@getMuni');
+Route::get('/powr_regreq/getCity/{id}', 'POWRregReqController@getCity');
+Route::get('/powr_regreq/getCityDistrict/{id}', 'POWRregReqController@getCityDistrict');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -81,4 +86,7 @@ Route::namespace('POWR')->prefix('powr')->name('powr.')->group(function(){
   Route::resource('/srm', 'PowrSRMController', ['except' => ['show','create','store','edit','update','destroy']]);
   Route::resource('/help', 'PowrHelpController', ['except' => ['show','create','store','edit','update','destroy']]);
 });
+
+
+
 

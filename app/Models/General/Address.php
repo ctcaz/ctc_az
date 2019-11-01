@@ -1,7 +1,7 @@
 <?php
-/*	File:	App\Models\General\Snumber.php
+/*	File:	App\Models\General\Address.php
 		 Ver:	1.00.003
- Purpose:	S_Numbers Model
+ Purpose:	Address Model
 Author/s:	Christopher Georgiev
  Created:	2019-10-07
 	Modify:	2019-10-26
@@ -10,18 +10,19 @@ Author/s:	Christopher Georgiev
 namespace App\Models\General;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\General\Snumber;
 
-class Snumber extends Model
+class Address extends Model
 {
       /**
        * @var string
        */
-      protected $table = 's_numbers';
+      protected $table = 'address';
 
       /**
        * @var array
        */
-      protected $fillable = ['table_name', 'description', 'last_number'];
+      protected $fillable = ['dtype', 'country_id', 'region_id', 'municipality_id', 'setlement_id', 'district_id', 'street'];
 
       /**
        * Indicates if the model should be timestamped.
@@ -33,11 +34,23 @@ class Snumber extends Model
       /**
       * @param $table_name
       */
+			/*
       public static function getLastNumber($table_name)
       {
           $snum = Snumber::updateOrCreate(['table_name' => $table_name]);
           $snum->increment('last_number');
           return $snum->last_number;
       }
+			*/
 
+			/*
+			public static function newAddress($address) {
+
+				//addr = new Address;
+				//$id = Snumber::getLastNumber(($addr)->getTable());
+				//$address = ['id' => $id];
+				//$naddr = Address::create($address);
+				//turn $naddr->id;
+			}
+			*/
 }
