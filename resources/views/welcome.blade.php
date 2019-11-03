@@ -22,7 +22,7 @@
 
 
 @section('content')
-<main role="main">
+
 		<div class="container-fluid">
 	<h2 class="text-center h3">Информационно-комуникационна платформа "Частни трудови посредници"</h2>
 
@@ -92,5 +92,5 @@
     </div>
   </div>
 </div>
-</main>
+
 @endsection

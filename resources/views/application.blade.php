@@ -42,37 +42,37 @@
                 <div class="row">
                   <div class="col">
                     <label for="">Име: *</label>
-                    <input type="text" class="form-control" id="" value="{{ old('name') }}">
+                    <input name="givenname" type="text" class="form-control" id="" value="{{ old('name') }}">
                   </div>
                   <div class="col">
                     <label for="">Презиме:</label>
-                    <input type="text" class="form-control" id="">
+                    <input name="surname" type="text" class="form-control" id="">
                   </div>
                   <div class="col">
                     <label for="">Фамилия: *</label>
-                    <input type="text" class="form-control" id="">
+                    <input name="familyname" type="text" class="form-control" id="">
                   </div>
                 </div>
                 <div class="row">
                     <div class="col">
                       <div class="col-25">
                           <div class="form-check-inline">
-                              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                              <input name="lnch" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
                               <label class="form-check-label" for="inlineCheckbox1">ЛНЧ</label>
                           </div>
                       </div>
                       <div class="col-75">
                         <label for="">ЕГН/ЛНЧ: *</label>
-                        <input type="text" class="form-control" id="">
+                        <input name="identifier" type="text" class="form-control" id="">
                       </div>
                     </div>
                     <div class="col">
                       <label for="">Email: *</label>
-                      <input type="text" class="form-control" id="">
+                      <input name="email" type="text" class="form-control" id="">
                     </div>
                     <div class="col">
                         <label for="">Длъжност: *</label>
-                        <input type="text" class="form-control" id="">
+                        <input name="position" type="text" class="form-control" id="">
                       </div>
                 </div>
               </section>
@@ -93,18 +93,18 @@
                   <div class="row">
                     <div class="col">
                       <label for="">ЕИК/БУЛСТАТ:*</label>
-                      <input type="text" class="form-control" id="">
+                      <input name="bulstat" type="text" class="form-control" id="">
                     </div>
                     <div class="col">
                       <label for="inputCity">Наименование:*</label>
-                      <input type="text" class="form-control" id="">
+                      <input name="comp_name" type="text" class="form-control" id="">
                     </div>
                     <div class="col">
                       <label for="">Вид на фирмата:</label>
-                      <select id="" class="form-control">
+                      <select name="comp_type" id="" class="form-control">
                         <option selected="">Моля, изберете</option>
                         @foreach ($company_types as $company_type)
-                            <option>
+                            <option value="{{ $company_type->id }}">
                               {{$company_type->name}}
                             </option>
                         @endforeach

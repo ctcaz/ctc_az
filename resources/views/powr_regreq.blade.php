@@ -48,7 +48,7 @@ Author/s:	Christopher Georgiev
 
         <div class="form-items">
                 <section>
-                	<h3><span class="primary-bgr">Данни за заявител</span></h3>                    
+                	<h3><span class="primary-bgr">Данни за заявител</span></h3>
                       <div class="row">
                         <div class="col">
                           <label for="">Име: *</label>
@@ -100,7 +100,7 @@ Author/s:	Christopher Georgiev
                           <label class="form-check-label" for="inlineRadio2">с регистрация в друга държава</label>
                         </div>
                     </div>
-                    
+
                       <div class="row">
                         <div class="col">
                           <label for="">ЕИК/БУЛСТАТ:*</label>
@@ -132,7 +132,7 @@ Author/s:	Christopher Georgiev
                 <section>
                 	<h3><span class="primary-bgr">Адреси за контакти</span></h3>
                     <h6><strong>Адрес на управление</strong></h6>
-                    
+
                       <div class="row">
                         <div class="col">
 
@@ -184,7 +184,7 @@ Author/s:	Christopher Georgiev
                         <label for="mAddr">Адрес:*</label>
                         <input type="text" class="form-control" name="mAddr" id="mAddr" placeholder="">
                       </div>
-                      
+
                       <h6 class="mt-4"><strong>Адрес за кореспонденция</strong></h6>
                       <div class="form-group">
                         <div class="form-check">
@@ -240,9 +240,9 @@ Author/s:	Christopher Georgiev
                         <label for="cAddr">Адрес:*</label>
                         <input type="text" class="form-control" name="cAddr" id="cAddr" placeholder="">
                       </div>
-                      
+
                       <h6 class="mt-4"><strong>Адрес на офиса/офисите за извършване на дейност по осигуряване на временна работа</strong></h6>
-                    <table class="table">
+                    <table id="Offices" name="Offices" class="table">
                       <thead>
                         <tr>
                           <th scope="col">Адрес</th>
@@ -260,13 +260,36 @@ Author/s:	Christopher Georgiev
                         </tr>
                       </tbody>
                     </table>
-                    <p><a data-fancybox="" data-src="#add-office" href="javascript:;" class="btn btn-primary">Добави</a></p>
+                    <!--<p><a data-fancybox="" data-src="#add-office" href="javascript:;" class="btn btn-primary" id="add-new-office">Добави</a></p>-->
+                    <p><a data-fancybox="" class="btn btn-primary" id="add-new-office">Добави</a></p>
+
+                    <div id="dialog-form-office" title="Добавяне на нов офис" style="display: none">
+                      <p class="validateTips">Всички полета са задължителни.</p>
+
+                      <form>
+                        <fieldset>
+                          <label for="address">Адрес</label>
+                          <input type="text" name="address" id="address" value="" class="text ui-widget-content ui-corner-all">
+                          <label for="tel_fax">Телефон,Факс</label>
+                          <input type="text" name="tel_fax" id="tel_fax" value="" class="text ui-widget-content ui-corner-all">
+                          <label for="email">Email</label>
+                          <input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all">
+                          <label for="name">Лице за контакт</label>
+                          <input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all">
+
+                          <!-- Allow form submission with keyboard without duplicating the dialog button -->
+                          <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+                        </fieldset>
+                      </form>
+                    </div>
+
+
                 </section>
-                
+
                 <div id="add-office" style="display: none;">
 	<section>
                 	<h4 class="text-primary mb-3"><strong>Данни за офис</strong></h4>
-                    
+
                       <div class="row">
                         <div class="col">
                           <label for="">Област:*</label>
@@ -309,7 +332,7 @@ Author/s:	Christopher Georgiev
                         <label for="">Адрес:*</label>
                         <input type="text" class="form-control" id="" placeholder="">
                       </div>
-                      
+
                       <div class="form-group">
                         <label for="">Лице за контакт:</label>
                         <select id="" class="form-control">
@@ -320,7 +343,7 @@ Author/s:	Christopher Georgiev
                           </select>
                         <input type="text" class="form-control" id="" placeholder="">
                       </div>
-                      
+
                       <div class="row">
                       	<div class="col">
                         	<label for="">Телефон:</label>
@@ -335,7 +358,7 @@ Author/s:	Christopher Georgiev
                         	<input type="text" class="form-control" id="" placeholder="">
                         </div>
                       </div>
-                      
+
                       <div class="form-group">
                         <div class="form-check">
                           <input class="form-check-input" type="checkbox" id="">
@@ -575,8 +598,8 @@ Author/s:	Christopher Georgiev
                     $('select[name="cAddrCityDistr"]').empty();
                 }
             });
-						
-						
+
+
 						//Correspondence address is the same as main
 						$('#c_as_m').change(function(){
 							if(this.checked == true){
@@ -585,16 +608,16 @@ Author/s:	Christopher Georgiev
 								//$("#cAddrRegion").html($("#mAddrRegion").html());
 								$("#cAddrRegion").empty();
 								$("#cAddrRegion").append($("#mAddrRegion").html());
-								
+
 								$txt=$("#mAddrRegion :selected").text(); // The text content of the selected option
 								$val=$("#mAddrRegion :selected").val(); // The value of the selected option
-								
+
 								//$('#cAddr').val() = $('#mAddr').val();
 								//document.getElementById('#cAddr').value = document.getElementById('#mAddr').value;
 								//$('#cAddr').value = $('#mAddr').value;
 								document.getElementById('cAddr').value = document.getElementById('mAddr').value;
-								
-								
+
+
 								//alert($val+" := "+$txt);
 								//$('#cAddrRegion').val('33');
 								$('#cAddrRegion').val($val);
@@ -609,9 +632,61 @@ Author/s:	Christopher Georgiev
 								//$('#mAddrRegion option').clone().appendTo('#cAddrRegion');
 							}
 							*/
-							
+
+              $(function(){
+                $("#dialog-form-office").dialog({
+                  autoOpen: false
+                });
+                $("#add-new-office").on("click", function(){
+                  $("#dialog-form-office").dialog("open");
+                });
+              });
+              var dialog, form,
+
+              function addOffice() {
+                var valid = true;
+                allFields.removeClass( "ui-state-error" );
+
+                if ( valid ) {
+                  $( "#users tbody" ).append( "<tr>" +
+                    "<td>" + address.val() + "</td>" +
+                    "<td>" + email.val() + "</td>" +
+                    "<td>" + tel_fax.val() + "</td>" +
+                    "<td>" + name.val() + "</td>" +
+                  "</tr>" );
+                  dialog.dialog( "close" );
+                }
+                return valid;
+              }
+
+              dialog = $( "#dialog-form-office" ).dialog({
+                autoOpen: false,
+                height: 400,
+                width: 350,
+                modal: true,
+                buttons: {
+                  "Create an account": addOffice,
+                  Cancel: function() {
+                    dialog.dialog( "close" );
+                  }
+                },
+                close: function() {
+                  form[ 0 ].reset();
+                  allFields.removeClass( "ui-state-error" );
+                }
+              });
+
+              form = dialog.find( "form" ).on( "submit", function( event ) {
+                event.preventDefault();
+                addUser();
+              });
+
+              $( "#add-new-office" ).button().on( "click", function() {
+                dialog.dialog( "open" );
+              });
+
 						});
-						
+
 
 
     </script>

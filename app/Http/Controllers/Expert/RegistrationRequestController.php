@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Expert;
 
 use App\Http\Controllers\Controller;
-use App\registrationrequest;
-use Gate;
 use Illuminate\Http\Request;
+use Gate;
+use App\Models\RegReq\registrationrequest;
 
 class RegistrationRequestController extends Controller
 {
@@ -21,12 +21,10 @@ class RegistrationRequestController extends Controller
      */
     public function index()
     {
-        if(Gate::denies('expert-user')){
-          return redirect(route('logout'));
-        };
+        $requests_agency = registrationrequest::agency()->paginate(5);
 
         //$registrationrequest = registrationrequest::all(); //passing the users data to the view
-        return view('expert.requests.registration.index');
+        return view('expert.requests.registration.index', compact('requests_agency'));
 
     }
 

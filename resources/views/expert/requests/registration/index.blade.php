@@ -87,38 +87,30 @@
                     <th scope="col">ID от онлайн регистрация</th>
                     <th scope="col">ЕИК/Идентификатор</th>
                     <th scope="col">Наименование</th>
-                    <th scope="col">Тип</th>
                     <th scope="col">Статус</th>
+                    <th scope="col">Състояние</th>
                     <th scope="col">Последна промяна</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td><a href="#" class="text-primary">10298</a></td>
-                    <td>205740423</td>
-                    <td>Човешка сила</td>
-                    <td>Нов посредник</td>
-                    <td>Подадена</td>
-                    <td>19.08.2019 / 12:22:23</td>
-                  </tr>
-                  <tr>
-                    <td><a href="#" class="text-primary">10298</a></td>
-                    <td>205740423</td>
-                    <td>Човешка сила</td>
-                    <td>Нов посредник</td>
-                    <td>Подадена</td>
-                    <td>19.08.2019 / 12:22:23</td>
-                  </tr>
-                  <tr>
-                    <td><a href="#" class="text-primary">10298</a></td>
-                    <td>205740423</td>
-                    <td>Човешка сила</td>
-                    <td>Нов посредник</td>
-                    <td>Подадена</td>
-                    <td>19.08.2019 / 12:22:23</td>
-                  </tr>
+                    @foreach ($requests_agency as $request)
+                      <tr>
+                        <td>
+                          <a href="#" class="text-primary">{{ $request->id }}</a>
+                        </td>
+                        <td>{{ $request->getCompanyUIC() }}</td>
+                        <td>{{ $request->getCompanyName() }}</td>
+                        <td>{{ $request->status }}</td>
+                        <td>{{ $request->state }}</td>
+                        <td>
+                          {{ date('d-m-Y / H:i:s', strtotime($request->lastupdated)) }}
+                        </td>
+                      </tr>
+                    @endforeach
                 </tbody>
               </table>
+
+              {!! $requests_agency->links() !!}
 
           </section>
       </div>

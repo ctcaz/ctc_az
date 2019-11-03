@@ -10,6 +10,9 @@ use App\Models\Nom\N_municipality;
 use App\Models\Nom\N_city;
 use App\Models\RegReq\registrationrequest;
 use App\Models\General\Snumber;
+use App\Models\General\person;
+use App\Models\General\legalentity;
+use App\Models\Agency\recruitmentagencyprototype;
 
 class ApplicationController extends Controller
 {
@@ -66,23 +69,64 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
-        //Find the last number for this table in snumbers
-        $lastID = Snumber::where('table_name', 'registrationrequest')->first();
-        $count  = 1;
-        if ($lastID <> null) {
-            $count  = $lastID->last_number;
-            $count ++;
-        }
-        //update the last number
+        //Create a new company for this request
+        $count = Snumber::getLastNumber('legalentity');
+        $input = [
+          'id' => $count,
+          'name' => $request->comp_name,
+          'uic' => $request->bulstat,
+          'type_id' => $request->comp_type,
+        ];
+        $legalentity = legalentity::create($input);
+        $legalentity = legalentity::find($count);
 
-        $input2 = ['last_number' => $count];
-        $lastID = Snumber::where('id',$lastID->id)->update($input2);
+        //Create a prototype agency
+        $count = Snumber::getLastNumber('recruitmentagencyprototype');
+        $update = now();
+        $input = [
+          'id' => $count,
+          'lastupdated' => $update,
+        ];
+        $prototype = recruitmentagencyprototype::create($input);
+        $prototype = recruitmentagencyprototype::find($count);
+
+        //Connect Agency Prototype and Legal entity
+        $prototype->legalentity_id = $legalentity->id;
+        $prototype->save();
+
+        //Create a new person for this request
+        $count = Snumber::getLastNumber('person');
+        $input = [
+          'id' => $count,
+          'givenname' => $request->givenname,
+          'surname' => $request->surname,
+          'familyname' => $request->familyname,
+          'email' => $request->email,
+          'position' => $request->position,
+          'identifier' => $request->identifier,
+        ];
+        $person = person::create($input);
+        $person = person::find($count);
+        //lnch
 
         //Create a new registrationrequest
-        $input = ['id' => $count, 'state'=>'Подадена', 'status'=>'Получено ID'];
+        $count = Snumber::getLastNumber('registrationrequest');
+        $update = now();
+        $input = [
+          'id' => $count,
+          'state' => 'Получено ID ЧТП',
+          'status' => 'Подадена',
+          'lastupdated' => $update,
+        ];
         $regReq = registrationrequest::create($input);
 
-        //registrationrequest::create($this->validatedData());
+        //associate with a reg request
+        $regReq = registrationrequest::find($count);
+
+        //Connect Registration Request with Person and Agency Prototype
+        $regReq->applicant_id = $person->id;
+        $regReq->recruitmentagency_id = $prototype->id;
+        $regReq->save();
 
         return redirect()->route('welcome');;
     }
