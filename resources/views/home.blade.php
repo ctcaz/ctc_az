@@ -43,6 +43,7 @@
                 <div class="card-header">Роли</div>
 
                 <div class="card-body">
+                    <!--
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -73,10 +74,42 @@
                         <button type="button" class="btn btn-info">ПОВР</button>
                       </a>
                     @endif
+                    //-->
 
+                    <div class="radio">
+                      <label style="font-size: 2.5em">
+                        @if (auth()->user()->hasRole('Администратор'))
+                          <input type="radio" name="role">
+                          <span class="cr"><i class="cr-icon fa fa-circle"></i></span>
+                          <a href="{{route('admin.users.index')}}">Администратор</a>
+                        @endif
+                        <br>
+                        @if (auth()->user()->hasRole('Експерт'))
+                          <input type="radio" name="role">
+                          <span class="cr"><i class="cr-icon fa fa-circle"></i></span>
+                          <a href="{{route('expert.registration.index')}}">Експерт</a>
+                        @endif
+                        <br>
+                        @if (auth()->user()->hasRole('Трудов посредник'))
+                          <input type="radio" name="role">
+                          <span class="cr"><i class="cr-icon fa fa-circle"></i></span>
+                          <a href="{{route('ra.start.index')}}">Трудов посредник</a>
+                        @endif
+                        <br>
+                        @if (auth()->user()->hasRole('ПОВР'))
+                          <input type="radio" name="role">
+                          <span class="cr"><i class="cr-icon fa fa-circle"></i></span>
+                          <a href="{{route('powr.home.index')}}">ПОВР</a>
+                        @endif
+                      </label>
+                    </div>
 
                 </div>
             </div>
+
+
+
+
         </div>
     </div>
 </div>

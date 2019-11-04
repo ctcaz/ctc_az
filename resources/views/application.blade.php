@@ -42,7 +42,7 @@
                 <div class="row">
                   <div class="col">
                     <label for="">Име: *</label>
-                    <input name="givenname" type="text" class="form-control" id="" value="{{ old('name') }}">
+                    <input name="givenname" type="text" class="form-control" id="" value="{{ old('givenname') }}">
                   </div>
                   <div class="col">
                     <label for="">Презиме:</label>
@@ -57,7 +57,7 @@
                     <div class="col">
                       <div class="col-25">
                           <div class="form-check-inline">
-                              <input name="lnch" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                              <input name="lnch" class="form-check-input" type="checkbox" id="inlineCheckbox1" value=1>
                               <label class="form-check-label" for="inlineCheckbox1">ЛНЧ</label>
                           </div>
                       </div>
@@ -76,16 +76,17 @@
                       </div>
                 </div>
               </section>
+
               <section>
                 <h3><span class="primary-bgr">Данни за юридическо лице</span></h3>
                   <h6><strong>Вид Юридическо лице:</strong></h6>
                   <div class="row">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="RegRadio" id="inlineRadio1" value="option1">
+                        <input class="form-check-input" type="radio" name="RadioBul" id="Bul" value="option1">
                         <label class="form-check-label" for="inlineRadio1">с регистрация в България</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="RegRadio" id="inlineRadio2" value="option2">
+                        <input class="form-check-input" type="radio" name="RadioBul" id="World" value="option2">
                         <label class="form-check-label" for="inlineRadio2">с регистрация в друга държава</label>
                     </div>
                   </div>
@@ -111,7 +112,16 @@
                       </select>
                     </div>
                   </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <label for="">Идентификационен номер на удостоверението за вписване в регистъра по чл. 10, ал. 1, т. 2 ЗЗЛД:</label>
+                        <input type="text" class="form-control" id="" name="comp_zzld">
+                    </div>
+                  </div>
+
               </section>
+
               <section>
                   <h3><span class="primary-bgr">Лица, представители на посредника</span></h3>
                   <p><em>Задължително е да има посочен поне един представител</em></p>
@@ -209,41 +219,8 @@
                       </tr>
                     </tbody>
                   </table>
-                  <p><a data-fancybox data-src="#add-user-2" href="javascript:void(0)" class="btn btn-primary" id="create-new-user">Добави</a></p>
 
-                  <div class="modal fade" id="ajax-crud-modal" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                          <div class="modal-header">
-                              <h4 class="modal-title" id="userCrudModal"></h4>
-                          </div>
-                          <div class="modal-body">
-                              <form id="userForm" name="userForm" class="form-horizontal">
-                                 <input type="hidden" name="user_id" id="user_id">
-                                  <div class="form-group">
-                                      <label for="name" class="col-sm-2 control-label">Name</label>
-                                      <div class="col-sm-12">
-                                          <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="" maxlength="50" required="">
-                                      </div>
-                                  </div>
-
-                                  <div class="form-group">
-                                      <label class="col-sm-2 control-label">Email</label>
-                                      <div class="col-sm-12">
-                                          <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" value="" required="">
-                                      </div>
-                                  </div>
-                              </form>
-                          </div>
-                          <div class="modal-footer">
-                              <button type="button" class="btn btn-primary" id="btn-save" value="create">Save changes
-                              </button>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-
-
+                  <p><a data-fancybox data-src="#add-user-2" href="#" class="btn btn-primary" id="create-new-user">Добави</a></p>
 
               </section>
 
@@ -332,7 +309,7 @@
                   <div class="row">
                     <div class="col">
                       <label for="country">Държава:*</label>
-                      <select id="" class="form-control">
+                      <select name="mCountry" id="mCountry" class="form-control">
                           <option selected="">Моля, изберете</option>
                           @foreach ($countries as $country)
                               <option value="{{ $country->id }}" {{ ( $country->id == 1) ? 'selected' : '' }}>
@@ -343,33 +320,44 @@
                     </div>
 
                     <div class="col">
-                      <div class="form-group">
-                          <label for="region">Област:*</label>
-                          <select name="region1" id="region1" class="form-control">
-                            <option selected="">Моля, изберете</option>
-                            @foreach ($regions as $key => $value)
-                                <option value="{{ $key }}">
-                                    {{$value}}
-                                </option>
-                            @endforeach
-                          </select>
+                      <div class="form-group" id="mAddrRegion" style="display: block;">
+                        <label for="region">Област:*</label>
+                        <select name="mAddrRegion" id="mAddrRegion" class="form-control">
+                          <option selected="">Моля, изберете</option>
+                          @foreach ($regions as $key => $value)
+                            <option value="{{ $key }}">
+                              {{$value}}
+                            </option>
+                          @endforeach
+                        </select>
                       </div>
                     </div>
 
                     <div class="col">
-                      <label for="">Община:*</label>
-                      <select name="muni1" id="muni1" class="form-control">
+                      <div class="" id="mAddrMuni" style="display: block;">
+                        <label for="">Община:*</label>
+                        <select name="mAddrMuni" id="mAddrMuni" class="form-control">
                           <option selected="">Моля, изберете</option>
-
-                      </select>
+                        </select>
+                      </div>
                     </div>
 
                     <div class="col">
-                      <label for="">Населено място:*</label>
-                      <select name="city1" id="" class="form-control">
+                      <div class="" id="mAddrCity" style="display: block;">
+                        <label for="">Населено място:*</label>
+                        <select name="mAddrCity" id="mAddrCity" class="form-control">
                           <option selected="">Моля, изберете</option>
+                        </select>
+                      </div>
+                    </div>
 
-                      </select>
+                    <div class="col">
+                      <div class="" id="mAddrCityDistr" style="display: block;">
+                        <label for="mAddrCityDistr">Район:*</label>
+                        <select name="mAddrCityDistr" id="mAddrCityDistr" class="form-control">
+                          <option selected="">Моля, изберете</option>
+                        </select>
+                      </div>
                     </div>
 
                   </div>
@@ -382,14 +370,15 @@
                   <h6 class="mt-4"><strong>Адрес за кореспонденция</strong></h6>
                   <div class="form-group">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="">
+                      <input class="form-check-input" type="checkbox" id="c_as_m" name="c_as_m">
                       <label class="form-check-label" for="">Същият като адрес на управление</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="col">
                       <label for="">Държава:*</label>
-                      <select id="" class="form-control">
+                      <select name="cCountry" id="cCountry" class="form-control">
                         <option selected="">Моля, изберете</option>
                         @foreach ($countries as $country)
                             <option value="{{ $country->id }}" {{ ( $country->id == 1) ? 'selected' : '' }}>
@@ -398,32 +387,50 @@
                         @endforeach
                       </select>
                     </div>
+
                     <div class="col">
-                      <label for="">Област:*</label>
-                      <select id="" class="form-control">
-                        <option selected="">Моля, изберете</option>
-                        @foreach ($regions as $id => $region)
+                      <div class="" id="cAddrRegion" style="display: block;">
+                        <label for="">Област:*</label>
+                        <select name="cAddrRegion" id="cAddrRegion" class="form-control" name="cAddrRegion">
+                          <option selected="">Моля, изберете</option>
+                          @foreach ($regions as $id => $region)
                             <option value="{{ $id }}">
                               {{$region}}
                             </option>
-                        @endforeach
-                      </select>
+                          @endforeach
+                        </select>
+                      </div>
                     </div>
-                    <div class="col">
-                      <label for="">Община:*</label>
-                      <select id="" class="form-control">
-                        <option selected="">Моля, изберете</option>
 
-                      </select>
-                    </div>
                     <div class="col">
-                      <label for="">Населено място:*</label>
-                      <select id="" class="form-control">
-                        <option selected="">Моля, изберете</option>
-
-                      </select>
+                      <div class="" id="cAddrMuni" style="display: block;">
+                        <label for="">Община:*</label>
+                        <select name="cAddrMuni" id="cAddrMuni" class="form-control">
+                          <option selected="">Моля, изберете</option>
+                        </select>
+                      </div>
                     </div>
+
+                    <div class="col">
+                      <div class="" id="cAddrCity" style="display: block;">
+                        <label for="">Населено място:*</label>
+                        <select name="cAddrCity" id="cAddrCity" class="form-control">
+                          <option selected="">Моля, изберете</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="" id="cAddrCityDistr" style="display: block;">
+                        <label for="cAddrCityDistr">Район:*</label>
+                        <select name="cAddrCityDistr" id="cAddrCityDistr" class="form-control">
+                          <option selected="">Моля, изберете</option>
+                        </select>
+                      </div>
+                    </div>
+
                   </div>
+
                   <div class="form-group">
                     <label for="">Адрес:*</label>
                     <input type="text" class="form-control" id="" placeholder="">
@@ -545,48 +552,53 @@
                       </div>
                   </div>
               </section>
+
               <section>
                   <h3><span class="primary-bgr">Вид посреднически услуги</span></h3>
                   <h6><strong>Посреднически услуги:*</strong></h6>
 
                   <div class="form-group">
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="">
+                        <input class="form-check-input" type="checkbox" id="" name="consulting" value="информиране и/или консултиране на търсещите работа лица и на работодателите">
                         <label class="form-check-label" for="">
                           информиране и/или консултиране на търсещите работа лица и на работодателите
                         </label>
                       </div>
                   </div>
+
                   <div class="form-group">
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="">
+                        <input class="form-check-input" type="checkbox" id="" name="psychology" value="психологическо подпомагане на търсещите работа лица">
                         <label class="form-check-label" for="">
                           психологическо подпомагане на търсещите работа лица
                         </label>
                       </div>
                   </div>
+
                   <div class="form-group">
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="">
+                        <input class="form-check-input" type="checkbox" id="" name="elders" value="насочване към обучение на възрастни">
                         <label class="form-check-label" for="">
                           насочване към обучение на възрастни
                         </label>
                       </div>
                   </div>
+
                   <div class="form-group">
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="">
+                        <input class="form-check-input" type="checkbox" id="" name="moving" value="насочване и подпомагане за започване на работа, включително в друго населено място в страната или в други държави">
                         <label class="form-check-label" for="">
                           насочване и подпомагане за започване на работа, включително в друго населено място в страната или в други държави
                         </label>
                       </div>
                   </div>
               </section>
+
               <section>
                   <h3><span class="primary-bgr">Допълнителни данни</span></h3>
                   <div class="form-group">
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="">
+                        <input class="form-check-input" type="checkbox" id="" name="eurespartner" value=1>
                         <label class="form-check-label" for="">
                           Партньор на EURES
                         </label>
@@ -594,13 +606,14 @@
                   </div>
                   <div class="form-group">
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="">
+                        <input class="form-check-input" type="checkbox" id="" name="apiuser" value=1>
                         <label class="form-check-label" for="">
                           Ще използва система за публикуване на данни по автоматизиран път
                         </label>
                       </div>
                   </div>
               </section>
+
               <section>
                   <h3><span class="primary-bgr">Данни за документи предоставени от посредника</span></h3>
                   <h6><strong>Прикачени файлове</strong> <span class="sep-line "> | </span> няма</h6>
@@ -616,102 +629,309 @@
 @section('scripts')
 
     <script>
-        $(document).ready(function(){
-            //Check the registration region
-            $('input[name="RegRadio"]').on('change', function(){
-                var radio = $(this).val();
-                console.log(radio);
-            });
+    $(document).ready(function(){
+        //Check the registration region and show/hide Region/Municipaty/City/District
+        $("input[name='RadioBul']").click(function() {
+            let id = $(this).attr("id");
 
+            if (id == 'Bul') {
+                $("#mCountry").val(1);
+                $("#cCountry").val(1);
 
-            //Populate the first municipaty object based on the selected refion
-            $('select[name="region1"]').on('change', function(){ //listens to changes in "region1"
-                var region_id = $(this).val();
-                var flag = 1; //initializing the first row flag
-                if(region_id){
-                    $.ajax({
-                        url: 'application/getMuni/'+region_id, //use the getMuni method from the Controller
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(data){
-                            //empty the muni1 and city1 dropdowns
-                            $('select[name="muni1"]').empty();
-                            $('select[name="city1"]').empty();
+                $("#mAddrRegion").css('display', 'block');
+                $("#mAddrMuni").css('display', 'block');
+                $("#mAddrCity").css('display', 'block');
+                $("#mAddrCityDistr").css('display', 'block');
 
-                            $.each(data, function(key, value){
-                                //Populate
-                                if (flag === 1){
-                                  flag = 2;
-                                  $('select[name="muni1"]').append('<option value="">'+ 'Моля, изберете' +'</option>');
-                                  $('select[name="muni1"]').append('<option value="'+key+'">'+ value +'</option>');
-                                }else{
-                                  $('select[name="muni1"]').append('<option value="'+key+'">'+ value +'</option>');
-                                }
+                $("#cAddrRegion").css('display', 'block');
+                $("#cAddrMuni").css('display', 'block');
+                $("#cAddrCity").css('display', 'block');
+                $("#cAddrCityDistr").css('display', 'block');
+            }
 
-                            });
+            if (id == 'World') {
+                $("#mCountry").val(0);
+                $("#cCountry").val(0);
 
-                        }
-                    });
-                } else {
-                    //If nothing was selected - empty the dropdowns
-                    $('select[name="muni1"]').empty();
-                    $('select[name="city1"]').empty();
-                }
-            });
+                $("#mAddrRegion").css('display', 'none');
+                $("#mAddrMuni").css('display', 'none');
+                $("#mAddrCity").css('display', 'none');
+                $("#mAddrCityDistr").css('display', 'none');
 
-            //Populate the first city object based on the selected municipaty
-            $('select[name="muni1"]').on('change', function(){ //listens to changes in "muni1"
-                var muni_id = $(this).val();
-                flag = 1; //initializing the first row flag
-                if(muni_id){
-                    $.ajax({
-                        url: 'application/getCity/'+muni_id, //use the getCity method from the Controller
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(data){
-                            $('select[name="city1"]').empty(); //empty the dropdown
+                $("#cAddrRegion").css('display', 'none');
+                $("#cAddrMuni").css('display', 'none');
+                $("#cAddrCity").css('display', 'none');
+                $("#cAddrCityDistr").css('display', 'none');
+            }
+        });
 
-                            $.each(data, function(key, value){
-                                //Populate
-                                if (flag === 1){
-                                  flag = 2;
-                                  $('select[name="city1"]').append('<option value="">'+ 'Моля, изберете' +'</option>');
-                                  $('select[name="city1"]').append('<option value="'+key+'">'+ value +'</option>');
-                                }else{
-                                  $('select[name="city1"]').append('<option value="'+key+'">'+ value +'</option>');
-                                }
+        //If another country is selected - hide Region/Municipaty/City/District
+        //Headquarters
+        $('select[name="mCountry"]').on('change', function(){ //listens to changes in "mCountry"
+            var id = $(this).val();
+            if(id !== '1'){
+                //alert(id);
+                $("#mAddrRegion").css('display', 'none');
+                $("#mAddrMuni").css('display', 'none');
+                $("#mAddrCity").css('display', 'none');
+                $("#mAddrCityDistr").css('display', 'none');
+            } else {
+              $("#mAddrRegion").css('display', 'block');
+              $("#mAddrMuni").css('display', 'block');
+              $("#mAddrCity").css('display', 'block');
+              $("#mAddrCityDistr").css('display', 'block');
+            }
+        });
 
-                            });
+        //Correspondence
+        $('select[name="cCountry"]').on('change', function(){ //listens to changes in "mCountry"
+            var id = $(this).val();
+            if(id !== '1'){
+                //alert(id);
+                $("#cAddrRegion").css('display', 'none');
+                $("#cAddrMuni").css('display', 'none');
+                $("#cAddrCity").css('display', 'none');
+                $("#cAddrCityDistr").css('display', 'none');
+            } else {
+              $("#cAddrRegion").css('display', 'block');
+              $("#cAddrMuni").css('display', 'block');
+              $("#cAddrCity").css('display', 'block');
+              $("#cAddrCityDistr").css('display', 'block');
+            }
+        });
 
-                        }
-                    });
-                } else {
-                    //If nothing was selected - empty the dropdown
-                    $('select[name="city1"]').empty();
-                }
-            });
+        //Populate the first municipaty object based on the selected refion
+        $('select[name="mAddrRegion"]').on('change', function(){ //listens to changes in "mAddrRegion"
+            var region_id = $(this).val();
+            var flag = 1; //initializing the first row flag
+            //alert("region_id");
+            if(region_id){
+                $.ajax({
+                    url: 'application/getMuni/'+region_id, //use the getMuni method from the Controller
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data){
+                        //empty the mAddrMuni and mAddrCity dropdowns
+                        $('select[name="mAddrMuni"]').empty();
+                        $('select[name="mAddrCity"]').empty();
+                        $('select[name="mAddrCityDistr"]').empty();
 
+                        $.each(data, function(key, value){
+                            //Populate
+                            if (flag === 1){
+                              flag = 2;
+                              $('select[name="mAddrMuni"]').append('<option value="">'+ 'Моля, изберете' +'</option>');
+                              $('select[name="mAddrMuni"]').append('<option value="'+key+'">'+ value +'</option>');
+                            }else{
+                              $('select[name="mAddrMuni"]').append('<option value="'+key+'">'+ value +'</option>');
+                            }
 
-            /*  When user click add user button */
-            $('#create-new-user').click(function () {
-                $('#btn-save').val("create-user");
-                $('#userForm').trigger("reset");
-                $('#userCrudModal').html("Add New User");
-                $('#ajax-crud-modal').modal('show');
-            });
+                        });
 
-            $('#btn-save').on("click", function (){
-                console.log('Pressed1');
+                    }
+                });
+            } else {
+                //If nothing was selected - empty the dropdowns
+                $('select[name="mAddrMuni"]').empty();
+                $('select[name="mAddrCity"]').empty();
+                $('select[name="mAddrCityDistr"]').empty();
+            }
+        });
 
-                    var actionType = $('#btn-save').val();
-                    $('#btn-save').html('Sending..');
-                    console.log(actionType);
+        $('select[name="cAddrRegion"]').on('change', function(){ //listens to changes in "cAddrRegion"
 
+            var cAddrRegion_id = $(this).val();
+            var flag = 1; //initializing the first row flag
+            //alert(cAddrRegion_id);
+            if(cAddrRegion_id){
+                $.ajax({
+                    url: 'application/getMuni/'+cAddrRegion_id, //use the getMuni method from the Controller
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data){
+                        //empty the cAddrMuni and cAddrCity dropdowns
+                        $('select[name="cAddrMuni"]').empty();
+                        $('select[name="cAddrCity"]').empty();
 
-            });
+                        $.each(data, function(key, value){
+                            //Populate
+                            if (flag === 1){
+                              flag = 2;
+                              $('select[name="cAddrMuni"]').append('<option value="">'+ 'Моля, изберете' +'</option>');
+                              $('select[name="cAddrMuni"]').append('<option value="'+key+'">'+ value +'</option>');
+                            }else{
+                              $('select[name="cAddrMuni"]').append('<option value="'+key+'">'+ value +'</option>');
+                            }
 
+                        });
 
+                    }
+                });
+            } else {
+                //If nothing was selected - empty the dropdowns
+                $('select[name="cAddrMuni"]').empty();
+                $('select[name="cAddrCity"]').empty();
+            }
+        });
+
+        //Populate the first city object based on the selected municipaty
+        $('select[name="mAddrMuni"]').on('change', function(){ //listens to changes in "mAddrMuni"
+            var muni_id = $(this).val();
+            flag = 1; //initializing the first row flag
+            if(muni_id){
+                $.ajax({
+                    url: 'application/getCity/'+muni_id, //use the getCity method from the Controller
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data){
+                        $('select[name="mAddrCity"]').empty(); //empty the dropdown
+
+                        $.each(data, function(key, value){
+                            //Populate
+                            if (flag === 1){
+                              flag = 2;
+                              $('select[name="mAddrCity"]').append('<option value="">'+ 'Моля, изберете' +'</option>');
+                              $('select[name="mAddrCity"]').append('<option value="'+key+'">'+ value +'</option>');
+                            }else{
+                              $('select[name="mAddrCity"]').append('<option value="'+key+'">'+ value +'</option>');
+                            }
+
+                        });
+
+                    }
+                });
+            } else {
+                //If nothing was selected - empty the dropdown
+                $('select[name="mAddrCity"]').empty();
+            }
+        });
+
+        //Populate the first city object based on the selected municipaty
+        $('select[name="cAddrMuni"]').on('change', function(){ //listens to changes in "cAddrMuni"
+            var cAddrMuni_id = $(this).val();
+            flag = 1; //initializing the first row flag
+            if(cAddrMuni_id){
+                $.ajax({
+                    url: 'application/getCity/'+cAddrMuni_id, //use the getCity method from the Controller
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data){
+                        $('select[name="cAddrCity"]').empty(); //empty the dropdown
+
+                        $.each(data, function(key, value){
+                            //Populate
+                            if (flag === 1){
+                              flag = 2;
+                              $('select[name="cAddrCity"]').append('<option value="">'+ 'Моля, изберете' +'</option>');
+                              $('select[name="cAddrCity"]').append('<option value="'+key+'">'+ value +'</option>');
+                            }else{
+                              $('select[name="cAddrCity"]').append('<option value="'+key+'">'+ value +'</option>');
+                            }
+
+                        });
+
+                    }
+                });
+            } else {
+                //If nothing was selected - empty the dropdown
+                $('select[name="cAddrCity"]').empty();
+            }
+        });
 
         });
+
+        //Populate the first city district object based on the selected city
+        $('select[name="mAddrCity"]').on('change', function(){ //listens to changes in "mAddrMuni"
+            var city_id = $(this).val();
+            flag = 1; //initializing the first row flag
+            //alert(city_id);
+            if(city_id){
+                $.ajax({
+                    url: 'powr_regreq/getCityDistrict/'+city_id, //use the getCity method from the Controller
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data){
+                        $('select[name="mAddrCityDistr"]').empty(); //empty the dropdown
+
+                        $.each(data, function(key, value){
+                            //Populate
+                            if (flag === 1){
+                              flag = 2;
+                              $('select[name="mAddrCityDistr"]').append('<option value="">'+ 'Моля, изберете' +'</option>');
+                              $('select[name="mAddrCityDistr"]').append('<option value="'+key+'">'+ value +'</option>');
+                            }else{
+                              $('select[name="mAddrCityDistr"]').append('<option value="'+key+'">'+ value +'</option>');
+                            }
+
+                        });
+
+                    }
+                });
+            } else {
+                //If nothing was selected - empty the dropdown
+                $('select[name="mAddrCityDistr"]').empty();
+            }
+        });
+
+        //Populate the first city district object based on the selected city
+        $('select[name="cAddrCity"]').on('change', function(){ //listens to changes in "cAddrMuni"
+            var city_id = $(this).val();
+            flag = 1; //initializing the first row flag
+            //alert(city_id);
+            if(city_id){
+                $.ajax({
+                    url: 'powr_regreq/getCityDistrict/'+city_id, //use the getCity method from the Controller
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data){
+                        $('select[name="cAddrCityDistr"]').empty(); //empty the dropdown
+
+                        $.each(data, function(key, value){
+                            //Populate
+                            if (flag === 1){
+                              flag = 2;
+                              $('select[name="cAddrCityDistr"]').append('<option value="">'+ 'Моля, изберете' +'</option>');
+                              $('select[name="cAddrCityDistr"]').append('<option value="'+key+'">'+ value +'</option>');
+                            }else{
+                              $('select[name="cAddrCityDistr"]').append('<option value="'+key+'">'+ value +'</option>');
+                            }
+
+                        });
+
+                    }
+                });
+            } else {
+                //If nothing was selected - empty the dropdown
+                $('select[name="cAddrCityDistr"]').empty();
+            }
+        });
+
+        //Correspondence address is the same as main
+        $('#c_as_m').change(function(){
+          if(this.checked == true){
+            document.getElementById('cCountry').value = document.getElementById('mCountry').value;
+            var val = document.getElementById("mCountry").value;
+            alert(val);
+            if (val == '1') {
+                $("#cAddrRegion").css('display', 'block');
+                $("#cAddrMuni").css('display', 'block');
+                $("#cAddrCity").css('display', 'block');
+                $("#cAddrCityDistr").css('display', 'block');
+
+                $val1=$("#mAddrRegion :selected").val();
+                $('#cAddrRegion').val('32');
+                alert($val1);
+            } else {
+                $("#cAddrRegion").css('display', 'none');
+                $("#cAddrMuni").css('display', 'none');
+                $("#cAddrCity").css('display', 'none');
+                $("#cAddrCityDistr").css('display', 'none');
+            }
+
+            //alert(val);
+
+          }
+        });
+
     </script>
 @endsection

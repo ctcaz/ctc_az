@@ -48,7 +48,7 @@ class POWRregReqController extends Controller
 
     public function getCity($id)
     {
-        $cities = N_city::where('muni_id', $id)->pluck('name', 'id');
+        $cities = N_city::where('muni_id', $id)->where('parent_id', null)->pluck('name', 'id');
 
         return json_encode($cities);
     }
@@ -102,7 +102,7 @@ class POWRregReqController extends Controller
         $input2 = ['last_number' => $count];
         $lastID = Snumber::where('id',$lastID->id)->update($input2);
 			*/
-				
+
 				$count = Snumber::getLastNumber((new RegPOWR)->getTable());
 
 				//$maddr = new Address().
@@ -111,20 +111,20 @@ class POWRregReqController extends Controller
 				$maddr = [
 									/*'id' => $maddr_id,*/
 									'dtype' => '1',
-									'country_id' => '1', 
-									'region_id' => '1', 
-									'municipality_id' => '1', 
-									'setlement_id' => '1', 
-									'district_id' => '1', 
+									'country_id' => '1',
+									'region_id' => '1',
+									'municipality_id' => '1',
+									'setlement_id' => '1',
+									'district_id' => '1',
 									'street' => 'Dunav str.'
 									];
 				//Address::create($maddr);
-				
+
 				$maddr = new Address.
 				//$maddr->dtype = "jlkjlkjl";
 				$maddr->save();
-				
-				
+
+
 				//$maddr_id = Address::newAddress($maddr);
 
         //Create a new registrationrequest

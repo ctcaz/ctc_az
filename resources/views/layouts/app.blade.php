@@ -13,10 +13,10 @@
 <link rel="stylesheet" href="{{asset('css/_c.css')}}">
 <link rel="stylesheet" href="{{asset('css/_r.css')}}">
 
-
 <script src="{{asset('js/jquery-3.3.1.slim.min.js')}}"></script>
-<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('js/jquery.js')}}"></script>
+<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+
 <script>
 
 $(document).ready(function() {

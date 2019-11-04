@@ -617,8 +617,18 @@ Author/s:	Christopher Georgiev
 								//alert("Yes");
 								//$('#mAddrRegion option').clone().appendTo('#cAddrRegion');
 								//$("#cAddrRegion").html($("#mAddrRegion").html());
-								$("#cAddrRegion").empty();
+                $("#cAddrRegion").empty();
 								$("#cAddrRegion").append($("#mAddrRegion").html());
+                $("#cAddrMuni").empty();
+								$("#cAddrMuni").append($("#mAddrMuni").html());
+                $("#cAddrCity").empty();
+								$("#cAddrCity").append($("#mAddrCity").html());
+                $("#cAddrCityDistr").empty();
+								$("#cAddrCityDistr").append($("#mAddrCityDistr").html());
+
+                $('#mAddrMuni option').clone().appendTo('#cAddrMuni');
+								$("#cAddrMuni").html($("#mAddrMuni").html());
+
 
 								$txt=$("#mAddrRegion :selected").text(); // The text content of the selected option
 								$val=$("#mAddrRegion :selected").val(); // The value of the selected option

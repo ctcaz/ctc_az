@@ -12,4 +12,16 @@ class recruitmentagencyprototype extends Model
 
     public $timestamps = false;
 
+    public function rap_territorialscope()
+    {
+        //return $this->morphOne(person::class, 'personable');
+        return $this->hasOne(rap_territorialscope::class);
+    }
+
+    public function rap_servicetype()
+    {
+        //return $this->morphOne(person::class, 'personable');
+        return $this->hasOne(rap_servicetype::class);
+    }
+
 }

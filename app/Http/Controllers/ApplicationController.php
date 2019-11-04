@@ -13,6 +13,8 @@ use App\Models\General\Snumber;
 use App\Models\General\person;
 use App\Models\General\legalentity;
 use App\Models\Agency\recruitmentagencyprototype;
+use App\Models\Agency\rap_territorialscope;
+use App\Models\Agency\rap_servicetype;
 
 class ApplicationController extends Controller
 {
@@ -40,9 +42,16 @@ class ApplicationController extends Controller
 
     public function getCity($id)
     {
-        $cities = N_city::where('muni_id', $id)->pluck('name', 'id');
+        $cities = N_city::where('muni_id', $id)->where('parent_id', null)->pluck('name', 'id');
 
         return json_encode($cities);
+    }
+
+    public function getCityDistrict($city_id)
+    {
+				$city_districts =N_city::where('parent_id',$city_id)->pluck('name', 'id');
+
+        return json_encode($city_districts);
     }
 
     /**
@@ -69,12 +78,14 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         //Create a new company for this request
         $count = Snumber::getLastNumber('legalentity');
         $input = [
           'id' => $count,
           'name' => $request->comp_name,
           'uic' => $request->bulstat,
+          'zzldcode' => $request->comp_zzld,
           'type_id' => $request->comp_type,
         ];
         $legalentity = legalentity::create($input);
@@ -83,8 +94,18 @@ class ApplicationController extends Controller
         //Create a prototype agency
         $count = Snumber::getLastNumber('recruitmentagencyprototype');
         $update = now();
+        $apiuser = 0;
+        if ($request->apiuser == 1) {
+          $apiuser = 1;
+        }
+        $eurespartner = 0;
+        if ($request->eurespartner == 1) {
+          $eurespartner = 1;
+        }
         $input = [
           'id' => $count,
+          'apiuser' => $apiuser,
+          'eurespartner' => $eurespartner,
           'lastupdated' => $update,
         ];
         $prototype = recruitmentagencyprototype::create($input);
@@ -94,8 +115,63 @@ class ApplicationController extends Controller
         $prototype->legalentity_id = $legalentity->id;
         $prototype->save();
 
+        //Territorial scopes
+        //Bulgaria
+        if ($request->ter_BG !== null) {
+          $terScope = new rap_territorialscope();
+          $terScope->territorialscopes = $request->ter_BG;
+          $prototype->rap_territorialscope()->save($terScope);
+        }
+
+        //World
+        if ($request->ter_World !== null) {
+          $terScope = new rap_territorialscope();
+          $terScope->territorialscopes = $request->ter_World;
+          $prototype->rap_territorialscope()->save($terScope);
+        }
+
+        //Sailor
+        if ($request->ter_Sailor !== null) {
+          $terScope = new rap_territorialscope();
+          $terScope->territorialscopes = $request->ter_Sailor;
+          $prototype->rap_territorialscope()->save($terScope);
+        }
+
+        //Service types
+        //Providing information and consulting
+        if ($request->consulting !== null) {
+          $services = new rap_servicetype();
+          $services->servicetype = $request->consulting;
+          $prototype->rap_servicetype()->save($services);
+        }
+
+        //Psychological help for active job seekers
+        if ($request->psychology !== null) {
+          $services = new rap_servicetype();
+          $services->servicetype = $request->psychology;
+          $prototype->rap_servicetype()->save($services);
+        }
+
+        //Training elders
+        if ($request->elders !== null) {
+          $services = new rap_servicetype();
+          $services->servicetype = $request->elders;
+          $prototype->rap_servicetype()->save($services);
+        }
+
+        //Moving to another city or country
+        if ($request->moving !== null) {
+          $services = new rap_servicetype();
+          $services->servicetype = $request->moving;
+          $prototype->rap_servicetype()->save($services);
+        }
+
         //Create a new person for this request
         $count = Snumber::getLastNumber('person');
+        $lnch = 0;
+        if ($request->lnch == 1) {
+          $lnch = 1;
+        }
         $input = [
           'id' => $count,
           'givenname' => $request->givenname,
@@ -103,6 +179,7 @@ class ApplicationController extends Controller
           'familyname' => $request->familyname,
           'email' => $request->email,
           'position' => $request->position,
+          'lnch' => $lnch,
           'identifier' => $request->identifier,
         ];
         $person = person::create($input);
@@ -127,8 +204,12 @@ class ApplicationController extends Controller
         $regReq->applicant_id = $person->id;
         $regReq->recruitmentagency_id = $prototype->id;
         $regReq->save();
+        //dd($regReq->id);
+
+
 
         return redirect()->route('welcome');;
+        //return redirect()->back();
     }
 
     /**
