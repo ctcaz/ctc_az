@@ -182,6 +182,7 @@
                       </div>
 
                       <p><a href="#" class="btn btn-primary">Запази</a> <span class="sep-line "> | </span> <a data-fancybox-close href="#" class="btn btn-outline-danger">Отказ</a></p>
+
                   </section>
               </div>
 
@@ -208,7 +209,42 @@
                       </tr>
                     </tbody>
                   </table>
-                  <p><a data-fancybox data-src="#add-user-2" href="javascript:;" class="btn btn-primary">Добави</a></p>
+                  <p><a data-fancybox data-src="#add-user-2" href="javascript:void(0)" class="btn btn-primary" id="create-new-user">Добави</a></p>
+
+                  <div class="modal fade" id="ajax-crud-modal" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h4 class="modal-title" id="userCrudModal"></h4>
+                          </div>
+                          <div class="modal-body">
+                              <form id="userForm" name="userForm" class="form-horizontal">
+                                 <input type="hidden" name="user_id" id="user_id">
+                                  <div class="form-group">
+                                      <label for="name" class="col-sm-2 control-label">Name</label>
+                                      <div class="col-sm-12">
+                                          <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="" maxlength="50" required="">
+                                      </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label class="col-sm-2 control-label">Email</label>
+                                      <div class="col-sm-12">
+                                          <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" value="" required="">
+                                      </div>
+                                  </div>
+                              </form>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-primary" id="btn-save" value="create">Save changes
+                              </button>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
               </section>
 
               <div id="add-user-2" style="display: none;">
@@ -496,15 +532,15 @@
                   <h6><strong>Обхват:*</strong></h6>
                   <div class="form-group">
                       <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="ter_BG" value="За Република България">
                         <label class="form-check-label" for="inlineCheckbox1">За Република България</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="ter_World" value="За други държави">
                         <label class="form-check-label" for="inlineCheckbox1">За други държави</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="ter_Sailor" value="За моряци">
                         <label class="form-check-label" for="inlineCheckbox3">За моряци</label>
                       </div>
                   </div>
@@ -654,6 +690,28 @@
                     $('select[name="city1"]').empty();
                 }
             });
+
+
+            /*  When user click add user button */
+            $('#create-new-user').click(function () {
+                $('#btn-save').val("create-user");
+                $('#userForm').trigger("reset");
+                $('#userCrudModal').html("Add New User");
+                $('#ajax-crud-modal').modal('show');
+            });
+
+            $('#btn-save').on("click", function (){
+                console.log('Pressed1');
+
+                    var actionType = $('#btn-save').val();
+                    $('#btn-save').html('Sending..');
+                    console.log(actionType);
+
+
+            });
+
+
+
         });
     </script>
 @endsection

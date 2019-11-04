@@ -21,11 +21,15 @@ Author/s:	Christopher Georgiev
 <link rel="stylesheet" href="{{asset('css/_m.css')}}">
 <link rel="stylesheet" href="{{asset('css/_c.css')}}">
 <link rel="stylesheet" href="{{asset('css/_r.css')}}">
+<link rel="stylesheet" href="{{asset('css/jquery-ui.css')}}">
+<link rel="stylesheet" href="{{asset('css/jquery-ui.min.css')}}">
 
 
 <script src="{{asset('js/jquery-3.3.1.slim.min.js')}}"></script>
 <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('js/jquery.js')}}"></script>
+<script src="{{asset('js/jquery-ui.js')}}"></script>
+<script src="{{asset('js/jquery-ui.min.js')}}"></script>
 <script>
 
 $(document).ready(function() {
@@ -87,6 +91,7 @@ $(document).ready(function(){$(".lang-change").bind("click",function(){return $(
         </div>
       </div>
     </header>
+
 
 		<main role="main">
 			@yield('content')
