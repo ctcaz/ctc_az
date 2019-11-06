@@ -541,22 +541,22 @@ Author/s:	Christopher Georgiev
                 $("#cAddrCityDistr").empty();
 								$("#cAddrCityDistr").append($("#mAddrCityDistr").html());
 
-                $('#mAddrMuni option').clone().appendTo('#cAddrMuni');
-								$("#cAddrMuni").html($("#mAddrMuni").html());
 
+                $("#cAddrRegion :selected").text($("#mAddrRegion :selected").text());
+                $("#cAddrRegion :selected").val($("#mAddrRegion :selected").val());
+                $("#cAddrMuni :selected").text($("#mAddrMuni :selected").text());
+                $("#cAddrMuni :selected").val($("#mAddrMuni :selected").val());
+                $("#cAddrCity :selected").text($("#mAddrCity :selected").text());
+                $("#cAddrCity :selected").val($("#mAddrCity :selected").val());
+                $("#cAddrCityDistr :selected").text($("#mAddrCityDistr :selected").text());
+                $("#cAddrCityDistr :selected").val($("#mAddrCityDistr :selected").val());
 
-								$txt=$("#mAddrRegion :selected").text(); // The text content of the selected option
-								$val=$("#mAddrRegion :selected").val(); // The value of the selected option
-
-								//$('#cAddr').val() = $('#mAddr').val();
-								//document.getElementById('#cAddr').value = document.getElementById('#mAddr').value;
-								//$('#cAddr').value = $('#mAddr').value;
 								document.getElementById('cAddr').value = document.getElementById('mAddr').value;
 
 
 								//alert($val+" := "+$txt);
 								//$('#cAddrRegion').val('33');
-								$('#cAddrRegion').val($val);
+								//$('#cAddrRegion').val($val);
 							} else {
 								//alert("No");
 							}
@@ -597,6 +597,7 @@ Author/s:	Christopher Georgiev
                 function checkLength( o, n, min, max ) {
             			if ( o.val().length > max || o.val().length < min ) {
             				o.addClass( "ui-state-error" );
+                    //alert(n;
             				updateTips( "Дължината на " + n + " може да бъде от " +
             					min + " до " + max + " символа." );
             				return false;
@@ -618,12 +619,13 @@ Author/s:	Christopher Georgiev
 
             		function addOffice() {
             			var valid = true;
+
             			allFields.removeClass( "ui-state-error" );
 
-                  valid = valid && checkLength( address, "address", 3, 255 );
-            			valid = valid && checkLength( email, "email", 6, 80 );
-            			valid = valid && checkLength( tel_fax, "tel_fax", 5, 16 );
-                  valid = valid && checkLength( name, "name", 3, 35 );
+                  valid = valid && checkLength( address, "Адрес", 3, 255 );
+            			valid = valid && checkLength( email, "Email", 6, 80 );
+            			valid = valid && checkLength( tel_fax, "Телефон,Факс", 5, 16 );
+                  valid = valid && checkLength( name, "Лице за контакт", 3, 35 );
 
             			//valid = valid && checkRegexp( address, /^[a-z]([0-9a-z_\s])+$/i, "Адресът може да съдържа символите a-z, 0-9, underscores, spaces and must begin with a letter." );
             			valid = valid && checkRegexp( email, emailRegex, "eg. ui@jquery.com" );
@@ -633,8 +635,8 @@ Author/s:	Christopher Georgiev
             			if ( valid ) {
             				$( "#offices tbody" ).append( "<tr>" +
                       "<td>" + address.val() + "</td>" +
-            					"<td>" + email.val() + "</td>" +
             					"<td>" + tel_fax.val() + "</td>" +
+                      "<td>" + email.val() + "</td>" +
                       "<td>" + name.val() + "</td>" +
 
             				"</tr>" );
@@ -645,8 +647,12 @@ Author/s:	Christopher Georgiev
 
             		dialog = $( "#add-office" ).dialog({
             			autoOpen: false,
-            			height: 400,
-            			width: 350,
+                  show: {effect: "blind", duration: 1000},
+                  hide: {effect: "clip", duration: 1000},
+            			height: 200,
+            			//width: 350,
+                  //width: $(window).width(),
+                  width: $(window).width() * 0.72,
             			modal: true,
             			buttons: {
             				"Добавяне на офис": addOffice,
@@ -655,8 +661,11 @@ Author/s:	Christopher Georgiev
             				}
             			},
             			close: function() {
-            				form[ 0 ].reset();
-            				allFields.removeClass( "ui-state-error" );
+            				//form[ 0 ].reset();
+                    //if ( form[0] )form[ 0 ].reset();
+                    //$("#add-office")[0].reset();
+                    //allFields.val( "" );
+            				allFields.val( "" ).removeClass( "ui-state-error" );
             			}
             		});
 
