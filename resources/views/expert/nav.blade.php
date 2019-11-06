@@ -1,4 +1,6 @@
 
+
+<div class="container-fluid clearfix">
 <h2 class="text-center h4">Административен интерфейс Регистър на частните трудови посредници</h2>
   <nav class="site-nav">
     <ul class="nav-x center">
@@ -67,3 +69,4 @@
 
       </ul>
   </nav>
+</div>
