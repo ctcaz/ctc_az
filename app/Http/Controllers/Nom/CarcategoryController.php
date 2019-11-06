@@ -106,10 +106,12 @@ class CarcategoryController extends Controller
           $request->validate([
             'category' => 'required',
             'description' => 'required',
-            'old_code' => 'required',
+            'is_active' => 'required',
           ]);
           $update = ['category' => $request->category, 'description' => $request->description, 'is_active'=>$request->is_active];
           N_carcategory::where('id',$id)->update($update);
+          //dd($update);
+
 
           return redirect()->route('nom.carcategory.index');
     }
