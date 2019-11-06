@@ -16,7 +16,7 @@ Author/s:	Christopher Georgiev
     <form class="" action="{{route('nom.carcategory.store')}}" method="post">
       <div class="form-items">
         @csrf
-        
+
 
         <section>
           <h6><strong>Добавяне на категория за управление на МПС</strong></h6>
@@ -28,7 +28,7 @@ Author/s:	Christopher Georgiev
 
 
               <div class="col">
-                <label for="code">Код:</label>
+                <label for="code">Описание:</label>
                 <input type="text" name="description" autocomplete="off" value="{{old('description')}}" class="form-control">
               </div>
 
@@ -51,7 +51,7 @@ Author/s:	Christopher Georgiev
       </div>
     </form>
 		<p align="center">
-								  <a href="{{ url('/admin/nom/carcategory/') }}">  
+								  <a href="{{ url('/admin/nom/carcategory/') }}">
                   <button type="submit" class="btn btn-primary btn-lg" align="right">Отказ</button>
 									</a href>
 		</p>

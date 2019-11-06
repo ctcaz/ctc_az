@@ -27,7 +27,7 @@ class CarcategoryController extends Controller
     public function index()
     {
          $n_car_categories = N_carcategory::paginate(10); //active()->
-         
+
 				 return view('admin.nom.carcategory.index', compact('n_car_categories'));
 
 					/*
@@ -61,12 +61,13 @@ class CarcategoryController extends Controller
 
         //Create a new currency
 				$update = new N_carcategory();
-        $update = ['id'=>$id, 'category' => $request->category, 'description' => $request->description, 'old_code'=>$request->old_code];
+        $update = ['id'=>$id, 'category' => $request->category, 'description' => $request->description, 'is_active'=>$request->is_active];
         N_carcategory::create($update);
 
         //registrationrequest::create($this->validatedData());
 
-        return redirect()->route('admin.nom.carcategory.index');;
+        //return redirect()->route('admin.nom.carcategory.index');;
+        return redirect()->route('nom.carcategory.index');
     }
 
     /**
@@ -90,7 +91,7 @@ class CarcategoryController extends Controller
     {
         $n_carcategory = N_carcategory::findOrFail($id);
         //dd($n_carcategory);
-        return view('admin.nom.carcategory.edit', compact('n_car_categories'));
+        return view('admin.nom.carcategory.edit', compact('n_carcategory'));
     }
 
     /**
@@ -107,10 +108,10 @@ class CarcategoryController extends Controller
             'description' => 'required',
             'old_code' => 'required',
           ]);
-          $update = ['category' => $request->category, 'description' => $request->description, 'old_code'=>$request->old_code];
+          $update = ['category' => $request->category, 'description' => $request->description, 'is_active'=>$request->is_active];
           N_carcategory::where('id',$id)->update($update);
 
-          return redirect()->route('admin.nom.carcategory.index');
+          return redirect()->route('nom.carcategory.index');
     }
 
     /**
@@ -123,8 +124,8 @@ class CarcategoryController extends Controller
     {
         //
     }
-		
-		
+
+
     public function validatedData()
     {
       return request()->validate([

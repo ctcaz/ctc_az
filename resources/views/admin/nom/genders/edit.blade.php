@@ -1,11 +1,11 @@
-<!--
+<?php<!--
 		File:	resources\views\admin\nom\genders\edit.blade.php
 		 Ver:	1.00.003
  Purpose:	Gender edit blade
 Author/s:	Christopher Georgiev
  Created:	2019-10-07
 	Modify:	2019-10-26
--->
+-->?>
 
 
 
@@ -14,7 +14,7 @@ Author/s:	Christopher Georgiev
 @section('contents')
   <div class="container-fluid clearfix">
     <h2 class="h3 main-heading">Корекция на пол</h2>
-		
+
     <form class="" action="{{route('nom.genders.update', $n_gender)}}" method="post">
       <div class="form-items">
         @csrf
@@ -27,13 +27,13 @@ Author/s:	Christopher Georgiev
                 <label for="name">Наименование</label>
                 <input type="text" name="name" autocomplete="off" value="{{$n_gender->name}}" class="form-control">
               </div>
-							
-							
+
+
               <div class="col">
                 <label for="code">Код</label>
                 <input type="text" name="code" autocomplete="off" value="{{$n_gender->code}}" class="form-control">
               </div>
-							
+
               <div class="col">
                 <label for="">Активен/Деактивиран:</label>
                 <br><br>
@@ -54,7 +54,7 @@ Author/s:	Christopher Georgiev
       </div>
     </form>
 		<p align="center">
-								  <a href="{{ url('/admin/nom/genders/') }}">  
+								  <a href="{{ url('/admin/nom/genders/') }}">
                   <button type="submit" class="btn btn-primary btn-lg" align="right">Отказ</button>
 									</a href>
 		</p>
