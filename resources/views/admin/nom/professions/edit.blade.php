@@ -1,11 +1,11 @@
-<!--
+<?php /*<!--
 		File:	resources\views\admin\nom\professions\edit.blade.php
 		 Ver:	1.00.003
  Purpose:	Profession edit blade
 Author/s:	Christopher Georgiev
  Created:	2019-10-07
 	Modify:	2019-10-26
--->
+-->*/?>
 
 
 
@@ -14,7 +14,7 @@ Author/s:	Christopher Georgiev
 @section('contents')
   <div class="container-fluid clearfix">
     <h2 class="h3 main-heading">Редактиране на професия</h2>
-		
+
     <form class="" action="{{route('nom.professions.update', $n_profession->id)}}" method="post">
       <div class="form-items">
         @csrf
@@ -27,18 +27,18 @@ Author/s:	Christopher Georgiev
                 <label for="name">Наименование</label>
                 <input type="text" name="name" autocomplete="off" value="{{$n_profession->name}}" class="form-control">
               </div>
-							
-							
+
+
               <div class="col">
                 <label for="code">Код</label>
                 <input type="text" name="code" autocomplete="off" value="{{$n_profession->code}}" class="form-control">
               </div>
-							
+
               <div class="col">
                 <label for="code">Описание</label>
                 <input type="text" name="description" autocomplete="off" value="{{$n_profession->description}}" class="form-control">
               </div>
-							
+
               <div class="col">
                 <label for="">Активен/Деактивиран:</label>
                 <br><br>
@@ -59,7 +59,7 @@ Author/s:	Christopher Georgiev
       </div>
     </form>
 		<p align="center">
-								  <a href="{{ url('/admin/nom/professions/') }}">  
+								  <a href="{{ url('/admin/nom/professions/') }}">
                   <button type="submit" class="btn btn-primary btn-lg" align="right">Отказ</button>
 									</a href>
 		</p>

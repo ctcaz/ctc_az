@@ -1,11 +1,11 @@
-<!--
+<?php /*<!--
 		File:	resources\views\admin\nom\professionclass\create.blade.php
 		 Ver:	1.00.003
  Purpose:	Profession class create blade
 Author/s:	Christopher Georgiev
  Created:	2019-10-07
 	Modify:	2019-10-26
--->
+-->*/?>
 
 @extends('admin.form')
 
@@ -16,7 +16,7 @@ Author/s:	Christopher Georgiev
     <form class="" action="{{route('nom.professionclass.store')}}" method="post">
       <div class="form-items">
         @csrf
-        
+
 
         <section>
           <h6><strong>Добавяне на вид професия</strong></h6>
@@ -56,7 +56,7 @@ Author/s:	Christopher Georgiev
       </div>
     </form>
 		<p align="center">
-								  <a href="{{ url('/admin/nom/professionclass/') }}">  
+								  <a href="{{ url('/admin/nom/professionclass/') }}">
                   <button type="submit" class="btn btn-primary btn-lg" align="right">Отказ</button>
 									</a href>
 		</p>

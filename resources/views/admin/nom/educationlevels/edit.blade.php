@@ -1,11 +1,11 @@
-<!--
+<?php /*<!--
 		File:	resources\views\admin\nom\educationlevels\edit.blade.php
 		 Ver:	1.00.003
  Purpose:	Education levels edit blade
 Author/s:	Christopher Georgiev
  Created:	2019-10-07
 	Modify:	2019-10-26
--->
+-->*/?>
 
 
 
@@ -14,7 +14,7 @@ Author/s:	Christopher Georgiev
 @section('contents')
   <div class="container-fluid clearfix">
     <h2 class="h3 main-heading">Редактиране на вид образование</h2>
-		
+
     <form class="" action="{{route('nom.educationlevels.update', $n_education_level->id)}}" method="post">
       <div class="form-items">
         @csrf
@@ -27,13 +27,13 @@ Author/s:	Christopher Georgiev
                 <label for="name">Наименование</label>
                 <input type="text" name="name" autocomplete="off" value="{{$n_education_level->name}}" class="form-control">
               </div>
-							
-							
+
+
               <div class="col">
                 <label for="code">Наименование EN</label>
                 <input type="text" name="name_en" autocomplete="off" value="{{$n_education_level->name_en}}" class="form-control">
               </div>
-							
+
               <div class="col">
                 <label for="">Активен/Деактивиран:</label>
                 <br><br>
@@ -54,7 +54,7 @@ Author/s:	Christopher Georgiev
       </div>
     </form>
 		<p align="center">
-								  <a href="{{ url('/admin/nom/educationlevels/') }}">  
+								  <a href="{{ url('/admin/nom/educationlevels/') }}">
                   <button type="submit" class="btn btn-primary btn-lg" align="right">Отказ</button>
 									</a href>
 		</p>

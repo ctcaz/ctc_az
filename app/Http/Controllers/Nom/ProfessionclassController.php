@@ -27,7 +27,7 @@ class ProfessionclassController extends Controller
     public function index()
     {
          $n_profession_classes = N_professionclass::paginate(10); //active()->
-         
+
 				 return view('admin.nom.professionclass.index', compact('n_profession_classes'));
 
 					/*
@@ -62,7 +62,7 @@ class ProfessionclassController extends Controller
 
         //Create a new currency
 				$update = new N_professionclass();
-        $update = ['id'=>$id, 'name' => $request->name, 'code' => $request->code, 'description' => $request->description, 'is_active'=>$request->is_active];
+        $update = ['id'=>$id, 'name' => $request->name, 'code' => $request->code, 'lvl' => $request->lvl, 'is_active'=>$request->is_active];
         N_professionclass::create($update);
 
         //registrationrequest::create($this->validatedData());
@@ -109,7 +109,7 @@ class ProfessionclassController extends Controller
             /*'code' => 'required',*/
             'is_active' => 'required',
           ]);
-          $update = ['name' => $request->name, 'code' => $request->code, 'description' => $request->description, 'is_active'=>$request->is_active];
+          $update = ['name' => $request->name, 'code' => $request->code, 'lvl' => $request->lvl, 'is_active'=>$request->is_active];
 					/*dd($update);*/
           N_professionclass::where('id',$id)->update($update);
 
@@ -127,8 +127,8 @@ class ProfessionclassController extends Controller
     {
         //
     }
-		
-		
+
+
     public function validatedData()
     {
       return request()->validate([

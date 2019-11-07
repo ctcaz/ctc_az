@@ -364,7 +364,7 @@
 
                   <div class="form-group">
                     <label for="">Адрес:*</label>
-                    <input type="text" class="form-control" id="mAddr" name="mAddr" placeholder="">
+                    <input type="text" class="form-control" id="" placeholder="">
                   </div>
 
                   <h6 class="mt-4"><strong>Адрес за кореспонденция</strong></h6>
@@ -433,11 +433,11 @@
 
                   <div class="form-group">
                     <label for="">Адрес:*</label>
-                    <input type="text" class="form-control" id="cAddr" name="cAddr" placeholder="">
+                    <input type="text" class="form-control" id="" placeholder="">
                   </div>
 
                   <h6 class="mt-4"><strong>Офиси</strong></h6>
-                  <table id="offices" name="Offices" class="table">
+                  <table class="table">
                     <thead>
                       <tr>
                         <th scope="col">Адрес</th>
@@ -447,43 +447,92 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>София, ул.Братя Миладинови 16, ет.1, офис 1</td>
-                        <td>0884777372</td>
-                        <td>office@ctc.bg</td>
-                        <td>Боряна Андонова</td>
-                      </tr>
+                    <tr>
+                      <td>София, ул.Братя Миладинови 16, ет.1, офис 1</td>
+                      <td>0884777372</td>
+                      <td>office@ctc.bg</td>
+                      <td>Боряна Андонова</td>
+                    </tr>
                     </tbody>
                   </table>
-                  <!--<p><a data-fancybox="" data-src="#add-office" href="javascript:;" class="btn btn-primary" id="add-new-office">Добави</a></p>-->
-                  <p><a data-fancybox="" data-src="#add-office" href="javascript:void(0);" class="btn btn-primary" id="add-new-office">Добави</a></p>
-                  <!--<p><a data-fancybox="" class="btn btn-primary" id="add-new-office">Добави</a></p>-->
-                  <br>
+                  <p><a data-fancybox data-src="#add-office" href="javascript:;" class="btn btn-primary">Добави</a></p>
+              </section>
 
+              <div id="add-office" style="display: none;">
+                <section>
+                    <h4 class="text-primary mb-3"><strong>Данни за офис</strong></h4>
 
-                  <div id="add-office" title="Добавяне на нов офис" style="display: none">
-                    <p class="validateTips">Всички полета са задължителни.</p>
+                    <div class="row">
+                      <div class="col">
+                        <label for="">Област:*</label>
+                        <select id="" class="form-control">
+                          <option selected="">Моля, изберете</option>
+                          @foreach ($regions as $id => $region)
+                              <option value="{{$id}}">
+                                {{$region}}
+                              </option>
+                          @endforeach
+                        </select>
+                      </div>
+                      <div class="col">
+                        <label for="">Община:*</label>
+                        <select id="" class="form-control">
+                          <option selected="">Моля, изберете</option>
 
-                    <form>
-                      <fieldset>
-                        <label for="address">Адрес</label>
-                        <input type="text" name="address" id="address" value="" class="text ui-widget-content ui-corner-all">
-                        <label for="tel_fax">Телефон,Факс</label>
-                        <input type="text" name="tel_fax" id="tel_fax" value="" class="text ui-widget-content ui-corner-all">
-                        <label for="email">Email</label>
-                        <input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all">
-                        <label for="name">Лице за контакт</label>
-                        <input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all">
+                        </select>
+                      </div>
+                      <div class="col">
+                        <label for="">Населено място:*</label>
+                        <select id="" class="form-control">
+                          <option selected="">Моля, изберете</option>
 
-                        <!-- Allow form submission with keyboard without duplicating the dialog button -->
-                        <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-                      </fieldset>
-                    </form>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                    <label for="">Адрес:*</label>
+                    <input type="text" class="form-control" id="" placeholder="">
                   </div>
 
+                    <div class="form-group">
+                      <label for="">Лице за контакт:</label>
+                      <select id="" class="form-control">
+                          <option selected="">Моля, изберете</option>
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                      </select>
+                      <input type="text" class="form-control" id="" placeholder="">
+                    </div>
 
+                    <div class="row">
+                      <div class="col">
+                        <label for="">Телефон:</label>
+                        <input type="text" class="form-control" id="" placeholder="">
+                      </div>
+                      <div class="col">
+                        <label for="">Факс:</label>
+                        <input type="text" class="form-control" id="" placeholder="">
+                      </div>
+                      <div class="col">
+                        <label for="">E-mail:</label>
+                        <input type="text" class="form-control" id="" placeholder="">
+                      </div>
+                    </div>
 
-              </section>
+                    <div class="form-group">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="">
+                          <label class="form-check-label" for="">Главен офис</label>
+                          <span class="sep-text size-l"> &nbsp; </span>
+                          <input class="form-check-input" type="checkbox" id="">
+                          <label class="form-check-label" for="">Същият като адрес на управление</label>
+                        </div>
+                    </div>
+
+                    <p><a href="#" class="btn btn-primary">Запази</a> <span class="sep-line "> | </span> <a data-fancybox-close href="#" class="btn btn-outline-danger">Отказ</a></p>
+                </section>
+              </div>
 
               <section>
                   <h3><span class="primary-bgr">Териториален обхват</span></h3>
@@ -581,12 +630,75 @@
 
     <script>
     $(document).ready(function(){
-        //Check the registration region
-        $('input[name="RegRadio"]').on('change', function(){
-            var radio = $(this).val();
-            console.log(radio);
+        //Check the registration region and show/hide Region/Municipaty/City/District
+        $("input[name='RadioBul']").click(function() {
+            let id = $(this).attr("id");
+
+            if (id == 'Bul') {
+                $("#mCountry").val(1);
+                $("#cCountry").val(1);
+
+                $("#mAddrRegion").css('display', 'block');
+                $("#mAddrMuni").css('display', 'block');
+                $("#mAddrCity").css('display', 'block');
+                $("#mAddrCityDistr").css('display', 'block');
+
+                $("#cAddrRegion").css('display', 'block');
+                $("#cAddrMuni").css('display', 'block');
+                $("#cAddrCity").css('display', 'block');
+                $("#cAddrCityDistr").css('display', 'block');
+            }
+
+            if (id == 'World') {
+                $("#mCountry").val(0);
+                $("#cCountry").val(0);
+
+                $("#mAddrRegion").css('display', 'none');
+                $("#mAddrMuni").css('display', 'none');
+                $("#mAddrCity").css('display', 'none');
+                $("#mAddrCityDistr").css('display', 'none');
+
+                $("#cAddrRegion").css('display', 'none');
+                $("#cAddrMuni").css('display', 'none');
+                $("#cAddrCity").css('display', 'none');
+                $("#cAddrCityDistr").css('display', 'none');
+            }
         });
 
+        //If another country is selected - hide Region/Municipaty/City/District
+        //Headquarters
+        $('select[name="mCountry"]').on('change', function(){ //listens to changes in "mCountry"
+            var id = $(this).val();
+            if(id !== '1'){
+                //alert(id);
+                $("#mAddrRegion").css('display', 'none');
+                $("#mAddrMuni").css('display', 'none');
+                $("#mAddrCity").css('display', 'none');
+                $("#mAddrCityDistr").css('display', 'none');
+            } else {
+              $("#mAddrRegion").css('display', 'block');
+              $("#mAddrMuni").css('display', 'block');
+              $("#mAddrCity").css('display', 'block');
+              $("#mAddrCityDistr").css('display', 'block');
+            }
+        });
+
+        //Correspondence
+        $('select[name="cCountry"]').on('change', function(){ //listens to changes in "mCountry"
+            var id = $(this).val();
+            if(id !== '1'){
+                //alert(id);
+                $("#cAddrRegion").css('display', 'none');
+                $("#cAddrMuni").css('display', 'none');
+                $("#cAddrCity").css('display', 'none');
+                $("#cAddrCityDistr").css('display', 'none');
+            } else {
+              $("#cAddrRegion").css('display', 'block');
+              $("#cAddrMuni").css('display', 'block');
+              $("#cAddrCity").css('display', 'block');
+              $("#cAddrCityDistr").css('display', 'block');
+            }
+        });
 
         //Populate the first municipaty object based on the selected refion
         $('select[name="mAddrRegion"]').on('change', function(){ //listens to changes in "mAddrRegion"
@@ -662,8 +774,6 @@
             }
         });
 
-
-
         //Populate the first city object based on the selected municipaty
         $('select[name="mAddrMuni"]').on('change', function(){ //listens to changes in "mAddrMuni"
             var muni_id = $(this).val();
@@ -728,7 +838,7 @@
             }
         });
 
-    });
+        });
 
         //Populate the first city district object based on the selected city
         $('select[name="mAddrCity"]').on('change', function(){ //listens to changes in "mAddrMuni"
@@ -763,7 +873,6 @@
             }
         });
 
-
         //Populate the first city district object based on the selected city
         $('select[name="cAddrCity"]').on('change', function(){ //listens to changes in "cAddrMuni"
             var city_id = $(this).val();
@@ -797,163 +906,32 @@
             }
         });
 
-
         //Correspondence address is the same as main
         $('#c_as_m').change(function(){
           if(this.checked == true){
-            //alert("Yes");
-            //$('#mAddrRegion option').clone().appendTo('#cAddrRegion');
-            //$("#cAddrRegion").html($("#mAddrRegion").html());
-            $("#cAddrRegion").empty();
-            $("#cAddrRegion").append($("#mAddrRegion").html());
-            $("#cAddrMuni").empty();
-            $("#cAddrMuni").append($("#mAddrMuni").html());
-            $("#cAddrCity").empty();
-            $("#cAddrCity").append($("#mAddrCity").html());
-            $("#cAddrCityDistr").empty();
-            $("#cAddrCityDistr").append($("#mAddrCityDistr").html());
+            document.getElementById('cCountry').value = document.getElementById('mCountry').value;
+            var val = document.getElementById("mCountry").value;
+            alert(val);
+            if (val == '1') {
+                $("#cAddrRegion").css('display', 'block');
+                $("#cAddrMuni").css('display', 'block');
+                $("#cAddrCity").css('display', 'block');
+                $("#cAddrCityDistr").css('display', 'block');
 
+                $val1=$("#mAddrRegion :selected").val();
+                $('#cAddrRegion').val('32');
+                alert($val1);
+            } else {
+                $("#cAddrRegion").css('display', 'none');
+                $("#cAddrMuni").css('display', 'none');
+                $("#cAddrCity").css('display', 'none');
+                $("#cAddrCityDistr").css('display', 'none');
+            }
 
-            $("#cAddrRegion :selected").text($("#mAddrRegion :selected").text());
-            $("#cAddrRegion :selected").val($("#mAddrRegion :selected").val());
-            $("#cAddrMuni :selected").text($("#mAddrMuni :selected").text());
-            $("#cAddrMuni :selected").val($("#mAddrMuni :selected").val());
-            $("#cAddrCity :selected").text($("#mAddrCity :selected").text());
-            $("#cAddrCity :selected").val($("#mAddrCity :selected").val());
-            $("#cAddrCityDistr :selected").text($("#mAddrCityDistr :selected").text());
-            $("#cAddrCityDistr :selected").val($("#mAddrCityDistr :selected").val());
+            //alert(val);
 
-            document.getElementById('cAddr').value = document.getElementById('mAddr').value;
-
-
-            //alert($val+" := "+$txt);
-            //$('#cAddrRegion').val('33');
-            //$('#cAddrRegion').val($val);
-          } else {
-            //alert("No");
           }
-          //alert(document.querySelector('#c_as_m').checked);
-          //alert(document.querySelector('#cAddrRegion').value);
-          /*
-          if(document.querySelector('#c_as_m').checked) == true) {
-            //$('#select1 option').clone().appendTo('#select2');
-            //$('#mAddrRegion option').clone().appendTo('#cAddrRegion');
-          }
-          */
-
         });
-
-        <!--========================================-->
-        $(document).ready(function() {
-          $( function() {
-            var dialog, form,
-
-              // From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=email%29
-              emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
-              address = $( "#address" ),
-              email = $( "#email" ),
-              tel_fax = $( "#tel_fax" ),
-              name = $( "#name" ),
-              allFields = $( [] ).add( address ).add( email ).add( tel_fax ).add( name ),
-              tips = $( ".validateTips" );
-
-            function updateTips( t ) {
-              tips
-                .text( t )
-                .addClass( "ui-state-highlight" );
-              setTimeout(function() {
-                tips.removeClass( "ui-state-highlight", 1500 );
-              }, 500 );
-            }
-
-            function checkLength( o, n, min, max ) {
-              if ( o.val().length > max || o.val().length < min ) {
-                o.addClass( "ui-state-error" );
-                //alert(n;
-                updateTips( "Дължината на " + n + " може да бъде от " +
-                  min + " до " + max + " символа." );
-                return false;
-              } else {
-                return true;
-              }
-            }
-
-            function checkRegexp( o, regexp, n ) {
-              if ( !( regexp.test( o.val() ) ) ) {
-                o.addClass( "ui-state-error" );
-                updateTips( n );
-                return false;
-              } else {
-                return true;
-              }
-            }
-
-
-            function addOffice() {
-              var valid = true;
-
-              allFields.removeClass( "ui-state-error" );
-
-              valid = valid && checkLength( address, "Адрес", 3, 255 );
-              valid = valid && checkLength( email, "Email", 6, 80 );
-              valid = valid && checkLength( tel_fax, "Телефон,Факс", 5, 16 );
-              valid = valid && checkLength( name, "Лице за контакт", 3, 35 );
-
-              //valid = valid && checkRegexp( address, /^[a-z]([0-9a-z_\s])+$/i, "Адресът може да съдържа символите a-z, 0-9, underscores, spaces and must begin with a letter." );
-              valid = valid && checkRegexp( email, emailRegex, "eg. ui@jquery.com" );
-              valid = valid && checkRegexp( tel_fax, /^([0-9])+$/, "Телефонният номер може да съдържа само цифри : 0-9" );
-              //valid = valid && checkRegexp( name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
-
-              if ( valid ) {
-                $( "#offices tbody" ).append( "<tr>" +
-                  "<td>" + address.val() + "</td>" +
-                  "<td>" + tel_fax.val() + "</td>" +
-                  "<td>" + email.val() + "</td>" +
-                  "<td>" + name.val() + "</td>" +
-
-                "</tr>" );
-                dialog.dialog( "close" );
-              }
-              return valid;
-            }
-
-            dialog = $( "#add-office" ).dialog({
-              autoOpen: false,
-              show: {effect: "blind", duration: 1000},
-              hide: {effect: "clip", duration: 1000},
-              height: 200,
-              //width: 350,
-              //width: $(window).width(),
-              width: $(window).width() * 0.72,
-              modal: true,
-              buttons: {
-                "Добавяне на офис": addOffice,
-                Cancel: function() {
-                  dialog.dialog( "close" );
-                }
-              },
-              close: function() {
-                //form[ 0 ].reset();
-                //if ( form[0] )form[ 0 ].reset();
-                //$("#add-office")[0].reset();
-                //allFields.val( "" );
-                allFields.val( "" ).removeClass( "ui-state-error" );
-              }
-            });
-
-            form = dialog.find( "#office" ).on( "submit", function( event ) {
-              event.preventDefault();
-              addOffice();
-            });
-
-            $( "#add-new-office" ).button().on( "click", function() {
-              dialog.dialog( "open" );
-            });
-          } );
-
-        });
-        <!--========================================-->
-
 
     </script>
 @endsection

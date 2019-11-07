@@ -1,11 +1,11 @@
-<!--
+<?php /*<!--
 		File:	resources\views\admin\nom\professions\index.blade.php
 		 Ver:	1.00.003
  Purpose:	Profession index blade
 Author/s:	Christopher Georgiev
  Created:	2019-10-07
 	Modify:	2019-10-26
--->
+-->*/?>
 
 
 @extends('admin.form')
@@ -50,10 +50,10 @@ Author/s:	Christopher Georgiev
 												<label class="form-check-label" for="inlineRadio3">Всички</label>
 											</div>
 										</div>
-										<div class="form-group">								
+										<div class="form-group">
 											<a href="#" class="btn btn-primary">Търси</a> <span class="sep-line size-l"> | </span> <input class="btn btn-outline-danger" type="reset" value="Изчисти">
-											
-											
+
+
 											<!--
 											<a href="#" class="btn btn-outline-danger" id="btn_clear");">Изчисти</a>
 											<button id="btn_clear">Изчисти</button>
@@ -82,7 +82,7 @@ Author/s:	Christopher Georgiev
 													</td>
 
 													<td>{{ $n_professions->code }}</td>
-													
+
 													<td>{{ $n_professions->description }}</td>
 
 													<td>{{ $n_professions->is_active }}</td>
@@ -98,5 +98,5 @@ Author/s:	Christopher Georgiev
 
         </div>
       </div>
-			
+
 @endsection

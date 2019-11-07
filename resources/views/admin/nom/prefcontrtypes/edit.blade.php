@@ -1,18 +1,18 @@
-<!--
+<?php /*<!--
 		File:	resources\views\admin\nom\prefcontrtypes\edit.blade.php
 		 Ver:	1.00.003
  Purpose:	prefcontrtypes edit blade
 Author/s:	Christopher Georgiev
  Created:	2019-10-07
 	Modify:	2019-10-26
--->
+-->*/?>
 
 @extends('admin.form')
 
 @section('contents')
   <div class="container-fluid clearfix">
     <h2 class="h3 main-heading">Корекция на вид договор</h2>
-		
+
     <form class="" action="{{route('nom.prefcontrtypes.update', $n_preffered_contract_type->id)}}" method="post">
       <div class="form-items">
         @csrf
@@ -25,13 +25,13 @@ Author/s:	Christopher Georgiev
                 <label for="name">Наименование</label>
                 <input type="text" name="name" autocomplete="off" value="{{$n_preffered_contract_type->name}}" class="form-control">
               </div>
-							
-							
+
+
               <div class="col">
-                <label for="old_code">Код стар</label>
+                <label for="old_code">Код</label>
                 <input type="text" name="old_code" autocomplete="off" value="{{$n_preffered_contract_type->old_code}}" class="form-control">
               </div>
-							
+
               <div class="col">
                 <label for="">Активен/Деактивиран:</label>
                 <br><br>
@@ -52,7 +52,7 @@ Author/s:	Christopher Georgiev
       </div>
     </form>
 		<p align="center">
-								  <a href="{{ url('/admin/nom/prefcontrtypes/') }}">  
+								  <a href="{{ url('/admin/nom/prefcontrtypes/') }}">
                   <button type="submit" class="btn btn-primary btn-lg" align="right">Отказ</button>
 									</a href>
 		</p>
