@@ -37,9 +37,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $attributes = [
-       'Активна' => 'Y'
-     ];
+    //protected $attributes = [ 'active' => 'Y' ];
 
      //accessor for IS_ACTIVE
      public function getActiveAttribute($attribute)
@@ -81,7 +79,7 @@ class User extends Authenticatable
 
     public function IsActive()
     {
-  
+
         if($this->active == 'Активен'){
           return true;
         }

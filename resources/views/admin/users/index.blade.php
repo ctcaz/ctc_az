@@ -5,7 +5,7 @@
         <div class="content">
 
         	<h2 class="h3 main-heading">Списък потребители</h2>
-            <p><a href="{{route('register')}}" class="btn btn-outline btn-outline-primary btn-lg">Създай потребител</a></p>
+            <p><a href="{{route('admin.users.create')}}" class="btn btn-outline btn-outline-primary btn-lg">Създай потребител</a></p>
             <div class="form-items">
             	<section>
                 	<h3><span class="primary-bgr">Критерии за търсене</span></h3>
