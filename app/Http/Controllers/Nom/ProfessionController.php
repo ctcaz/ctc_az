@@ -13,6 +13,7 @@ namespace App\Http\Controllers\Nom;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Gate;
+use Illuminate\Support\Facades\Log;
 use App\Models\General\Snumber;
 use App\Models\Nom\N_profession;
 
@@ -27,7 +28,7 @@ class ProfessionController extends Controller
     public function index()
     {
          $n_profession = N_profession::paginate(10); //active()->
-         
+
 				 return view('admin.nom.professions.index', compact('n_profession'));
 
 					/*
@@ -104,6 +105,7 @@ class ProfessionController extends Controller
      */
     public function update(Request $request, $id)
     {
+      //Log::info($request);
           $request->validate([
             'name' => 'required',
             /*'code' => 'required',*/
@@ -127,8 +129,8 @@ class ProfessionController extends Controller
     {
         //
     }
-		
-		
+
+
     public function validatedData()
     {
       return request()->validate([

@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Models\Nom\N_company_type;
 use App\Models\Nom\N_country;
 use App\Models\Nom\N_region;
@@ -89,6 +90,7 @@ class POWRregReqController extends Controller
      */
     public function store(Request $request)
     {
+      Log::info($request);
 			/*
         //Find the last number for this table in snumbers
         $lastID = Snumber::where('table_name', 'registrationrequest')->first();
@@ -120,15 +122,15 @@ class POWRregReqController extends Controller
 									];
 				//Address::create($maddr);
 
-				$maddr = new Address.
+				$maddr = new Address;
 				//$maddr->dtype = "jlkjlkjl";
-				$maddr->save();
+				//$maddr->save();
 
 
 				//$maddr_id = Address::newAddress($maddr);
 
         //Create a new registrationrequest
-        $input = ['id' => $count, 'state'=>'Подадена', 'status'=>'Получено ID'];
+        //$input = ['id' => $count, 'state'=>'Подадена', 'status'=>'Получено ID'];
         //$regReq = registrationrequest::create($input);
 
         //registrationrequest::create($this->validatedData());

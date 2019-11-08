@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Models\Nom\N_company_type;
 use App\Models\Nom\N_country;
@@ -11,6 +12,7 @@ use App\Models\Nom\N_city;
 use App\Models\RegReq\registrationrequest;
 use App\Models\General\Snumber;
 use App\Models\General\person;
+use App\Models\General\Address;
 use App\Models\General\legalentity;
 use App\Models\Agency\recruitmentagencyprototype;
 use App\Models\Agency\rap_territorialscope;
@@ -78,7 +80,8 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
+        dd($request);
+        //Log::info($request);
         //Create a new company for this request
         $count = Snumber::getLastNumber('legalentity');
         $input = [
@@ -113,6 +116,42 @@ class ApplicationController extends Controller
 
         //Connect Agency Prototype and Legal entity
         $prototype->legalentity_id = $legalentity->id;
+        $prototype->save();
+
+        //Headquarters address
+        $count = Snumber::getLastNumber('address');
+        $input = [
+          'id' => $count,
+          'country_id' => $request->mCountry,
+          'region_id' => $request->mAddrRegion,
+          'municipality_id' => $request->mAddrMuni,
+          'setlement_id' => $request->mAddrCity,
+          'district_id' => $request->mAddrCityDistr,
+          'street' => $request->mAddr,
+        ];
+        $address = Address::create($input);
+        $address = Address::find($count);
+
+        //Connect Agency Prototype to Headquarters Address
+        $prototype->managementaddress_id = $address->id;
+        $prototype->save();
+
+        //Correspondence address
+        $count = Snumber::getLastNumber('address');
+        $input = [
+          'id' => $count,
+          'country_id' => $request->cCountry,
+          'region_id' => $request->cAddrRegion,
+          'municipality_id' => $request->cAddrMuni,
+          'setlement_id' => $request->cAddrCity,
+          'district_id' => $request->cAddrCityDistr,
+          'street' => $request->cAddr,
+        ];
+        $address = Address::create($input);
+        $address = Address::find($count);
+
+        //Connect Agency Prototype to Headquarters Address
+        $prototype->correspondenceaddress_id = $address->id;
         $prototype->save();
 
         //Territorial scopes

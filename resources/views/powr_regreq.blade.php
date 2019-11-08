@@ -541,7 +541,16 @@ Author/s:	Christopher Georgiev
                 $("#cAddrCityDistr").empty();
 								$("#cAddrCityDistr").append($("#mAddrCityDistr").html());
 
+                //var e = document.getElementById("mAddrMuni");
+                //var id = e.options[e.selectedIndex].value;
+                //alert(id);
 
+                document.getElementById("cAddrRegion").selectedIndex = document.getElementById("mAddrRegion").selectedIndex;
+                document.getElementById("cAddrMuni").selectedIndex = document.getElementById("mAddrMuni").selectedIndex;
+                document.getElementById("cAddrCity").selectedIndex = document.getElementById("mAddrCity").selectedIndex;
+                document.getElementById("cAddrCityDistr").selectedIndex = document.getElementById("mAddrCityDistr").selectedIndex;
+
+                /*
                 $("#cAddrRegion :selected").text($("#mAddrRegion :selected").text());
                 $("#cAddrRegion :selected").val($("#mAddrRegion :selected").val());
                 $("#cAddrMuni :selected").text($("#mAddrMuni :selected").text());
@@ -550,24 +559,19 @@ Author/s:	Christopher Georgiev
                 $("#cAddrCity :selected").val($("#mAddrCity :selected").val());
                 $("#cAddrCityDistr :selected").text($("#mAddrCityDistr :selected").text());
                 $("#cAddrCityDistr :selected").val($("#mAddrCityDistr :selected").val());
+                */
 
 								document.getElementById('cAddr').value = document.getElementById('mAddr').value;
 
 
-								//alert($val+" := "+$txt);
-								//$('#cAddrRegion').val('33');
-								//$('#cAddrRegion').val($val);
+                //alert(document.getElementById("mAddrRegion").value);
+                //alert(document.getElementById("mAddrRegion").selectedIndex);
+                //alert(document.getElementById("mAddrRegion").html);
+                //alert($("#cAddrRegion :selected").text() + $("#cAddrRegion :selected").val() + $("#mAddrRegion :selected").html());
+                //alert($("#mAddrRegion :selected").html());
 							} else {
 								//alert("No");
 							}
-							//alert(document.querySelector('#c_as_m').checked);
-							//alert(document.querySelector('#cAddrRegion').value);
-							/*
-							if(document.querySelector('#c_as_m').checked) == true) {
-								//$('#select1 option').clone().appendTo('#select2');
-								//$('#mAddrRegion option').clone().appendTo('#cAddrRegion');
-							}
-							*/
 
 						});
 

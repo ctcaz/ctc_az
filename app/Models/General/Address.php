@@ -22,7 +22,7 @@ class Address extends Model
       /**
        * @var array
        */
-      protected $fillable = ['dtype', 'country_id', 'region_id', 'municipality_id', 'setlement_id', 'district_id', 'street'];
+      protected $fillable = ['id', 'dtype', 'country_id', 'region_id', 'municipality_id', 'setlement_id', 'district_id', 'street'];
 
       /**
        * Indicates if the model should be timestamped.

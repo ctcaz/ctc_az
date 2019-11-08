@@ -320,7 +320,7 @@
                     </div>
 
                     <div class="col">
-                      <div class="form-group" id="mAddrRegion" style="display: block;">
+                      <div class="form-group" id="mAddrRegion1" style="display: block;">
                         <label for="region">Област:*</label>
                         <select name="mAddrRegion" id="mAddrRegion" class="form-control">
                           <option selected="">Моля, изберете</option>
@@ -334,7 +334,7 @@
                     </div>
 
                     <div class="col">
-                      <div class="" id="mAddrMuni" style="display: block;">
+                      <div class="" id="mAddrMuni1" style="display: block;">
                         <label for="">Община:*</label>
                         <select name="mAddrMuni" id="mAddrMuni" class="form-control">
                           <option selected="">Моля, изберете</option>
@@ -343,7 +343,7 @@
                     </div>
 
                     <div class="col">
-                      <div class="" id="mAddrCity" style="display: block;">
+                      <div class="" id="mAddrCity1" style="display: block;">
                         <label for="">Населено място:*</label>
                         <select name="mAddrCity" id="mAddrCity" class="form-control">
                           <option selected="">Моля, изберете</option>
@@ -352,7 +352,7 @@
                     </div>
 
                     <div class="col">
-                      <div class="" id="mAddrCityDistr" style="display: block;">
+                      <div class="" id="mAddrCityDistr1" style="display: block;">
                         <label for="mAddrCityDistr">Район:*</label>
                         <select name="mAddrCityDistr" id="mAddrCityDistr" class="form-control">
                           <option selected="">Моля, изберете</option>
@@ -388,10 +388,9 @@
                       </select>
                     </div>
 
-                    <div class="col">
-                      <div class="" id="cAddrRegion" style="display: block;">
+                    <div class="col" id="cAddrRegion1" style="display: block;">
                         <label for="">Област:*</label>
-                        <select name="cAddrRegion" id="cAddrRegion" class="form-control" name="cAddrRegion">
+                        <select id="cAddrRegion" name="cAddrRegion" class="form-control">
                           <option selected="">Моля, изберете</option>
                           @foreach ($regions as $id => $region)
                             <option value="{{ $id }}">
@@ -399,11 +398,10 @@
                             </option>
                           @endforeach
                         </select>
-                      </div>
                     </div>
 
                     <div class="col">
-                      <div class="" id="cAddrMuni" style="display: block;">
+                      <div class="" id="cAddrMuni1" style="display: block;">
                         <label for="">Община:*</label>
                         <select name="cAddrMuni" id="cAddrMuni" class="form-control">
                           <option selected="">Моля, изберете</option>
@@ -412,7 +410,7 @@
                     </div>
 
                     <div class="col">
-                      <div class="" id="cAddrCity" style="display: block;">
+                      <div class="" id="cAddrCity1" style="display: block;">
                         <label for="">Населено място:*</label>
                         <select name="cAddrCity" id="cAddrCity" class="form-control">
                           <option selected="">Моля, изберете</option>
@@ -421,7 +419,7 @@
                     </div>
 
                     <div class="col">
-                      <div class="" id="cAddrCityDistr" style="display: block;">
+                      <div class="" id="cAddrCityDistr1" style="display: block;">
                         <label for="cAddrCityDistr">Район:*</label>
                         <select name="cAddrCityDistr" id="cAddrCityDistr" class="form-control">
                           <option selected="">Моля, изберете</option>
@@ -448,8 +446,12 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td>София, ул.Братя Миладинови 16, ет.1, офис 1</td>
-                        <td>0884777372</td>
+                        <td>
+                          <input type="text" readonly class="form-control-plaintext" name="off_adr0" value="София, ул.Братя Миладинови 16, ет.1, офис 1">
+                        </td>
+                        <td>
+                          <input type="text" readonly class="form-control-plaintext" name="off_tel0" value="0884777372">
+                        </td>
                         <td>office@ctc.bg</td>
                         <td>Боряна Андонова</td>
                       </tr>
@@ -460,28 +462,40 @@
                   <!--<p><a data-fancybox="" class="btn btn-primary" id="add-new-office">Добави</a></p>-->
                   <br>
 
+                  <div id="add-office" title="Добавяне на нов офис" class="modal" tabindex="-1" role="dialog" style="display: none">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
 
-                  <div id="add-office" title="Добавяне на нов офис" style="display: none">
-                    <p class="validateTips">Всички полета са задължителни.</p>
+                        <div class="modal-body">
+                            <p class="validateTips">Всички полета са задължителни.</p>
 
-                    <form>
-                      <fieldset>
-                        <label for="address">Адрес</label>
-                        <input type="text" name="address" id="address" value="" class="text ui-widget-content ui-corner-all">
-                        <label for="tel_fax">Телефон,Факс</label>
-                        <input type="text" name="tel_fax" id="tel_fax" value="" class="text ui-widget-content ui-corner-all">
-                        <label for="email">Email</label>
-                        <input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all">
-                        <label for="name">Лице за контакт</label>
-                        <input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all">
+                            <form>
+                              <fieldset>
+                                <div class="form-group">
+                                  <label for="address" class="col-form-label">Адрес</label>
+                                  <input type="text" name="address" id="address" value="" class="form-control input-lg">
+                                </div>
+                                <div class="form-group">
+                                  <label for="tel_fax" class="col-form-label">Телефон,Факс</label>
+                                  <input type="text" name="tel_fax" id="tel_fax" value="" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                  <label for="email" class="col-form-label">Email</label>
+                                  <input type="text" name="email" id="email" value="" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                  <label for="name" class="col-form-label">Лице за контакт</label>
+                                  <input type="text" name="name" id="name" value="" class="form-control">
+                                </div>
 
-                        <!-- Allow form submission with keyboard without duplicating the dialog button -->
-                        <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-                      </fieldset>
-                    </form>
+                                <!-- Allow form submission with keyboard without duplicating the dialog button -->
+                                <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+                              </fieldset>
+                            </form>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-
-
 
               </section>
 
@@ -581,12 +595,76 @@
 
     <script>
     $(document).ready(function(){
-        //Check the registration region
-        $('input[name="RegRadio"]').on('change', function(){
-            var radio = $(this).val();
-            console.log(radio);
+
+        //Check the registration region and show/hide Region/Municipaty/City/District
+        $("input[name='RadioBul']").click(function() {
+            let id = $(this).attr("id");
+
+            if (id == 'Bul') {
+                $("#mCountry").val(1);
+                $("#cCountry").val(1);
+
+                $("#mAddrRegion1").css('display', 'block');
+                $("#mAddrMuni1").css('display', 'block');
+                $("#mAddrCity1").css('display', 'block');
+                $("#mAddrCityDistr1").css('display', 'block');
+
+                $("#cAddrRegion1").css('display', 'block');
+                $("#cAddrMuni1").css('display', 'block');
+                $("#cAddrCity1").css('display', 'block');
+                $("#cAddrCityDistr1").css('display', 'block');
+            }
+
+            if (id == 'World') {
+                $("#mCountry").val(0);
+                $("#cCountry").val(0);
+
+                $("#mAddrRegion1").css('display', 'none');
+                $("#mAddrMuni1").css('display', 'none');
+                $("#mAddrCity1").css('display', 'none');
+                $("#mAddrCityDistr1").css('display', 'none');
+
+                $("#cAddrRegion1").css('display', 'none');
+                $("#cAddrMuni1").css('display', 'none');
+                $("#cAddrCity1").css('display', 'none');
+                $("#cAddrCityDistr1").css('display', 'none');
+            }
         });
 
+        //If another country is selected - hide Region/Municipaty/City/District
+        //Headquarters
+        $('select[name="mCountry"]').on('change', function(){ //listens to changes in "mCountry"
+            var id = $(this).val();
+            if(id !== '1'){
+                //alert(id);
+                $("#mAddrRegion1").css('display', 'none');
+                $("#mAddrMuni1").css('display', 'none');
+                $("#mAddrCity1").css('display', 'none');
+                $("#mAddrCityDistr1").css('display', 'none');
+            } else {
+              $("#mAddrRegion1").css('display', 'block');
+              $("#mAddrMuni1").css('display', 'block');
+              $("#mAddrCity1").css('display', 'block');
+              $("#mAddrCityDistr1").css('display', 'block');
+            }
+        });
+
+        //Correspondence
+        $('select[name="cCountry"]').on('change', function(){ //listens to changes in "mCountry"
+            var id = $(this).val();
+            if(id !== '1'){
+                //alert(id);
+                $("#cAddrRegion1").css('display', 'none');
+                $("#cAddrMuni1").css('display', 'none');
+                $("#cAddrCity1").css('display', 'none');
+                $("#cAddrCityDistr1").css('display', 'none');
+            } else {
+              $("#cAddrRegion1").css('display', 'block');
+              $("#cAddrMuni1").css('display', 'block');
+              $("#cAddrCity1").css('display', 'block');
+              $("#cAddrCityDistr1").css('display', 'block');
+            }
+        });
 
         //Populate the first municipaty object based on the selected refion
         $('select[name="mAddrRegion"]').on('change', function(){ //listens to changes in "mAddrRegion"
@@ -662,8 +740,6 @@
             }
         });
 
-
-
         //Populate the first city object based on the selected municipaty
         $('select[name="mAddrMuni"]').on('change', function(){ //listens to changes in "mAddrMuni"
             var muni_id = $(this).val();
@@ -728,7 +804,7 @@
             }
         });
 
-    });
+        });
 
         //Populate the first city district object based on the selected city
         $('select[name="mAddrCity"]').on('change', function(){ //listens to changes in "mAddrMuni"
@@ -763,7 +839,6 @@
             }
         });
 
-
         //Populate the first city district object based on the selected city
         $('select[name="cAddrCity"]').on('change', function(){ //listens to changes in "cAddrMuni"
             var city_id = $(this).val();
@@ -797,13 +872,18 @@
             }
         });
 
-
         //Correspondence address is the same as main
         $('#c_as_m').change(function(){
           if(this.checked == true){
-            //alert("Yes");
-            //$('#mAddrRegion option').clone().appendTo('#cAddrRegion');
-            //$("#cAddrRegion").html($("#mAddrRegion").html());
+            document.getElementById('cCountry').value = document.getElementById('mCountry').value;
+            if ($("#mCountry :selected").val() !== 1) {
+              //alert($("#mCountry :selected").val());
+              $("#cAddrRegion1").css('display', 'none');
+              $("#cAddrMuni1").css('display', 'none');
+              $("#cAddrCity1").css('display', 'none');
+              $("#cAddrCityDistr1").css('display', 'none');
+            }
+
             $("#cAddrRegion").empty();
             $("#cAddrRegion").append($("#mAddrRegion").html());
             $("#cAddrMuni").empty();
@@ -825,27 +905,13 @@
 
             document.getElementById('cAddr').value = document.getElementById('mAddr').value;
 
-
-            //alert($val+" := "+$txt);
-            //$('#cAddrRegion').val('33');
-            //$('#cAddrRegion').val($val);
-          } else {
-            //alert("No");
           }
-          //alert(document.querySelector('#c_as_m').checked);
-          //alert(document.querySelector('#cAddrRegion').value);
-          /*
-          if(document.querySelector('#c_as_m').checked) == true) {
-            //$('#select1 option').clone().appendTo('#select2');
-            //$('#mAddrRegion option').clone().appendTo('#cAddrRegion');
-          }
-          */
-
         });
 
         <!--========================================-->
         $(document).ready(function() {
           $( function() {
+            var off_cnt = 1; //counter for office rows
             var dialog, form,
 
               // From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=email%29
@@ -904,56 +970,72 @@
               valid = valid && checkRegexp( tel_fax, /^([0-9])+$/, "Телефонният номер може да съдържа само цифри : 0-9" );
               //valid = valid && checkRegexp( name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
 
+              //alert(off_cnt);
               if ( valid ) {
                 $( "#offices tbody" ).append( "<tr>" +
-                  "<td>" + address.val() + "</td>" +
-                  "<td>" + tel_fax.val() + "</td>" +
-                  "<td>" + email.val() + "</td>" +
-                  "<td>" + name.val() + "</td>" +
+                  "<td>" +
+                    '<input type="text" readonly class="form-control-plaintext" name="off_adr' +
+                    + off_cnt + '" value="' + address.val() + '">' +
+                  "</td>" +
+                  "<td>" +
+                    '<input type="text" readonly class="form-control-plaintext" name="off_tel' +
+                    + off_cnt + '" value="' + tel_fax.val() + '">' +
+                  "</td>" +
+                  "<td>" +
+                    '<input type="text" readonly class="form-control-plaintext" name="off_email' +
+                    + off_cnt + '" value="' + email.val() + '">' +
+                  "</td>" +
+                  "<td>" +
+                    '<input type="text" readonly class="form-control-plaintext" name="off_name' +
+                    + off_cnt + '" value="' + name.val() + '">' +
+                  "</td>" +
 
                 "</tr>" );
+
+                off_cnt++;
+
                 dialog.dialog( "close" );
               }
               return valid;
             }
 
-            dialog = $( "#add-office" ).dialog({
-              autoOpen: false,
-              show: {effect: "blind", duration: 1000},
-              hide: {effect: "clip", duration: 1000},
-              height: 200,
-              //width: 350,
-              //width: $(window).width(),
-              width: $(window).width() * 0.72,
-              modal: true,
-              buttons: {
-                "Добавяне на офис": addOffice,
-                Cancel: function() {
-                  dialog.dialog( "close" );
+              dialog = $( "#add-office" ).dialog({
+                autoOpen: false,
+                show: {effect: "blind", duration: 1000},
+                hide: {effect: "clip", duration: 1000},
+                width: 600,
+                height: 'auto',
+                //width: 350,
+                //width: $(window).width(),
+                //width: $(window).width() * 0.72,
+                modal: true,
+                buttons: {
+                  "Добавяне на офис": addOffice,
+                  Cancel: function() {
+                    dialog.dialog( "close" );
+                  }
+                },
+                close: function() {
+                  //form[ 0 ].reset();
+                  //if ( form[0] )form[ 0 ].reset();
+                  //$("#add-office")[0].reset();
+                  //allFields.val( "" );
+                  allFields.val( "" ).removeClass( "ui-state-error" );
                 }
-              },
-              close: function() {
-                //form[ 0 ].reset();
-                //if ( form[0] )form[ 0 ].reset();
-                //$("#add-office")[0].reset();
-                //allFields.val( "" );
-                allFields.val( "" ).removeClass( "ui-state-error" );
-              }
-            });
+              });
 
-            form = dialog.find( "#office" ).on( "submit", function( event ) {
-              event.preventDefault();
-              addOffice();
-            });
+              form = dialog.find( "#office" ).on( "submit", function( event ) {
+                event.preventDefault();
+                addOffice();
+              });
 
-            $( "#add-new-office" ).button().on( "click", function() {
-              dialog.dialog( "open" );
-            });
+              $( "#add-new-office" ).button().on( "click", function() {
+                dialog.dialog( "open" );
+              });
           } );
 
         });
         <!--========================================-->
-
 
     </script>
 @endsection
