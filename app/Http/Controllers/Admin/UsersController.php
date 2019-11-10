@@ -102,27 +102,22 @@ class UsersController extends Controller
         //
         //[id, name, email,email_verified_at, password, remember_token, person_id, active];
 
-        //$roles = Role::all();
-        Log::info($request);
+        //Log::info($request);
 
+        //Get new ID for record/objects
 				$id = Snumber::getLastNumber('users');
 
-        //$hashed = Hash::make($request->password);
-        //$request = ['password'];
         //Create a new user
 				$user = new User();
-        //$user = ['id'=>$id, 'name' => $request->name, 'email' => $request->email, 'password' => $request->password, 'active' => $request->is_active, 'person_id'=>'0'];
-        $user = ['id'=>$id, 'name' => $request->name, 'email' => $request->email, 'password' => Hash::make($request->password), 'active' => $request->is_active, 'person_id'=>'0'];
-        User::create($user);
-        $user = User::where('id',$id)->first();
-        //$user = User::findOrFail($id);
+        $user->id = $id;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->active = $request->is_active;
+        $user->person_id = 0;
+        $user->save();
         $user->roles()->sync($request->roles);
-        //$user->roles()->sync([1,2,3]);
-        //$user->roles()->attach([1,2,3]);
 
-        //registrationrequest::create($this->validatedData());
-
-        /*return redirect()->route('admin.users.index');*/
 				return redirect()->route('admin.users.index');
     }
 

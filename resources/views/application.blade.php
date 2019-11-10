@@ -124,7 +124,14 @@
 
               <section>
                   <h3><span class="primary-bgr">Лица, представители на посредника</span></h3>
-                  <p><em>Задължително е да има посочен поне един представител</em></p>
+                  <p>
+                    <em>Задължително е да има посочен поне един представител</em>
+                    <br><br>
+                    <u>
+                      <a href="#">Добави заявителя</a>
+                    </u>
+                  </p>
+
                   <h6><strong>Данни за лицата</strong></h6>
                   <table class="table">
                     <thead>
@@ -198,6 +205,10 @@
 
               <section>
                 <h3><span class="primary-bgr">Лица, които ще извършват посредническа дейност</span></h3>
+                  <u>
+                    <a href="#">Добави заявителя</a>
+                  </u>
+                  <br><br>
                   <h6><strong>Данни за лицата</strong></h6>
                   <table class="table">
                     <thead>
@@ -442,6 +453,7 @@
                         <th scope="col">Телефон, Факс</th>
                         <th scope="col">Email</th>
                         <th scope="col">Лице за контакт</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -454,6 +466,9 @@
                         </td>
                         <td>office@ctc.bg</td>
                         <td>Боряна Андонова</td>
+                        <td>
+                          <button type="button" class="btn btn-danger btn-sm">Danger</button>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -613,6 +628,7 @@
                 $("#cAddrMuni1").css('display', 'block');
                 $("#cAddrCity1").css('display', 'block');
                 $("#cAddrCityDistr1").css('display', 'block');
+
             }
 
             if (id == 'World') {
@@ -636,16 +652,34 @@
         $('select[name="mCountry"]').on('change', function(){ //listens to changes in "mCountry"
             var id = $(this).val();
             if(id !== '1'){
-                //alert(id);
                 $("#mAddrRegion1").css('display', 'none');
                 $("#mAddrMuni1").css('display', 'none');
                 $("#mAddrCity1").css('display', 'none');
                 $("#mAddrCityDistr1").css('display', 'none');
+                //alert($('#c_as_m').val());
+
+                //if same address checkbox is on
+                if ($('#c_as_m').val() == 'on') {
+                    document.getElementById('cCountry').value = document.getElementById('mCountry').value;
+                    $("#cAddrRegion1").css('display', 'none');
+                    $("#cAddrMuni1").css('display', 'none');
+                    $("#cAddrCity1").css('display', 'none');
+                    $("#cAddrCityDistr1").css('display', 'none');
+                }
             } else {
-              $("#mAddrRegion1").css('display', 'block');
-              $("#mAddrMuni1").css('display', 'block');
-              $("#mAddrCity1").css('display', 'block');
-              $("#mAddrCityDistr1").css('display', 'block');
+                $("#mAddrRegion1").css('display', 'block');
+                $("#mAddrMuni1").css('display', 'block');
+                $("#mAddrCity1").css('display', 'block');
+                $("#mAddrCityDistr1").css('display', 'block');
+
+                //if same address checkbox is on
+                if ($('#c_as_m').val() == 'on') {
+                    document.getElementById('cCountry').value = document.getElementById('mCountry').value;
+                    $("#cAddrRegion1").css('display', 'block');
+                    $("#cAddrMuni1").css('display', 'block');
+                    $("#cAddrCity1").css('display', 'block');
+                    $("#cAddrCityDistr1").css('display', 'block');
+                }
             }
         });
 
@@ -813,7 +847,7 @@
             //alert(city_id);
             if(city_id){
                 $.ajax({
-                    url: 'powr_regreq/getCityDistrict/'+city_id, //use the getCity method from the Controller
+                    url: 'powr_regreq/getCityDistrict/'+city_id, //use the getCityDistrict method from the Controller
                     type: 'GET',
                     dataType: 'json',
                     success: function(data){
@@ -828,9 +862,7 @@
                             }else{
                               $('select[name="mAddrCityDistr"]').append('<option value="'+key+'">'+ value +'</option>');
                             }
-
                         });
-
                     }
                 });
             } else {
@@ -846,7 +878,7 @@
             //alert(city_id);
             if(city_id){
                 $.ajax({
-                    url: 'powr_regreq/getCityDistrict/'+city_id, //use the getCity method from the Controller
+                    url: 'powr_regreq/getCityDistrict/'+city_id, //use the getCityDistrict method from the Controller
                     type: 'GET',
                     dataType: 'json',
                     success: function(data){
@@ -861,9 +893,7 @@
                             }else{
                               $('select[name="cAddrCityDistr"]').append('<option value="'+key+'">'+ value +'</option>');
                             }
-
                         });
-
                     }
                 });
             } else {
@@ -876,12 +906,18 @@
         $('#c_as_m').change(function(){
           if(this.checked == true){
             document.getElementById('cCountry').value = document.getElementById('mCountry').value;
-            if ($("#mCountry :selected").val() !== 1) {
+
+            if ($("#mCountry :selected").val() !== '1') {
               //alert($("#mCountry :selected").val());
               $("#cAddrRegion1").css('display', 'none');
               $("#cAddrMuni1").css('display', 'none');
               $("#cAddrCity1").css('display', 'none');
               $("#cAddrCityDistr1").css('display', 'none');
+            } else {
+              $("#cAddrRegion1").css('display', 'block');
+              $("#cAddrMuni1").css('display', 'block');
+              $("#cAddrCity1").css('display', 'block');
+              $("#cAddrCityDistr1").css('display', 'block');
             }
 
             $("#cAddrRegion").empty();
@@ -890,6 +926,9 @@
             $("#cAddrMuni").append($("#mAddrMuni").html());
             $("#cAddrCity").empty();
             $("#cAddrCity").append($("#mAddrCity").html());
+
+            //Show the district
+            $("#cAddrCityDistr1").css('display', 'block');
             $("#cAddrCityDistr").empty();
             $("#cAddrCityDistr").append($("#mAddrCityDistr").html());
 
@@ -989,7 +1028,6 @@
                     '<input type="text" readonly class="form-control-plaintext" name="off_name' +
                     + off_cnt + '" value="' + name.val() + '">' +
                   "</td>" +
-
                 "</tr>" );
 
                 off_cnt++;
