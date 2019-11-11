@@ -49,10 +49,10 @@ class ApplicationController extends Controller
         return json_encode($cities);
     }
 
-    public function getCityDistrict($city_id)
+    public function getCityDistrict($id)
     {
-				$city_districts =N_city::where('parent_id',$city_id)->pluck('name', 'id');
-
+				$city_districts =N_city::where('parent_id',$id)->pluck('name', 'id');
+        //dd($city_districts);
         return json_encode($city_districts);
     }
 

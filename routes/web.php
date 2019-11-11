@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::resource('/application', 'ApplicationController');
 Route::get('/application/getMuni/{id}', 'ApplicationController@getMuni');
 Route::get('/application/getCity/{id}', 'ApplicationController@getCity');
+Route::get('/application/getCityDistrict/{id}', 'ApplicationController@getCityDistrict');
 
 Route::resource('/powr_regreq', 'POWRregReqController');
 Route::get('/powr_regreq/getMuni/{id}', 'POWRregReqController@getMuni');
