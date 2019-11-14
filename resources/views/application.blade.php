@@ -42,15 +42,15 @@
                 <div class="row">
                   <div class="col">
                     <label for="">Име: *</label>
-                    <input name="givenname" type="text" class="form-control" id="givenname" value="{{ old('givenname') }}">
+                    <input name="givenname" type="text" class="form-control" id="givenname" value="{{ old('givenname') }}" autocomplete="off">
                   </div>
                   <div class="col">
                     <label for="">Презиме:</label>
-                    <input name="surname" type="text" class="form-control" id="surname">
+                    <input name="surname" type="text" class="form-control" id="surname" autocomplete="off">
                   </div>
                   <div class="col">
                     <label for="">Фамилия: *</label>
-                    <input name="familyname" type="text" class="form-control" id="familyname">
+                    <input name="familyname" type="text" class="form-control" id="familyname" autocomplete="off">
                   </div>
                 </div>
                 <div class="row">
@@ -61,15 +61,15 @@
                               <label class="form-check-label" for="inlineCheckbox1">ЕГН/ЛНЧ: *</label>
                           </div>
                         </label>
-                        <input name="identifier" type="text" class="form-control" id="identifier">
+                        <input name="identifier" type="text" class="form-control" id="identifier" autocomplete="off">
                     </div>
                     <div class="col">
                       <label for="">Email: *</label>
-                      <input name="email" type="text" class="form-control" id="email">
+                      <input name="email" type="text" class="form-control" id="email" autocomplete="off">
                     </div>
                     <div class="col">
                         <label for="">Длъжност: *</label>
-                        <input name="position" type="text" class="form-control" id="position">
+                        <input name="position" type="text" class="form-control" id="position" autocomplete="off">
                       </div>
                 </div>
               </section>
@@ -91,11 +91,11 @@
                   <div class="row">
                     <div class="col">
                       <label for="">ЕИК/БУЛСТАТ:*</label>
-                      <input name="bulstat" type="text" class="form-control" id="">
+                      <input name="bulstat" type="text" class="form-control" id="" autocomplete="off">
                     </div>
                     <div class="col">
                       <label for="inputCity">Наименование:*</label>
-                      <input name="comp_name" type="text" class="form-control" id="">
+                      <input name="comp_name" type="text" class="form-control" id="" autocomplete="off">
                     </div>
                     <div class="col">
                       <label for="">Вид на фирмата:</label>
@@ -113,7 +113,7 @@
                   <div class="row">
                     <div class="col-md-4">
                       <label for="">Идентификационен номер на удостоверението за вписване в регистъра по чл. 10, ал. 1, т. 2 ЗЗЛД:</label>
-                        <input type="text" class="form-control" id="" name="comp_zzld">
+                        <input type="text" class="form-control" id="" name="comp_zzld" autocomplete="off">
                     </div>
                   </div>
 
@@ -158,15 +158,15 @@
                               <div class="row">
                                 <div class="col">
                                   <label for="">Име: *</label>
-                                  <input type="text" class="form-control" id="givenname_rep" name="givenname_rep">
+                                  <input type="text" class="form-control" id="givenname_rep" name="givenname_rep" autocomplete="off">
                                 </div>
                                 <div class="col">
                                   <label for="">Презиме:</label>
-                                  <input type="text" class="form-control" id="surname_rep" name="surname_rep">
+                                  <input type="text" class="form-control" id="surname_rep" name="surname_rep" autocomplete="off">
                                 </div>
                                 <div class="col">
                                   <label for="">Фамилия: *</label>
-                                  <input type="text" class="form-control" id="familyname_rep" name="familyname_rep">
+                                  <input type="text" class="form-control" id="familyname_rep" name="familyname_rep" autocomplete="off">
                                 </div>
                               </div>
                               <br>
@@ -174,19 +174,19 @@
                                 <div class="col">
                                   <label for="">
                                     <div class="form-check-inline">
-                                      <input class="form-check-input" type="checkbox" id="lnch_rep" value="1" name="lnch_rep">
-                                      <label class="form-check-label" for="inlineCheckbox1">ЛНЧ/ЕГН</label>
+                                      <input class="form-check-input" type="checkbox" id="lnch_rep" name="lnch_rep" autocomplete="off">
+                                      <label class="form-check-label" for="lnch_rep">ЛНЧ/ЕГН</label>
                                     </div>
                                   </label>
-                                  <input type="text" class="form-control" id="identifier_rep" name="identifier_rep">
+                                  <input type="text" class="form-control" id="identifier_rep" name="identifier_rep" autocomplete="off">
                                 </div>
                                 <div class="col">
                                   <label for="">Email: *</label>
-                                  <input type="text" class="form-control" id="email_rep" name="email_rep">
+                                  <input type="text" class="form-control" id="email_rep" name="email_rep" autocomplete="off">
                                 </div>
                                 <div class="col">
                                   <label for="">Длъжност: *</label>
-                                  <input type="text" class="form-control" id="position_rep" name="position_rep">
+                                  <input type="text" class="form-control" id="position_rep" name="position_rep" autocomplete="off">
                                 </div>
                               </div>
                             </fieldset>
@@ -201,14 +201,14 @@
               <section>
                 <h3><span class="primary-bgr">Лица, които ще извършват посредническа дейност</span></h3>
                   <h6><strong>Данни за лицата</strong></h6>
-                  <table class="table">
+                  <table class="table" id="brokers" name="brokers">
                     <thead>
                       <tr>
                         <th scope="col">Имена на лицето</th>
                         <th scope="col">ЕГН / ЛНЧ</th>
                         <th scope="col">Email</th>
                         <th scope="col">Достъп до услуги</th>
-                        <th scope="col">Потребителски профил</th>
+                        <th scope="col">Изтрий</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -217,83 +217,86 @@
                     </tbody>
                   </table>
 
-                  <p><a data-fancybox data-src="#add-user-2" href="#" class="btn btn-primary" id="create-new-user">Добави</a></p>
+                  <p><a data-fancybox data-src="#add-broker" href="javascript:void(0);" class="btn btn-primary" id="add-new-broker">Добави</a></p>
 
-                  <div id="add-user-2" style="display: none;">
+                  <div id="add-broker" title="Данни за упълномощено лице" class="modal" tabindex="-1" role="dialog" style="display: none">
                     <section>
-                      <h4 class="text-primary mb-3"><strong>Лице, което ще представлява посредника</strong></h4>
+                      <div class="modal-content">
+                        <div class="modal-body">
+                          <form>
+                            <fieldset>
+                              <div class="row">
+                                <div class="col">
+                                  <label for="">Име: *</label>
+                                  <input type="text" class="form-control" id="givenname_broker" name="givenname_broker" autocomplete="off">
+                                </div>
+                                <div class="col">
+                                  <label for="">Презиме:</label>
+                                  <input type="text" class="form-control" id="surname_broker" name="surname_broker" autocomplete="off">
+                                </div>
+                                <div class="col">
+                                  <label for="">Фамилия: *</label>
+                                  <input type="text" class="form-control" id="familyname_broker" name="familyname_broker" autocomplete="off">
+                                </div>
+                              </div>
+                              <br>
+                              <div class="row">
+                                <div class="col">
+                                  <label for="">
+                                    <div class="form-check-inline">
+                                      <input class="form-check-input" type="checkbox" id="lnch_broker" name="lnch_broker" autocomplete="off">
+                                      <label class="form-check-label" for="lnch_broker">ЛНЧ/ЕГН</label>
+                                    </div>
+                                  </label>
+                                  <input type="text" class="form-control" id="identifier_broker" name="identifier_broker" autocomplete="off">
+                                </div>
+                                <div class="col">
+                                  <label for="">Email: *</label>
+                                  <input type="text" class="form-control" id="email_broker" name="email_broker" autocomplete="off">
+                                </div>
+                                <div class="col">
+                                  <label for="">Длъжност: *</label>
+                                  <input type="text" class="form-control" id="position_broker" name="position_broker" autocomplete="off">
+                                </div>
+                              </div>
+                              <br>
+                              <div class="row">
+                                <div class="col">
+                                  <h6><strong>Достъп до услуги:*</strong></h6>
+                                </div>
+                              </div>
 
-                      <div class="row">
-                        <div class="col">
-                          <label for="">Име: *</label>
-                          <input type="text" class="form-control" id="">
-                        </div>
-                        <div class="col">
-                          <label for="">Презиме:</label>
-                          <input type="text" class="form-control" id="">
-                        </div>
-                        <div class="col">
-                          <label for="">Фамилия: *</label>
-                          <input type="text" class="form-control" id="">
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group">
+                                    <div class="checkbox" id="" name="" value="">
+                                        <label>
+                                            <input type="checkbox" name="remember"> Промяна на обстоятелства за ЧТП
+                                        </label>
+                                    </div>
+                                    <div class="checkbox" id="" name="" value="">
+                                        <label>
+                                            <input type="checkbox" name="remember"> Публикуване на заявки за СРМ
+                                        </label>
+                                    </div>
+                                    <div class="checkbox" id="" name="" value="">
+                                        <label>
+                                            <input type="checkbox" name="remember"> Промяна на заявки за СРМ
+                                        </label>
+                                    </div>
+                                    <div class="checkbox" id="" name="" value="">
+                                        <label>
+                                            <input type="checkbox" name="remember"> Регистрация на ТРЛ
+                                        </label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </fieldset>
+                          </form>
                         </div>
                       </div>
-
-                      <div class="row">
-                        <div class="col">
-                          <div class="col-25">
-                            <div class="form-check-inline">
-                              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                              <label class="form-check-label" for="inlineCheckbox1">ЛНЧ</label>
-                            </div>
-                          </div>
-                          <div class="col-75">
-                            <label for="">ЕГН/ЛНЧ: *</label>
-                            <input type="text" class="form-control" id="">
-                          </div>
-                        </div>
-                        <div class="col">
-                          <label for="">Email: *</label>
-                          <input type="text" class="form-control" id="">
-                        </div>
-                      </div>
-
-                      <h6><strong>Достъп до услуги:*</strong></h6>
-
-                      <div class="form-group">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="">
-                          <label class="form-check-label" for="">
-                            Промяна на обстоятелства за ЧТП
-                          </label>
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="">
-                          <label class="form-check-label" for="">
-                            Публикуване на заявки за СРМ
-                          </label>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="">
-                          <label class="form-check-label" for="">
-                            Промяна на заявки за СРМ
-                          </label>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="">
-                          <label class="form-check-label" for="">
-                            Регистрация на ТРЛ и УРЛ
-                          </label>
-                        </div>
-                      </div>
-
-                      <p><a href="#" class="btn btn-primary">Запази</a> <span class="sep-line "> | </span> <a data-fancybox-close href="#" class="btn btn-outline-danger">Отказ</a></p>
                     </section>
                   </div>
 
@@ -428,15 +431,16 @@
 
                   <div class="form-group">
                     <label for="">Адрес:*</label>
-                    <input type="text" class="form-control" id="cAddr" name="cAddr" placeholder="">
+                    <input type="text" class="form-control" id="cAddr" name="cAddr" placeholder="" autocomplete="off">
                   </div>
 
                   <h6 class="mt-4"><strong>Офиси</strong></h6>
                   <table id="offices" name="offices" class="table">
                     <thead>
                       <tr>
+                        <th scope="col">#</th>
                         <th scope="col">Адрес</th>
-                        <th scope="col">Телефон, Факс</th>
+                        <th scope="col">Телефон</th>
                         <th scope="col">Email</th>
                         <th scope="col">Лице за контакт</th>
                         <th scope="col">Изтрий</th>
@@ -456,7 +460,9 @@
                         <div class="modal-body">
                             <form>
                               <fieldset>
-                                <h6>Всички полета са задължителни.</h6>
+                                <div class="form-group">
+                                  <u><a class="copyAddress" href="#">Добави данните от адреса на управление</a></u>
+                                </div>
 
                                 <div class="form-group">
                                   <div class="row">
@@ -517,8 +523,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                  <label for="address" class="col-form-label">Адрес</label>
-                                  <input type="text" name="address" id="address" value="" class="form-control input-lg">
+                                  <label for="oAddr" class="col-form-label">Адрес</label>
+                                  <input type="text" name="oAddr" id="oAddr" value="" class="form-control input-lg" autocomplete="off">
                                 </div>
                                 <div class="form-group">
                                   <label for="oContactPerson" class="col-form-label">Лице за контакт:*</label>
@@ -527,12 +533,35 @@
                                   </select>
                                 </div>
                                 <div class="form-group">
-                                  <label for="tel_fax" class="col-form-label">Телефон,Факс</label>
-                                  <input type="text" name="tel_fax" id="tel_fax" value="" class="form-control">
+                                  <input type="text" name="oOtherContact" id="oOtherContact" value="" class="form-control" autocomplete="off">
                                 </div>
+
+                                <div class="row">
+                                  <div class="col">
+                                    <div class="form-group">
+                                      <label for="tel_off" class="col-form-label">Телефон</label>
+                                      <input type="text" name="tel_off" id="tel_off" value="" class="form-control" autocomplete="off">
+                                    </div>
+                                  </div>
+                                  <div class="col">
+                                    <div class="form-group">
+                                      <label for="fax_off" class="col-form-label">Факс</label>
+                                      <input type="text" name="fax_off" id="fax_off" value="" class="form-control" autocomplete="off">
+                                    </div>
+                                  </div>
+                                  <div class="col">
+                                    <div class="form-group">
+                                      <label for="email_off" class="col-form-label">Email</label>
+                                      <input type="text" name="email_off" id="email_off" value="" class="form-control" autocomplete="off">
+                                    </div>
+                                  </div>
+                                </div>
+
                                 <div class="form-group">
-                                  <label for="email_off" class="col-form-label">Email</label>
-                                  <input type="text" name="email_off" id="email_off" value="" class="form-control">
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="mainOffice" name="mainOffice" value=1>
+                                    <label class="form-check-label" for="">Главен офис</label>
+                                  </div>
                                 </div>
 
                                 <!-- Allow form submission with keyboard without duplicating the dialog button -->
@@ -959,7 +988,7 @@
         $('select[name="mAddrCity"]').on('change', function(){ //listens to changes in "mAddrCity"
             var city_id = $(this).val();
             flag = 1; //initializing the first row flag
-            alert(city_id);
+            //alert(city_id);
             if(city_id){
                 $.ajax({
                     url: 'application/getCityDistrict/'+city_id, //use the getCityDistrict method from the Controller
@@ -1094,6 +1123,7 @@
           }
         });
 
+
         var contacts = []; //[id][name]
 
         <!--=========Representative===============================-->
@@ -1108,6 +1138,7 @@
               surname_rep = $( "#surname_rep" ),
               familyname_rep = $( "#familyname_rep" ),
               email_rep = $( "#email_rep" ),
+              lnch_rep = $( "#lnch_rep" ),
               identifier_rep = $( "#identifier_rep" ),
               position_rep = $( "#position_rep" ),
               allFields = $( [] ).add( givenname_rep ).add( surname_rep ).add( familyname_rep ).add( email_rep ).add( identifier_rep ).add( position_rep ),
@@ -1164,9 +1195,16 @@
 
               //alert(off_cnt);
               if ( valid ) {
+                //add contact to the list for displaying in the office modal
                 var full_name = givenname_rep.val()+' '+surname_rep.val()+' '+familyname_rep.val();
                 //alert(full_name);
-                contacts.push({'id' : off_cnt, 'contact' : full_name});
+                contacts.push({'id' : identifier_rep.val(), 'contact' : full_name});
+
+                var lnch = 0;
+                var ischecked = $(lnch_rep).is(":checked");
+                if (ischecked) {
+                  lnch = 1;
+                }
 
                 $( "#reps tbody" ).append( "<tr>" +
                   "<td>" +
@@ -1177,6 +1215,7 @@
                   "</td>" +
                   "<td>" +
                     '<input type="hidden" id="identifier_rep' + off_cnt + '" name="identifier_rep' + off_cnt + '" value="' + identifier_rep.val()+ '">'+
+                    '<input type="hidden" id="lnch_rep' + off_cnt + '" name="lnch_rep' + off_cnt + '" value="' + lnch+ '">'+
                     identifier_rep.val()+
                   "</td>" +
                   "<td>" +
@@ -1232,19 +1271,35 @@
               });
 
               $( "#add-new-rep" ).button().on( "click", function() {
+                //initialization
+                $(".modal-body #lnch_rep").prop("checked", 0);
+
                 dialog.dialog( "open" );
               });
 
               //Add the applicaiton submitter
               $(".submitter").click(function(){
-                //lnch
+
                 var givenname = $('#givenname').val();
                 var surname = $('#surname').val();
                 var familyname = $('#familyname').val();
                 var email = $('#email').val();
+                var lnch = $('#lnch').val();
                 var identifier = $('#identifier').val();
                 var position = $('#position').val();
-                //alert(off_cnt);
+
+                //add contact to the list for displaying in the office modal
+                var full_name = givenname+' '+surname+' '+familyname;
+                //alert(full_name);
+                contacts.push({'id' : identifier, 'contact' : full_name});
+
+                //Lnch
+                var lnch2 = 0;
+                var ischecked = $(lnch).is(":checked");
+                if (ischecked) {
+                  lnch2 = 1;
+                }
+                //alert(lnch2);
 
                 $( "#reps tbody" ).append( "<tr>" +
                   "<td>" +
@@ -1255,6 +1310,7 @@
                   "</td>" +
                   "<td>" +
                     '<input type="hidden" id="identifier_rep' + off_cnt + '" name="identifier_rep' + off_cnt + '" value="' + identifier+ '">'+
+                    '<input type="hidden" id="lnch_rep' + off_cnt + '" name="lnch_rep' + off_cnt + '" value="' + lnch2+ '">'+
                     identifier+
                   "</td>" +
                   "<td>" +
@@ -1275,15 +1331,203 @@
 
               });
 
-
           });
 
           //Click Delete
           $("#reps").on('click','.btnDelete',function(){
                // get the current row
-               var currentRow=$(this).closest("tr");
+               var currentRow = $(this).closest("tr");
+               var currentRow1 = $(this).closest("tr")[0];
+               var cells = currentRow1.cells;
+
+               var secondCell = cells[1].textContent;
+
+               for (var i = 0; i < contacts.length; i++) {
+                 if (contacts[i].id == secondCell) {
+                   myRow = i;
+                 }
+               }
+
+               contacts.splice(myRow, 1);
 
                currentRow.html('');
+          });
+
+        });
+        <!--========================================-->
+
+        <!--=========Broker===============================-->
+        $(document).ready(function() {
+          $( function() {
+            var off_cnt = 1; //counter for office rows
+            var dialog, form,
+              // lnch
+              // From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=email%29
+              emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+              givenname_broker = $( "#givenname_broker" ),
+              surname_broker = $( "#surname_broker" ),
+              familyname_broker = $( "#familyname_broker" ),
+              email_broker = $( "#email_broker" ),
+              lnch_broker = $( "#lnch_broker" ),
+              identifier_broker = $( "#identifier_broker" ),
+              position_broker = $( "#position_broker" ),
+              allFields = $( [] ).add( givenname_broker ).add( surname_broker ).add( familyname_broker ).add( email_broker ).add( identifier_broker ).add( position_broker ),
+              tips = $( ".validateTips" );
+
+            function updateTips( t ) {
+              tips
+                .text( t )
+                .addClass( "ui-state-highlight" );
+              setTimeout(function() {
+                tips.removeClass( "ui-state-highlight", 1500 );
+              }, 500 );
+            }
+
+            function checkLength( o, n, min, max ) {
+              if ( o.val().length > max || o.val().length < min ) {
+                o.addClass( "ui-state-error" );
+                //alert(n;
+                updateTips( "Дължината на " + n + " може да бъде от " +
+                  min + " до " + max + " символа." );
+                return false;
+              } else {
+                return true;
+              }
+            }
+
+            function checkRegexp( o, regexp, n ) {
+              if ( !( regexp.test( o.val() ) ) ) {
+                o.addClass( "ui-state-error" );
+                updateTips( n );
+                return false;
+              } else {
+                return true;
+              }
+            }
+
+
+            function addBroker() {
+              var valid = true;
+
+              allFields.removeClass( "ui-state-error" );
+
+              valid = valid && checkLength( givenname_broker, "Име", 3, 255 );
+              valid = valid && checkLength( surname_broker, "Презиме", 3, 255 );
+              valid = valid && checkLength( familyname_broker, "Фамилия", 3, 255 );
+              valid = valid && checkLength( email_broker, "Email", 6, 80 );
+              valid = valid && checkLength( identifier_broker, "ЛНЧ/ЕГН", 1, 16 );
+              valid = valid && checkLength( position_broker, "Длъжност", 3, 35 );
+
+              //valid = valid && checkRegexp( address, /^[a-z]([0-9a-z_\s])+$/i, "Адресът може да съдържа символите a-z, 0-9, underscores, spaces and must begin with a letter." );
+              valid = valid && checkRegexp( email_broker, emailRegex, "eg. ui@jquery.com" );
+              valid = valid && checkRegexp( identifier_broker, /^([0-9])+$/, "ЛНЧ/ЕГН може да съдържат само цифри : 0-9" );
+              //valid = valid && checkRegexp( name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
+
+              //alert(off_cnt);
+              if ( valid ) {
+                //add contact to the list for displaying in the office modal
+                var full_name = givenname_broker.val()+' '+surname_broker.val()+' '+familyname_broker.val();
+                //alert(full_name);
+                contacts.push({'id' : identifier_broker.val(), 'contact' : full_name});
+
+                var lnch = 0;
+                var ischecked = $(lnch_broker).is(":checked");
+                if (ischecked) {
+                  lnch = 1;
+                }
+
+                $( "#brokers tbody" ).append( "<tr>" +
+                  "<td>" +
+                    '<input type="hidden" id="givenname_broker' + off_cnt + '" name="givenname_broker' + off_cnt + '" value="' + givenname_broker.val()+ '">'+
+                    '<input type="hidden" id="surname_broker' + off_cnt + '" name="surname_broker' + off_cnt + '" value="' + surname_broker.val()+ '">'+
+                    '<input type="hidden" id="familyname_broker' + off_cnt + '" name="familyname_broker' + off_cnt + '" value="' + familyname_broker.val()+ '">'+
+                    full_name+
+                  "</td>" +
+                  "<td>" +
+                    '<input type="hidden" id="identifier_broker' + off_cnt + '" name="identifier_broker' + off_cnt + '" value="' + identifier_broker.val()+ '">'+
+                    '<input type="hidden" id="lnch_broker' + off_cnt + '" name="lnch_broker' + off_cnt + '" value="' + lnch+ '">'+
+                    identifier_broker.val()+
+                  "</td>" +
+                  "<td>" +
+                    '<input type="hidden" id="email_broker' + off_cnt + '" name="email_broker' + off_cnt + '" value="' + email_broker.val()+ '">'+
+                    email_broker.val()+
+                  "</td>" +
+                  "<td>" +
+                    '<input type="hidden" id="position_broker' + off_cnt + '" name="position_broker' + off_cnt + '" value="' + position_broker.val()+ '">'+
+                    position_broker.val()+
+                  "</td>" +
+                  "<td>" +
+                    '<button type="button" class="btnDelete btn-danger btn-sm" id="del_broker">Изтрий</button>'+
+                  "</td>" +
+
+                  "</tr>" );
+
+                off_cnt++;
+
+                dialog.dialog( "close" );
+              }
+              return valid;
+            }
+
+              dialog = $( "#add-broker" ).dialog({
+                autoOpen: false,
+                show: {effect: "blind", duration: 1000},
+                hide: {effect: "clip", duration: 1000},
+                width: 1200,
+                height: 'auto',
+                //width: 350,
+                //width: $(window).width(),
+                //width: $(window).width() * 0.72,
+                modal: true,
+                buttons: {
+                  "Добави посредник": addBroker,
+                  "Изход": function() {
+                    dialog.dialog( "close" );
+                  }
+                },
+                close: function() {
+                  //form[ 0 ].reset();
+                  //if ( form[0] )form[ 0 ].reset();
+                  //$("#add-office")[0].reset();
+                  //allFields.val( "" );
+                  allFields.val( "" ).removeClass( "ui-state-error" );
+                }
+              });
+
+              form = dialog.find( "#add-broker" ).on( "submit", function( event ) {
+                event.preventDefault();
+                //alert('109');
+                addBroker();
+              });
+
+              $( "#add-new-broker" ).button().on( "click", function() {
+                //initialization
+                $(".modal-body #lnch_broker").prop("checked", 0);
+
+                dialog.dialog( "open" );
+              });
+
+          });
+
+          //Click Delete
+          $("#brokers").on('click','.btnDelete',function(){
+               // get the current row
+               var currentRow = $(this).closest("tr");
+               var currentRow1 = $(this).closest("tr")[0];
+               var cells = currentRow1.cells;
+
+               var secondCell = cells[1].textContent;
+
+               for (var i = 0; i < contacts.length; i++) {
+                 if (contacts[i].id == secondCell) {
+                   myRow = i;
+                 }
+               }
+
+               contacts.splice(myRow, 1);
+
+               currentRow.html('');
+
           });
 
         });
@@ -1303,11 +1547,14 @@
               oAddrMuni = $('#oAddrMuni'),
               oAddrCity = $('#oAddrCity'),
               oAddrCityDistr = $('#oAddrCityDistr'),
-              address = $( "#address" ),
+              oAddr = $( "#oAddr" ),
               email_off = $( "#email_off" ),
-              tel_fax = $( "#tel_fax" ),
+              tel_off = $( "#tel_off" ),
+              fax_off = $( "#fax_off" ),
               oContactPerson = $( "#oContactPerson" ),
-              allFields = $( [] ).add(oCountry).add(oAddrRegion).add(oAddrMuni).add(oAddrCity).add(oAddrCityDistr).add(address).add(email_off).add(tel_fax).add(name),
+              oOtherContact = $( "#oOtherContact" ),
+              mainOffice = $( "#mainOffice" ),
+              allFields = $( [] ).add(oAddrCity).add(oAddr).add(email_off).add(tel_off).add(fax_off).add(oContactPerson),
               tips = $( ".validateTips" );
 
             function updateTips( t ) {
@@ -1345,30 +1592,45 @@
               var valid = true;
 
               allFields.removeClass( "ui-state-error" );
-              valid = valid && checkLength( address, "Адрес", 3, 255 );
+              valid = valid && checkLength( oAddr, "Адрес", 3, 255 );
               valid = valid && checkLength( email_off, "Email", 6, 80 );
-              valid = valid && checkLength( tel_fax, "Телефон,Факс", 5, 16 );
-              valid = valid && checkLength( name, "Лице за контакт", 3, 35 );
+              valid = valid && checkLength( tel_off, "Телефон", 5, 16 );
+              //valid = valid && checkLength( fax_off, "Факс", 5, 16 );
+              //valid = valid && checkLength( name, "Лице за контакт", 3, 35 );
               //valid = valid && checkRegexp( address, /^[a-z]([0-9a-z_\s])+$/i, "Адресът може да съдържа символите a-z, 0-9, underscores, spaces and must begin with a letter." );
               //valid = valid && checkRegexp( email, emailRegex, "eg. ui@jquery.com" );
               //valid = valid && checkRegexp( tel_fax, /^([0-9])+$/, "Телефонният номер може да съдържа само цифри : 0-9" );
               //valid = valid && checkRegexp( name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
 
-              //alert(email_off.val());
+              //Main office
+              var mainO = 0;
+              var mainL = '<input type="checkbox" class="form-control checkbox-inline" id="CheckedDisabled2" disabled>';
+              var ischecked = $(mainOffice).is(":checked");
+              if (ischecked) {
+                mainO = 1;
+                mainL = '<input type="checkbox" class="form-control checkbox-inline" id="CheckedDisabled2" checked disabled>';
+              }
+
+
               if ( valid ) {
                 $( "#offices tbody" ).append( "<tr>" +
+                  '<td  style="horizontal-align: left">' +
+                    '<input type="hidden" id="mainOffice' + off_cnt + '" name="mainOffice' + off_cnt + '" value="' + mainO + '">'+
+                    mainL+
+                  "</td>" +
                   "<td>" +
                     '<input type="hidden" id="oCountry' + off_cnt + '" name="oCountry' + off_cnt + '" value="' + oCountry.val()+ '">'+
                     '<input type="hidden" id="oAddrRegion' + off_cnt + '" name="oAddrRegion' + off_cnt + '" value="' + oAddrRegion.val()+ '">'+
                     '<input type="hidden" id="oAddrMuni' + off_cnt + '" name="oAddrMuni' + off_cnt + '" value="' + oAddrMuni.val()+ '">'+
                     '<input type="hidden" id="oAddrCity' + off_cnt + '" name="oAddrCity' + off_cnt + '" value="' + oAddrCity.val()+ '">'+
                     '<input type="hidden" id="oAddrCityDistr' + off_cnt + '" name="oAddrCityDistr' + off_cnt + '" value="' + oAddrCityDistr.val()+ '">'+
-                    '<input type="hidden" id="address' + off_cnt + '" name="address' + off_cnt + '" value="' + address.val()+ '">'+
-                    address.val()+
+                    '<input type="hidden" id="oAddr' + off_cnt + '" name="oAddr' + off_cnt + '" value="' + oAddr.val()+ '">'+
+                    $('#oAddrCity option:selected').text()+', '+oAddr.val()+
                   "</td>" +
                   "<td>" +
-                    '<input type="hidden" id="tel_fax' + off_cnt + '" name="tel_fax' + off_cnt + '" value="' + tel_fax.val()+ '">'+
-                    tel_fax.val() +
+                    '<input type="hidden" id="tel_off' + off_cnt + '" name="tel_off' + off_cnt + '" value="' + tel_off.val()+ '">'+
+                    '<input type="hidden" id="fax_off' + off_cnt + '" name="fax_off' + off_cnt + '" value="' + fax_off.val()+ '">'+
+                    tel_off.val() +
                   "</td>" +
                   "<td>" +
                     '<input type="hidden" id="email_off' + off_cnt + '" name="email_off' + off_cnt + '" value="' + email_off.val()+ '">'+
@@ -1376,7 +1638,8 @@
                   "</td>" +
                   "<td>" +
                     '<input type="hidden" id="oContactPerson' + off_cnt + '" name="oContactPerson' + off_cnt + '" value="' + oContactPerson.val()+ '">'+
-                    oContactPerson.text() +
+                    '<input type="hidden" id="oOtherContact' + off_cnt + '" name="oOtherContact' + off_cnt + '" value="' + oOtherContact.val()+ '">'+
+                    $('#oContactPerson option:selected').text()+
                   "</td>" +
                   "<td>" +
                     '<button type="button" class="btnDelete btn-danger btn-sm" id="del_office'+ off_cnt +'">Изтрий</button>'+
@@ -1430,19 +1693,86 @@
                 $(".modal-body #oAddrMuni").html( '' );
                 $(".modal-body #oAddrCity").html( '' );
                 $(".modal-body #oAddrCityDistr").html( '' );
+                $(".modal-body #mainOffice").prop("checked", 0);
+                $(".modal-body #oAddr").val('');
+                $(".modal-body #oOtherContact").val('');
+                $(".modal-body #tel_off").val('');
+                $(".modal-body #fax_off").val('');
+                $(".modal-body #email_off").val('');
 
                 //fill the contact persons dropdowns
-
-                alert(contacts[0].contact);
+                //alert(contacts[0].contact);
                 $('#oContactPerson').empty();
-                for(var i = 0; i< contacts.length; i++){
-                  if (i==0) {$('#oContactPerson').append('<option selected="">Моля, изберете</option>')}
-                  $('#oContactPerson').append('<option value="' + contacts[i].id +'">' + contacts[i].contact +'</option>');
+                if (contacts.length > 0) {
+                  for(var i = 0; i< contacts.length; i++){
+                    if (i==0) {$('#oContactPerson').append('<option selected="">Моля, изберете</option>')}
+                    $('#oContactPerson').append('<option value="' + contacts[i].id +'">' + contacts[i].contact +'</option>');
+                  }
+                } else {
+                  $('#oContactPerson').append('<option selected="">Моля, изберете</option>');
                 }
                 console.log(contacts);
 
                 dialog.dialog( "open" );
               });
+          });
+
+          //Copy management address
+          $(".copyAddress").click(function(){
+            //Initialization
+            var mCountry = $('#mCountry').val();
+            var mAddrRegion = $('#mAddrRegion').val();
+            var mAddrMuni = $('#mAddrMuni').val();
+            var mAddrCity = $('#mAddrCity').val();
+            var mAddrCityDistr = $('#mAddrCityDistr').val();
+            var mAddr = $('#mAddr').val();
+
+            console.log(mCountry);
+            console.log(mAddrRegion);
+            console.log(mAddrMuni);
+            console.log(mAddrCity);
+            console.log(mAddrCityDistr);
+            console.log(mAddr);
+
+            document.getElementById('oCountry').value = document.getElementById('mCountry').value;
+
+            if ($("#mCountry :selected").val() !== '1') {
+              //alert($("#mCountry :selected").val());
+              $("#oAddrRegion1").css('display', 'none');
+              $("#oAddrMuni1").css('display', 'none');
+              $("#oAddrCity1").css('display', 'none');
+              $("#oAddrCityDistr1").css('display', 'none');
+            } else {
+              $("#oAddrRegion1").css('display', 'block');
+              $("#oAddrMuni1").css('display', 'block');
+              $("#oAddrCity1").css('display', 'block');
+              $("#oAddrCityDistr1").css('display', 'block');
+            }
+
+            $("#oAddrRegion").empty();
+            $("#oAddrRegion").append($("#mAddrRegion").html());
+            $("#oAddrMuni").empty();
+            $("#oAddrMuni").append($("#mAddrMuni").html());
+            $("#oAddrCity").empty();
+            $("#oAddrCity").append($("#mAddrCity").html());
+
+            //Show the district
+            //$("#oAddrCityDistr1").css('display', 'block');
+            $("#oAddrCityDistr").empty();
+            $("#oAddrCityDistr").append($("#mAddrCityDistr").html());
+
+
+            $("#oAddrRegion :selected").text($("#mAddrRegion :selected").text());
+            $("#oAddrRegion :selected").val($("#mAddrRegion :selected").val());
+            $("#oAddrMuni :selected").text($("#mAddrMuni :selected").text());
+            $("#oAddrMuni :selected").val($("#mAddrMuni :selected").val());
+            $("#oAddrCity :selected").text($("#mAddrCity :selected").text());
+            $("#oAddrCity :selected").val($("#mAddrCity :selected").val());
+            $("#oAddrCityDistr :selected").text($("#mAddrCityDistr :selected").text());
+            $("#oAddrCityDistr :selected").val($("#mAddrCityDistr :selected").val());
+
+            document.getElementById('oAddr').value = document.getElementById('mAddr').value;
+            $('#oAddr').focus(); //focus on the address
           });
 
           //Click Delete1
@@ -1455,7 +1785,6 @@
           });
 
         });
-
         <!--========================================-->
 
     </script>

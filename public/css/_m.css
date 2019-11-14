@@ -1,5 +1,5 @@
 
-html {position: relative; min-width: 767px; min-height: 100%;}
+html {position: relative; min-width: 320px; min-height: 100%;}
 
 body {
 	position: static; height: auto; font: normal 14px/1.5 Arial, Helvetica, sans-serif;
@@ -61,6 +61,7 @@ body {
 .site-logo h1, .site-logo h3 {font-weight: bold; white-space: nowrap;}
 .site-logo h3 {margin: 1.2em 0 0; font-size: 1.15em;}
 .site-logo h1 {font-size: 1.7em;}
+	.site-logo a {display: inline-block; text-decoration: none;}
 
 	.inside #header .level-2 hr {top: 15px; margin-bottom: 30px;}
 
@@ -74,7 +75,7 @@ body {
 .site-nav {margin: 1.5em 0; text-align: center;}
 	.site-nav ul {list-style: none; margin: 0;}
 		.site-nav > ul > li {margin: 0; display: inline-block; text-align: left; line-height: 48px;}
-			.site-nav a {display: block; padding: 0 1.2em; position: relative; text-decoration: none;}
+			.site-nav a {display: block; padding: 0 1.4em; position: relative; text-decoration: none;}
 			.site-nav > ul > li > a {text-transform: uppercase; font-weight: bold;}
 			:root .site-nav > ul > .active > a {box-shadow: 0 -4px 4px rgba(0,0,0,.2); text-shadow: none;}
 			.site-nav > ul > li:hover > a {text-shadow: 0 0 2px rgba(0,0,0,.5);}
@@ -146,25 +147,33 @@ main > .container-fluid {padding-bottom: 1.5em;}
 		position: absolute; top: 0; left: 0;
 		display: block; width: 48px; height: 100%; padding-top: .3em;
 	}
+	
+	.custom-file-input, .input-group-text {height: 35px;}
 
 /* :: Index items :: */
 
 .index-items {margin: 2.5em 0; overflow: hidden;}
-	.index-items h4 {margin-bottom: 24px; padding: 1.2em; font-size: 1.25rem;}
+	.index-items h4 {margin-bottom: 24px; padding: 1.2em; font-size: 1.25rem; background-color: transparent !important; border-top: 4px solid;}
 
-.index-items .login-bar {margin-top: -24px; padding: 12%;}
+.index-items .info .inner {padding-top: 2em; font-size: 1.1em; border-top: 4px solid;}
+.index-items .info .pdf {padding: 1.1em 1.3em; padding-left: 3.5em; background-position: 1em 50%;}
+
+.index-items .registration .inner {padding-top: .7em;}
+	.index-items .registration h4 {margin-bottom: 0; padding-bottom: .7em;}
+	.index-items .registration .inner p {margin-bottom: 1.4rem;}
+.index-items .login-bar {margin-top: -24px; padding: 12%; padding-bottom: 10%;}
 
 /* :: Form items :: */
 
 .main-heading {margin-bottom: 1em;}
 
-.form-items section {margin-bottom: 24px; padding: 48px; padding-bottom: 30px;}
+.form-items section {margin-bottom: 24px; padding: 48px; padding-bottom: 30px; overflow: auto;}
 	.form-items section > h3:first-child {margin: -48px 0 40px -48px;}
 		.form-items section > h3:first-child span {display: inline-block; padding: .8em 1.3em; font-size: .65em;}
 		
 		.form-items h6 {margin-bottom: 1.5em; font-size: 1em;}
 		
-		.form-items .col, .form-items .row > div {margin-bottom: 1.5em;}
+		.form-items .col, .form-items .row > div, .fancybox-inner .row > div {margin-bottom: 1.5em;}
 		
 		input[type="checkbox"], input[type="radio"] {display: inline-block; width: 18px; height: 18px; margin-right: 10px; padding: 2px; color: #666;}
 		input[type="checkbox"] {background-color: #f7f7f7;}
@@ -261,18 +270,18 @@ p {margin-bottom: 1.5rem;}
 .btn-outline {border-width: 2px;}
 .btn-outline.btn-lg {padding: 1rem}
 .btn-primary {border-color: transparent;}
-.btn-more {position: relative;}
+:root .btn-more {position: relative; padding-right: 2.5rem; font-size: 1.1rem;}
 .btn-more:before, .btn-more:after {
 	content: ""; position: absolute; top: 50%; z-index: 1;
 	display: block; border-style: solid;
 }
 .btn-more:before {
-	right: 35px; width: 16px; height: 16px; margin-top: -8px;
+	right: 25px; width: 16px; height: 16px; margin-top: -8px;
 	border-width: 2px 2px 0 0; transform: rotate(45deg);
 }
-.btn-more:hover:before {right: 25px;}
-.btn-more:after {right: 33px; width: 0; height: 1px; margin-top: -1px; border-width: 0 0 2px; opacity: 0;}
-.btn-more:hover:after {right: 23px; width: 24px; opacity: .9;}
+.btn-more:hover:before {right: 15px;}
+.btn-more:after {right: 23px; width: 0; height: 1px; margin-top: -1px; border-width: 0 0 2px; opacity: 0;}
+.btn-more:hover:after {right: 13px; width: 24px; opacity: .9;}
 
 
 .pdf {
