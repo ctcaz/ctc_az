@@ -15,8 +15,10 @@ Author/s:	Christopher Georgiev
 					<li class="sub-menu"><a href="#">Заявки</a>
 							<ul class="sub-menu-wrapper">
 								<li><a href="#"><span>Заявки за регистрации</span></a></li>
-								<li><a href="#"><span>Заявки за уведомления</span></a></li>
-								<li><a href="#"><span>Заявки за промяна на обстоятелства</span></a></li>
+								<li><a href="#"><span>Изменение и допълнение на обстоятелствата на ПОВР</span></a></li>
+								<li><a href="#"><span>Продължаване на срока на регистрация на ПОВР</span></a></li>
+								<li><a href="#"><span>Прекратяване на регистрация на ПОВР</span></a></li>
+								<li><a href="#"><span>Подаване на ежегодни документи на ПОВР</span></a></li>
 							</ul>
 					 </li>
 					 <li class="active"><a href="{{route('powr_bo.registered.index')}}">Регистрации</a></li>
