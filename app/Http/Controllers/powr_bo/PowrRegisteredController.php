@@ -30,13 +30,23 @@ class PowrRegisteredController extends Controller
     public function index()
     {
         //
-        $powr_regs = RegPOWR::paginate(10); //active()->
-        $powr_eik = "205740423";
+        //$powr_regs = RegPOWR::paginate(10); //active()->
+        //$powr_eik = "205740423";
 
         $powr_regs = DB::table('registrationrequest')
-              ->join('recruitmentagency', 'recruitmentagency.id', '=', 'registrationrequest.applicant_id')
-              ->join('legalentity', 'legalentity.id', '=', 'recruitmentagency.legalentity_id')
-              ->get()->paginate(10)
+              ->where('state','LIKE','%ПОВР%')
+              ->join('recruitmentagencyprototype', 'recruitmentagencyprototype.id', '=', 'registrationrequest.applicant_id')
+              ->join('legalentity', 'legalentity.id', '=', 'recruitmentagencyprototype.legalentity_id')
+              ->join('n_company_types', 'n_company_types.id', '=', 'legalentity.type_id')
+              ->join('address as maddr', 'maddr.id', '=', 'recruitmentagencyprototype.managementaddress_id')
+              ->join('registration','registration.recruitmentagency_id','=','recruitmentagencyprototype.id','left outer')
+              ->join('rap_office','rap_office.recruitmentagencyprototype_id','=','recruitmentagencyprototype.id')
+              ->join('Office','Office.id','=','rap_office.offices_id')
+              //->join('address as caddr', 'caddr.id', '=', 'recruitmentagencyprototype.correspondenceaddress_id')
+              ->join('address as caddr', 'caddr.id', '=', 'Office.address_id')
+              //->get(['registrationrequest.*','legalentity.*','n_company_types.name as ctypeName','maddr.street as m_street','caddr.street as c_street'])
+              ->paginate(10,array('registrationrequest.*','legalentity.*','n_company_types.name as ctypeName','maddr.street as m_street','caddr.street as c_street','registration.certificatevalidity as date_valid'))
+              //->paginate(10,array('registrationrequest.*','legalentity.*','n_company_types.name as ctypeName','maddr.street as m_street','caddr.street as c_street','registration.certificatevalidity as date_valid'))
         ;
 
 

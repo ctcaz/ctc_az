@@ -32,40 +32,40 @@ Author/s:	Christopher Georgiev
 				<div class="col col-md-10">
 					<div class="container-fluid clearfix">
 		        <div class="content">
-							<h2 class="h3 main-heading">Списък регистрации</h2>
+							<!-- <h2 class="h3 main-heading">Списък регистрации</h2>-->
+              <h2 class="h3 main-heading">Списък на предприятията, които осигуряват временна работа, съгласно Закон за насърчаване на заетостта (изм. ДВ, бр. 7 от 24.01.2012г.)</h2>
+
 							<div class="form-items">
 									<section>
-											<h3><span class="primary-bgr">Списък регистрации</span></h3>
+											<!--<h3><span class="primary-bgr">Списък регистрации</span></h3>-->
+                      <h3><span class="primary-bgr">Регистрации на ПОВР</span></h3>
 												<table class="table">
 												<thead>
-													<tr>
-														<th scope="col">ID от Archimed</th>
-														<th scope="col">ЕИК/Идентификатор</th>
-														<th scope="col">Наименование</th>
-														<th scope="col">Тип</th>
-														<th scope="col">Статус</th>
-														<th scope="col">Последна промяна</th>
-													</tr>
+                          <tr>
+                            <th scope="col">ЕИК/БУЛСТАТ / Идентификатор</th>
+                            <th scope="col">Наименование</th>
+                            <th scope="col">Удостоверение за регистрация № / дата</th>
+                            <th scope="col">Седалище и адрес на управление</th>
+                            <th scope="col">Валидност на регистрацията</th>
+                            <th scope="col">Последна промяна</th>
+                          </tr>
 												</thead>
 												<tbody>
                           @foreach ($powr_regs as $row)
     												<tr>
-    													<td>
-    														<a href="{{route('nom.carcategory.edit', $row)}}" class="text-primary">{{ $row->registrationrequest_id }}</a>
-    													</td>
+                              <td>
+                                <a href="{{route('powr_bo.registered.edit', $row->id)}}" class="text-primary">{{ $row->uic }}</a>
+                              </td>
+                              <td>{{ $row->name }} {{ $row->ctypeName }}</td>
+                              <td>{{ $row->zzldcode }}</td>
+                              <td>{{ $row->m_street }} <br> <label>Офис:</label> {{ $row->m_street }}</td>
+                              <td>{{ $row->date_valid }}</td>
+                              <td>{{ $row->lastupdated }}</td>
 
-    													<td>{{ $row->legalentity_uic }}</td>
-
-                              <td>{{ $row->state }}</td>
-
-                              <td>{{ $row->status }}</td>
-
-                              <td>{{ $row->status }}</td>
-
-                              <td>{{ $row->status }}</td>
     												</tr>
     											@endforeach
 
+                          <?php /*
 													<tr>
 														<td><a href="#" class="text-primary">001</a></td>
 														<td>205740423</td>
@@ -90,8 +90,10 @@ Author/s:	Christopher Georgiev
 														<td>Подадена</td>
 														<td>19.08.2019 / 12:22:23</td>
 													</tr>
+                          */ ?>
 												</tbody>
 											</table>
+                      {!! $powr_regs->links() !!}
 
 									</section>
 							</div>

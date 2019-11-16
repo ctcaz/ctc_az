@@ -16,7 +16,6 @@
 <link rel="stylesheet" href="{{asset('css/jquery-ui.min.css')}}">
 <link rel="stylesheet" href="{{asset('css/jquery-ui.css')}}">
 <link rel="stylesheet" href="{{asset('css/style.css')}}">
-<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
 
 
 <script src="{{asset('js/jquery-3.3.1.slim.min.js')}}"></script>

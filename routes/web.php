@@ -90,5 +90,6 @@ Route::namespace('Powr')->prefix('powr')->name('powr.')->group(function(){
 });
 
 Route::namespace('powr_bo')->prefix('powr_bo')->name('powr_bo.')->group(function(){
-  Route::resource('/registered', 'PowrRegisteredController', ['except' => ['show','create','store','edit','update','destroy']]);
+  //Route::resource('/registered', 'PowrRegisteredController', ['except' => ['show','create','store','edit','update','destroy']]);
+  Route::resource('/registered', 'PowrRegisteredController', ['except' => ['show','create','store','destroy']]);
 });
