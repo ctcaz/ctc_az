@@ -84,7 +84,7 @@ Route::namespace('RA')->prefix('ra')->name('ra.')->group(function(){
 Route::namespace('Powr')->prefix('powr')->name('powr.')->group(function(){
   Route::resource('/home', 'PowrHomeController', ['except' => ['show','create','store','edit','update','destroy']]);
   Route::resource('/profile', 'PowrHomeController', ['except' => ['show','create','store','edit','update','destroy']]);
-  Route::resource('/eservices', 'PowrHomeController', ['except' => ['show','create','store','edit','update','destroy']]);
+  Route::resource('/eservices', 'PowrEServiceController', ['except' => ['show','create','store','edit','update','destroy']]);
   Route::resource('/srm', 'PowrSRMController', ['except' => ['show','create','store','edit','update','destroy']]);
   Route::resource('/help', 'PowrHelpController', ['except' => ['show','create','store','edit','update','destroy']]);
 });

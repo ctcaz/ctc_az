@@ -10,6 +10,7 @@ use App\Models\Nom\N_region;
 use App\Models\Nom\N_municipality;
 use App\Models\Nom\N_city;
 use App\Models\RegReq\registrationrequest;
+use App\Models\RegReq\request_type;
 use App\Models\General\Snumber;
 use App\Models\General\person;
 use App\Models\General\Address;
@@ -418,10 +419,17 @@ class ApplicationController extends Controller
         $regReq->applicant_id = $person->id;
         $regReq->recruitmentagency_id = $prototype->id;
         $regReq->save();
+
+        //Define the reg request as ЧТП
+        $reg_type = new request_type();
+        $reg_type->request_id = $regReq->id;
+        $reg_type->request_type = 'ЧТП';
+        $reg_type->save();
+
         //dd($regReq->id);
 
 
-        return redirect()->route('welcome');;
+        return redirect()->route('thanks');;
         //return redirect()->back();
     }
 

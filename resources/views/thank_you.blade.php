@@ -1,12 +1,3 @@
-<?php /* <!--
-		File:	resources\views\powr\form.blade.php
-		 Ver:	1.00.000
- Purpose:	FORM for POWR blade
-Author/s:	Christopher Georgiev
- Created:	2019-10-07
-	Modify:	2019-10-26
---> */ ?>
-
 @extends('layouts.app')
 
 @section('header-1')
@@ -27,14 +18,7 @@ Author/s:	Christopher Georgiev
                     <path class="st0" d="M26.4 26.2c-1-5.7-5.3-9.8-10.4-9.8-5.1 0-9.4 4.2-10.4 9.8h20.8z"/>
                   </svg>
                 </i>
-                <span class="user">{{ Auth::user()->name }}</span>
               </a>
-
-              <form action="{{ route('logout') }}" method="post" class="float-right">
-                @csrf
-
-                <button type="submit" class="btn header-btn">Изход</button>
-              </form>
 
             </div>
         </div>
@@ -42,10 +26,11 @@ Author/s:	Christopher Georgiev
   </div>
 @endsection
 
-@section('nav')
-  @yield('navigation')
-@endsection
-
 @section('content')
-  @yield('contents')
+  <div class="container-fluid">
+      <h2 class="text-center h3">Информационно-комуникационна платформа "Частни трудови посредници"</h2>
+      <hr class="size-s">
+      <h2 class="h3 main-heading">Вашата информация беше изпратена успешно!</h2>
+
+  </div>
 @endsection
