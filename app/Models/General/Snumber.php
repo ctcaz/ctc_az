@@ -10,6 +10,7 @@ Author/s:	Christopher Georgiev
 namespace App\Models\General;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Snumber extends Model
 {
@@ -37,6 +38,7 @@ class Snumber extends Model
       {
           $snum = Snumber::updateOrCreate(['table_name' => $table_name]);
           $snum->increment('last_number');
+          //$snum->last_number = DB::table($table_name)->max(id)+1;
           return $snum->last_number;
       }
 

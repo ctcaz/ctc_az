@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::get('/thanks', function () {
+    return view('thank_you');
+})->name('thanks');
+
+
 Route::resource('/application', 'ApplicationController');
 Route::get('/application/getMuni/{id}', 'ApplicationController@getMuni');
 Route::get('/application/getCity/{id}', 'ApplicationController@getCity');
@@ -91,5 +96,8 @@ Route::namespace('Powr')->prefix('powr')->name('powr.')->group(function(){
 
 Route::namespace('powr_bo')->prefix('powr_bo')->name('powr_bo.')->group(function(){
   //Route::resource('/registered', 'PowrRegisteredController', ['except' => ['show','create','store','edit','update','destroy']]);
+  //Route::resource('/registered', 'PowrRegisteredController', ['except' => ['show','create','store','destroy']]);
   Route::resource('/registered', 'PowrRegisteredController', ['except' => ['show','create','store','destroy']]);
+  Route::resource('/registrationrequests', 'PowrRegistrationRequestsController', ['except' => ['show','create','store','destroy']]);
+
 });

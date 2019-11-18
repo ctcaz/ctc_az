@@ -654,11 +654,7 @@
                   </div>
               </section>
 
-              <section>
-                  <h3><span class="primary-bgr">Данни за документи предоставени от посредника</span></h3>
-                  <h6><strong>Прикачени файлове</strong> <span class="sep-line "> | </span> няма</h6>
-                  <p><a href="#" class="btn btn-primary">Добави</a></p>
-              </section>
+              @include('includes.upload_docs_section', ['docTypes' => $docTypes])
 
               <p class="text-center"><button type="submit" class="btn btn-primary btn-lg">Подай</button> <span class="sep-line "> | </span>  <a href="/" class="btn btn-outline-danger btn-lg">Отказ</a></p>
           </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\General\DocumentType;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Models\Nom\N_company_type;
@@ -37,7 +38,9 @@ class ApplicationController extends Controller
           $regions = N_region::all()->pluck('name', 'id');
           $municipalities = N_municipality::all()->pluck('name', 'id');
           $cities = N_city::all();
-          return view('application', compact('company_types','countries','regions','municipalities','cities'));
+          $docTypes = DocumentType::all();
+          return view('application', compact(
+              'company_types','countries','regions','municipalities','cities', 'docTypes'));
     }
 
     public function getMuni($id)
@@ -74,7 +77,8 @@ class ApplicationController extends Controller
         $regions = N_region::all()->pluck('name', 'id');
         $municipalities = N_municipality::all()->pluck('name', 'id');
         $cities = N_city::all();
-        return view('application', compact('count','company_types','countries','regions','municipalities','cities'));
+        return view('application', compact(
+            'company_types','countries','regions','municipalities','cities', 'docTypes'));
     }
 
     /**
@@ -89,7 +93,8 @@ class ApplicationController extends Controller
         //dd($request);
         //Log::info($request);
         //Create a new company for this request
-        $count = Snumber::getLastNumber('legalentity');
+        //$count = Snumber::getLastNumber('legalentity');
+        $count =  legalentity::max('id')+1;
         $input = [
           'id' => $count,
           'name' => $request->comp_name,
@@ -101,7 +106,8 @@ class ApplicationController extends Controller
         $legalentity = legalentity::find($count);
 
         //Create a prototype agency
-        $count = Snumber::getLastNumber('recruitmentagencyprototype');
+//        $count = Snumber::getLastNumber('recruitmentagencyprototype');
+        $count =  recruitmentagencyprototype::max('id')+1;
         $update = now();
         $apiuser = 0;
         if ($request->apiuser == 1) {
@@ -125,7 +131,8 @@ class ApplicationController extends Controller
         $prototype->save();
 
         //Headquarters address
-        $count = Snumber::getLastNumber('address');
+        //$count = Snumber::getLastNumber('address');
+        $count =  Address::max('id')+1;
         $input = [
           'id' => $count,
           'country_id' => $request->mCountry,
@@ -146,7 +153,8 @@ class ApplicationController extends Controller
         if ($request->c_as_m !== 'on') {
           //echo "on";
           //Correspondence address
-          $count = Snumber::getLastNumber('address');
+          //$count = Snumber::getLastNumber('address');
+          $count =  Address::max('id')+1;
           $input = [
             'id' => $count,
             'country_id' => $request->cCountry,
@@ -221,7 +229,8 @@ class ApplicationController extends Controller
         $i = 1;
         while ($request->{'givenname_rep'.$i} !== null) {
           //Create a person for this representative
-          $count = Snumber::getLastNumber('person');
+          //$count = Snumber::getLastNumber('person');
+          $count =  person::max('id')+1;
           $lnch = 0;
           if ($request->{'lnch_rep'.$i} == 1) {
             $lnch = 1;
@@ -242,7 +251,8 @@ class ApplicationController extends Controller
           $people[$count] = $request->{'identifier_rep'.$i};
 
           //Create a base representative
-          $count = Snumber::getLastNumber('baserepresentative');
+          //$count = Snumber::getLastNumber('baserepresentative');
+          $count =  baserepresentative::max('id')+1;
           $input = [
             'id' => $count,
             'dtype' => 'rep',
@@ -266,7 +276,8 @@ class ApplicationController extends Controller
         while ($request->{'givenname_broker'.$i} !== null) {
           //echo $request->{'identifier_broker'.$i};
           //Create a person for this broker
-          $count = Snumber::getLastNumber('person');
+          //$count = Snumber::getLastNumber('person');
+          $count =  person::max('id')+1;
           $lnch = 0;
           if ($request->{'lnch_broker'.$i} == 1) {
             $lnch = 1;
@@ -287,7 +298,8 @@ class ApplicationController extends Controller
           $people[$count] = $request->{'identifier_broker'.$i};
 
           //Create a base representative
-          $count = Snumber::getLastNumber('baserepresentative');
+          //$count = Snumber::getLastNumber('baserepresentative');
+          $count =  baserepresentative::max('id')+1;
           $input = [
             'id' => $count,
             'dtype' => 'broker',
@@ -314,7 +326,8 @@ class ApplicationController extends Controller
           $person = person::find($key);
         } else {
           //Create an applicant for this request
-          $count = Snumber::getLastNumber('person');
+          //$count = Snumber::getLastNumber('person');
+          $count =  person::max('id')+1;
           $lnch = 0;
           if ($request->lnch == 1) {
             $lnch = 1;
@@ -337,7 +350,8 @@ class ApplicationController extends Controller
         $i = 1;
         while ($request->{'oAddr'.$i} !== null) {
           //Create an office instance
-          $count = Snumber::getLastNumber('office');
+          //$count = Snumber::getLastNumber('office');
+          $count =  office::max('id')+1;
           $main_off = 0;
           if ($request->{'mainOffice'.$i} == 1) {
             $main_off = 1;
@@ -361,7 +375,8 @@ class ApplicationController extends Controller
             $person = person::find($key);
           }
           //Create a base representative
-          $count = Snumber::getLastNumber('baserepresentative');
+          //$count = Snumber::getLastNumber('baserepresentative');
+          $count =  baserepresentative::max('id')+1;
           $input = [
             'id' => $count,
             'dtype' => 'off',
@@ -378,7 +393,8 @@ class ApplicationController extends Controller
           $office->save();
 
           //Office address
-          $count = Snumber::getLastNumber('address');
+          //$count = Snumber::getLastNumber('address');
+          $count =  Address::max('id')+1;
           $input = [
             'id' => $count,
             'country_id' => $request->{'oCountry'.$i},
@@ -402,7 +418,8 @@ class ApplicationController extends Controller
         }
 
         //Create a new registrationrequest
-        $count = Snumber::getLastNumber('registrationrequest');
+        //$count = Snumber::getLastNumber('registrationrequest');
+        $count =  registrationrequest::max('id')+1;
         $update = now();
         $input = [
           'id' => $count,
