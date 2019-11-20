@@ -9,11 +9,29 @@ use App\Models\Nom\N_professionclass;
 use App\Models\Nom\N_profession;
 use App\Models\Nom\N_currency;
 use App\Models\Nom\N_workregime;
+use App\Models\Nom\N_educationlevel;
+use App\Models\Nom\N_speciality;
+use App\Models\Nom\n_work_experience;
 use App\Models\JV\jvspecification;
 
 
 class JobsPageController extends Controller
 {
+    public function getProf($id)
+    {
+      $id_start = $id *10;
+      $id_end = $id_start + 9;
+      $specs = N_profession::where('prof_group_id', '>=', $id_start)
+        ->where('prof_group_id', '<=', $id_end)
+        ->where('is_active', 'Y')
+        ->orderBy('name', 'asc')
+        ->get()
+        ->pluck('name', 'codeprof');
+
+      return json_encode($specs);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -25,6 +43,7 @@ class JobsPageController extends Controller
         return view('ra.jobs.index');
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -35,13 +54,19 @@ class JobsPageController extends Controller
         $lvl1 = N_professionclass::active()->lvl1()->get();
         $lvl2 = N_professionclass::active()->lvl2()->get();
         $lvl3 = N_professionclass::active()->lvl3()->get();
-        $lvl4 = N_profession::active()->get();
+
+        //$lvl4 = N_profession::active()->get();
 
         $currencies = N_currency::active()->get();
         $regimes = N_workregime::active()->get();
+
+        $edu_lvl = N_educationlevel::active()->get();
+
+        $specs = N_speciality::active()->get();
+        $experiances = n_work_experience::all();
         //dd($lvl1);
 
-        return view('ra.jobs.create', compact('lvl1', 'lvl2', 'lvl3', 'lvl4', 'currencies', 'regimes'));
+        return view('ra.jobs.create', compact('lvl1', 'lvl2', 'lvl3', 'currencies', 'regimes', 'edu_lvl', 'specs', 'experiances'));
     }
 
     /**

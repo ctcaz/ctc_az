@@ -79,10 +79,15 @@ Route::namespace('Expert')->prefix('expert')->name('expert.')->middleware('can:e
   Route::resource('/jobs/found', 'FoundController');
 });
 
+
 Route::namespace('RA')->prefix('ra')->name('ra.')->group(function(){
   Route::resource('/start', 'StartPageController', ['except' => ['show','create','store','edit','update','destroy']]);
   Route::resource('/agent', 'AgentPageController', ['except' => ['show','create','store','edit','update','destroy']]);
+
   Route::resource('/jobs', 'JobsPageController', ['except' => ['show','edit','update','destroy']]);
+  Route::get('/jobs/create/getProf/{id}', 'JobsPageController@getProf');
+
+
   Route::resource('/help', 'HelpPageController', ['except' => ['show','create','store','edit','update','destroy']]);
 });
 
@@ -98,6 +103,6 @@ Route::namespace('powr_bo')->prefix('powr_bo')->name('powr_bo.')->group(function
   //Route::resource('/registered', 'PowrRegisteredController', ['except' => ['show','create','store','edit','update','destroy']]);
   //Route::resource('/registered', 'PowrRegisteredController', ['except' => ['show','create','store','destroy']]);
   Route::resource('/registered', 'PowrRegisteredController', ['except' => ['show','create','store','destroy']]);
-  Route::resource('/registrationrequests', 'PowrRegistrationRequestsController', ['except' => ['show','create','store','destroy']]);
+  //Route::resource('/registrationrequests', 'PowrRegistrationRequestsController', ['except' => ['show','create','store','destroy']]);
 
 });
