@@ -21,7 +21,7 @@
         <aside class="side-bar col-25 float-right">
           <p><a href="inside-05.htm" class="btn btn-outline btn-outline-primary btn-block"><i class="icon-add-doc"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><g fill="none" stroke="#1e8bc3" stroke-width="2" stroke-miterlimit="10"><path stroke-linecap="round" d="M21 22H3V2h12.1L21 9z"/><path d="M14 2v7h7"/></g></svg></i>Подай ТРЛ</a></p>
             <p><a href="inside-06.htm" class="btn btn-outline btn-outline-primary btn-block"><i class="icon-add-doc"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><g fill="none" stroke="#1e8bc3" stroke-width="2" stroke-miterlimit="10"><path stroke-linecap="round" d="M21 22H3V2h12.1L21 9z"/><path d="M14 2v7h7"/></g></svg></i>Подай УРЛ</a></p>
-            <p class="m-0"><a href="{{route('ra.jobs.create')}}" class="btn btn-outline btn-outline-primary btn-block"><i class="icon-add-doc"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><g fill="none" stroke="#1e8bc3" stroke-width="2" stroke-miterlimit="10"><path stroke-linecap="round" d="M21 22H3V2h12.1L21 9z"/><path d="M14 2v7h7"/></g></svg></i>Подай СРМ</a></p>
+            <p class="m-0"><a href="{{route('CPM.index')}}" class="btn btn-outline btn-outline-primary btn-block"><i class="icon-add-doc"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><g fill="none" stroke="#1e8bc3" stroke-width="2" stroke-miterlimit="10"><path stroke-linecap="round" d="M21 22H3V2h12.1L21 9z"/><path d="M14 2v7h7"/></g></svg></i>Подай СРМ</a></p>
         </aside>
     </div>
   </main>

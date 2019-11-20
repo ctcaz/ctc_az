@@ -106,3 +106,6 @@ Route::namespace('powr_bo')->prefix('powr_bo')->name('powr_bo.')->group(function
   //Route::resource('/registrationrequests', 'PowrRegistrationRequestsController', ['except' => ['show','create','store','destroy']]);
 
 });
+
+Route::resource('/CPM', 'CPM\CPMController', ['except' => ['show','edit','update','destroy']]);
+Route::get('/CPM/getProf/{id}', 'CPM\CPMController@getProf');
