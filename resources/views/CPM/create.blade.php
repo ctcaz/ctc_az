@@ -94,12 +94,19 @@
 
                       <div class="col">
                         <label for="">Работното място е свободно от:*</label>
-                        <p><input class=flatpickr type="text" placeholder="Изберете дата.." name="jobavailablefrom" id="jobavailablefrom"></p>
+                        <div class="gj-clear-both"></div>
+                        <div class="gj-margin-top-10">
+                            <input name="jobavailablefrom" id="datepicker" width="276" />
+                        </div>
+
                       </div>
 
                       <div class="col">
                         <label for="">Срок на валидност на заявката:*</label>
-                        <p><input class=flatpickr type="text" placeholder="Изберете дата.." name="jobvalidityperiod" id="jobvalidityperiod"></p>
+                        <div class="gj-clear-both"></div>
+                        <div class="gj-margin-top-10">
+                            <input name="jobvalidityperiod" id="datepicker2" width="276" />
+                        </div>
                       </div>
                     </div>
 
@@ -412,21 +419,38 @@
 
 @section('scripts')
   <script type="text/javascript">
-    //Date
-    $('select[name="jobavailablefrom"]').flatpickr(
-      {
-        minDate: "today",
-        dateFormat: "d-m-Y",
-        locale: "bg",
-      }
-    );
+    var datepicker, config;
+    config = {
+        locale: 'bg-bg',
+        uiLibrary: 'bootstrap4',
+        format: 'dd.mm.yyyy'
+    };
+
+    $(document).ready(function () {
+        datepicker = $('#datepicker').datepicker(config);
+        $('#ddlLanguage').on('change', function () {
+            var newLang = $(this).val();
+            config.locale = newLang;
+            datepicker.destroy();
+            datepicker = $('#datepicker').datepicker(config);
+        });
+    });
+    $(document).ready(function () {
+        datepicker = $('#datepicker2').datepicker(config);
+        $('#ddlLanguage').on('change', function () {
+            var newLang = $(this).val();
+            config.locale = newLang;
+            datepicker.destroy();
+            datepicker = $('#datepicker2').datepicker(config);
+        });
+    });
 
     //Profession
     //Populate the n_professions object based on the selected profession_group
     $('select[name="profession_group"]').on('change', function(){ //listens to changes in "mAddrRegion"
         var prof_id = $(this).val();
         var flag = 1; //initializing the first row flag
-        ббconsole.log(prof_id);
+        //console.log(prof_id);
         if(prof_id){
             $.ajax({
                 url: '/CPM/getProf/'+(prof_id), //use the getMuni method from the Controller
@@ -455,7 +479,6 @@
         }
     });
 
-
-</script>
+  </script>
 
 @endsection
