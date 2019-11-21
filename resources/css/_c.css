@@ -34,20 +34,20 @@ html, body,
 }
 
 .logged-in .header-btn, .header-btn:hover, .lang.on > a, .lang:hover > a, #header .meta .lang ul a:hover, #footer .level-3,
-.success-bgr {
+.success-bgr, .btn-outline-success:hover {
 	background-color: #0b6c63;
 }
 
 .site-nav > ul > .active > a:before, .warning-bgr,
-.form-elements legend {
+.form-elements legend, .btn-outline-warning:hover {
 	background-color: #f86924;
 }
 
-.btn-primary, .primary-bgr, .side-bar .btn-outline-primary:hover {
+.btn-primary, .primary-bgr, .side-bar .btn-outline-primary:hover, .btn-outline-primary:hover {
 	background-color: #1e8bc3;
 }
 
-.btn .icon-add-doc {
+.btn .icon-add-doc, .index-items h4 {
 	background-color: #e8f3f9;
 }
 
@@ -65,15 +65,16 @@ html, body,
 	border-color: #ccc;
 }
 
-.btn-outline-success {
+.btn-outline-success, .btn-outline-success:hover,
+.index-items .info .inner {
 	border-color: #0b6c63;
 }
 
-.btn-outline-warning, .tabs, .tabs .active a {
+.btn-outline-warning, .tabs, .tabs .active a, .btn-outline-warning:hover {
 	border-color: #f86924;
 }
 
-.btn-outline-primary {
+.btn-outline-primary, .btn-outline-primary:hover {
 	border-color: #1e8bc3;
 }
 
@@ -86,12 +87,12 @@ body, a, .site-nav .active:hover > a {
 #header .level-1 a:hover, #header .meta .lang ul a, .logged-in .login-btn .user, 
 .site-nav > ul > li:hover > a, .site-nav .sub-menu-wrapper .active:hover > a,
 .pagination strong,
-.success-bgr, .warning-bgr, .primary-bgr {
+.success-bgr, .warning-bgr, .primary-bgr, .btn-outline-warning:hover, .btn-outline-warning:not(:disabled):not(.disabled):active {
 	color: white;
 }
 
 .site-logo h1, main h1, main h2, main h3,
-.btn-outline-success,
+.btn-outline-success, .index-items h4.success-bgr,
 #footer .level-1 a {
 	color: #0b6c63;
 }
@@ -101,7 +102,7 @@ body, a, .site-nav .active:hover > a {
 	color: #f86924;
 }
 
-.btn-outline-primary, .form-items h6 strong,
+.btn-outline-primary, .form-items h6 strong, .index-items h4.primary-bgr,
 .text-primary {
 	color: #1e8bc3;
 }

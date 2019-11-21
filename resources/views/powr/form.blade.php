@@ -1,11 +1,11 @@
-<!--
+<?php /* <!--
 		File:	resources\views\powr\form.blade.php
 		 Ver:	1.00.000
  Purpose:	FORM for POWR blade
 Author/s:	Christopher Georgiev
  Created:	2019-10-07
 	Modify:	2019-10-26
--->
+--> */ ?>
 
 @extends('layouts.app')
 

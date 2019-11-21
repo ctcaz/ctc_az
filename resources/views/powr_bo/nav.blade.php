@@ -7,6 +7,7 @@ Author/s:	Christopher Georgiev
 	Modify:	2019-10-26
 -->*/?>
 
+<<<<<<< HEAD
 <div class="side-bar">
             <div class="inner">
             	<ul class="side-nav">
@@ -22,21 +23,34 @@ Author/s:	Christopher Georgiev
 
 
 
+=======
+<h2 class="text-center h4">Информационно-комуникационна платформа "Предприятията, осигуряващи временна заетост"</h2>
+
+>>>>>>> 8919d46813dbbf5754011e3c4293fbafe6b39236
 <div class="container-fluid clearfix">
 		<nav class="site-nav">
 				<ul class="nav-x center">
 					<li class="sub-menu"><a href="#">Заявки</a>
 							<ul class="sub-menu-wrapper">
+<<<<<<< HEAD
 								<li "{{Request::url()==route('powr_bo.registrationrequests.index') ? 'active':''}}"  >
 <a href="{{route('powr_bo.registrationrequests.index')}}"><span>Заявки за регистрации</span></a></li>
 								<li  "{{Request::url()==route('powr_bo.registeredchangerequests.index') ? 'active':''}}"   >
 <a href="{{route('powr_bo.registeredchangerequests.index')}}" ><span>Изменение и допълнение на обстоятелствата на ПОВР</span></a></li>
+=======
+								<li><a href="#"><span>Заявки за регистрации</span></a></li>
+								<li><a href="#"><span>Изменение и допълнение на обстоятелствата на ПОВР</span></a></li>
+>>>>>>> 8919d46813dbbf5754011e3c4293fbafe6b39236
 								<li><a href="#"><span>Продължаване на срока на регистрация на ПОВР</span></a></li>
 								<li><a href="#"><span>Прекратяване на регистрация на ПОВР</span></a></li>
 								<li><a href="#"><span>Подаване на ежегодни документи на ПОВР</span></a></li>
 							</ul>
 					 </li>
+<<<<<<< HEAD
 					 <li "{{Request::url()==route('powr_bo.registered.index') ? 'active':''}}"  ><a href="{{route('powr_bo.registered.index')}}">Регистрации</a></li>
+=======
+					 <li class="active"><a href="{{route('powr_bo.registered.index')}}">Регистрации</a></li>
+>>>>>>> 8919d46813dbbf5754011e3c4293fbafe6b39236
 					 <li class="sub-menu"><a href="#">Откази</a>
 							<ul class="sub-menu-wrapper">
 								<li><a href="#"><span>Отказани Регистрации</span></a></li>

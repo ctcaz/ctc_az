@@ -1,0 +1,648 @@
+@extends('layouts.app')
+
+@section('header-1')
+  <div class="level-1">
+    <div class="container-fluid clearfix">
+        <div class="float-left">
+          <a href="https://www.az.government.bg/" class="header-btn"><strong>www.az.government.bg</strong></a>
+        </div>
+        <div class="meta float-right">
+            <div class="login logged-in">
+              <a href="#" class="header-btn login-btn">
+                <i>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32">
+                    <style>
+                      .st0{fill:none;stroke:#fff;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10}
+                    </style>
+                    <circle class="st0" cx="16" cy="11.7" r="4.6"/>
+                    <path class="st0" d="M26.4 26.2c-1-5.7-5.3-9.8-10.4-9.8-5.1 0-9.4 4.2-10.4 9.8h20.8z"/>
+                  </svg>
+                </i>
+              </a>
+
+            </div>
+        </div>
+    </div>
+  </div>
+@endsection
+
+
+@section('content')
+  <div class="container-fluid clearfix">
+        <div class="content">
+            <h2 class="h3 main-heading">Подаване на Свободни работни места</h2>
+            <hr>
+
+            <form class="" action="{{route('CPM.store')}}" method="post">
+                @csrf
+
+                <div class="form-items">
+                  <section>
+                    <h3><span class="primary-bgr">Работодател</span></h3>
+                    <h6><strong>Име на фирмата</strong><span class="sep-text"></span> Булстат:</h6>
+                  </section>
+
+                  <section>
+                    <h3><span class="primary-bgr">Работно място</span></h3>
+
+                    <div class="row">
+                      <div class="col">
+                        <label for="">Длъжност/професия:*</label>
+                        <select name="profession_group" id="profession_group" class="form-control">
+                          <option>Моля, изберете</option>
+                          @foreach ($lvl1 as $firstLvl)
+                            <optgroup label="{{$firstLvl->code . ' - ' . $firstLvl->name}}">
+                              @foreach ($lvl2 as $secondLvl)
+                                @if ($firstLvl->id == $secondLvl->parent_id)
+                                  <optgroup label="&nbsp;&nbsp;&nbsp;&nbsp;{{$secondLvl->code . ' - ' . $secondLvl->name}}">
+                                    @foreach ($lvl3 as $thirdLvl)
+                                      @if ($secondLvl->id == $thirdLvl->parent_id)
+                                        <option value="{{$thirdLvl->code}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$thirdLvl->code . ' - ' . $thirdLvl->name}}</option>
+                                      @endif
+                                    @endforeach
+                                  </optgroup>
+                                @endif
+                              @endforeach
+                            </optgroup>
+                          @endforeach
+                        </select>
+
+                        <span class="text-danger">{{ $errors->first('professionspecialty_id') }}</span>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col">
+                        <label for="">Специалност:*</label>
+                        <select name="prof" id="prof" class="form-control">
+                          <option selected="">Моля, изберете</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col">
+                        <label for="decimalofjobs">Брой работни места (общо):*</label>
+                        <input type="number" class="form-control" id="decimalofjobs" name="decimalofjobs" placeholder="">
+                        <span class="text-danger">{{ $errors->first('decimalofjobs') }}</span>
+                      </div>
+
+                      <div class="col">
+                        <label for="">от тях: разкрити за първи път</label>
+                        <input type="text" class="form-control" id="decimalofopenjobs" name="decimalofopenjobs">
+                      </div>
+
+                      <div class="col">
+                        <label for="">Работното място е свободно от:*</label>
+                        <div class="gj-clear-both"></div>
+                        <div class="gj-margin-top-10">
+                            <input name="jobavailablefrom" id="datepicker" width="276" />
+                        </div>
+
+                      </div>
+
+                      <div class="col">
+                        <label for="">Срок на валидност на заявката:*</label>
+                        <div class="gj-clear-both"></div>
+                        <div class="gj-margin-top-10">
+                            <input name="jobvalidityperiod" id="datepicker2" width="276" />
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col">
+                        <label for="mainresponsibilities">Основни отговорности на работника</label>
+                        <textarea class="form-control" rows="2" id="mainresponsibilities" name="mainresponsibilities" maxlength="255"></textarea>
+                      </div>
+                      <div class="col">
+                        <label for="extratasks">Допълнителни задачи</label>
+                        <textarea class="form-control" rows="2" id="extratasks" name="extratasks" maxlength="255"></textarea>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col">
+                        <label for="">Адрес на работното място*:</label>
+
+                        <div class="row">
+                          <div class="col">
+                            <label for="country">Държава:*</label>
+                            <select name="mCountry" id="mCountry" class="form-control">
+                                <option selected="">Моля, изберете</option>
+                                @foreach ($countries as $country)
+                                    <option value="{{ $country->id }}" {{ ( $country->id == 1) ? 'selected' : '' }}>
+                                        {{ $country->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                          </div>
+
+                          <div class="col">
+                            <div class="form-group" id="mAddrRegion1" style="display: block;">
+                              <label for="region">Област:*</label>
+                              <select name="mAddrRegion" id="mAddrRegion" class="form-control">
+                                <option selected="">Моля, изберете</option>
+                                @foreach ($regions as $key => $value)
+                                  <option value="{{ $key }}">
+                                    {{$value}}
+                                  </option>
+                                @endforeach
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="col">
+                            <div class="" id="mAddrMuni1" style="display: block;">
+                              <label for="">Община:*</label>
+                              <select name="mAddrMuni" id="mAddrMuni" class="form-control">
+                                <option selected="">Моля, изберете</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="col">
+                            <div class="" id="mAddrCity1" style="display: block;">
+                              <label for="">Населено място:*</label>
+                              <select name="mAddrCity" id="mAddrCity" class="form-control">
+                                <option selected="">Моля, изберете</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="col">
+                            <div class="" id="mAddrCityDistr1" style="display: block;">
+                              <label for="mAddrCityDistr">Район:*</label>
+                              <select name="mAddrCityDistr" id="mAddrCityDistr" class="form-control">
+                                <option selected="">Моля, изберете</option>
+                              </select>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="form-group">
+                          <label for="">Адрес:*</label>
+                          <input type="text" class="form-control" id="mAddr" name="mAddr" placeholder="">
+                        </div>
+
+                      </div>
+                    </div>
+                  </section>
+
+                  <section>
+                    <h3><span class="primary-bgr">Общи условия</span></h3>
+
+                    <div class="row">
+                      <div class="col">
+                        <label class="radio-inline"><input type="radio" name="contracttype">Безсрочен трудов договор</label>
+                      </div>
+                      <div class="col">
+                        <label class="radio-inline"><input type="radio" name="contracttype">Срочен трудов договор</label>
+                      </div>
+                      <div class="col">
+                        <label class="radio-inline"><input type="radio" name="contracttype">Граждански</label>
+                      </div>
+                      <div class="col">
+
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col">
+                        <label for="decimalofjobs">Срок на изпитване (месеци):*</label>
+                        <input type="number" class="form-control" id="testperiodinmonths" name="testperiodinmonths" placeholder="">
+                      </div>
+                      <div class="col">
+                        <label for="decimalofjobs">Брой месеци:*</label>
+                        <input type="number" class="form-control" id="jobdurationinmonths" name="jobdurationinmonths" placeholder="">
+                      </div>
+                      <div class="col">
+
+                      </div>
+                      <div class="col">
+
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col">
+                        <label for="">Работно време *</label>
+                        <select id="workregime_id" name="workregime_id" class="form-control">
+                          <option value="0">Моля, изберете</option>
+                          @foreach ($regimes as $regime)
+                            <option value="{{$regime->id}}">{{$regime->name}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+
+                      <div class="col">
+                        <label for="">Продължителност на работното време (часове)</label>
+                        <input type="number" class="form-control" id="workhours" name="workhours">
+                      </div>
+
+                      <div class="col">
+                        <label for="">Трудово възнаграждение (лв.)</label>
+                        <input type="number" class="form-control" id="basemonthlysalaryinbgn" name="basemonthlysalaryinbgn" step=".01">
+                      </div>
+
+                    </div>
+
+                    <div class="row">
+                      <div class="col">
+                        <label for="amountfrom">Допълнителни възнаграждения и социални придобивки</label>
+                        <textarea class="form-control" rows="2" id="add_remun_soc_benefits" name="add_remun_soc_benefits" maxlength="255"></textarea>
+                      </div>
+                      <div class="col">
+                        <label for="amountfrom">Други:</label>
+                        <textarea class="form-control" rows="2" id="otherconditions" name="otherconditions" maxlength="255"></textarea>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col">
+                        <div class="card">
+                          <div class="card-header">
+                            Работодателят е склонен да наема работници от ЕС и предлага
+                          </div>
+                          <div class="card-body">
+                            <h5 class="card-title">Трудово възнаграждение:</h5>
+
+                            <div class="card-block">
+                              <div class="row">
+                                <div class="col-md-2">
+                                  <input type="number" class="form-control" id="amountfrom" name="amountfrom" step=".01">
+                                </div>
+                                <div class="col-md-0">
+                                  до
+                                </div>
+                                <div class="col-md-2">
+                                  <input type="number" class="form-control" id="amountto" name="amountto" step=".01">
+                                </div>
+                                <div class="col-md-2">
+                                  <select name="currency_id" id="currency_id" class="form-control">
+                                    <option value="0">Моля, изберете</option>
+                                    @foreach ($currencies as $currency)
+                                      <option value="{{$currency->id}}">{{$currency->code . ' - ' . $currency->name}}</option>
+                                    @endforeach
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-md-3">
+                                  <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="trn_coststo_bg_incl" name="trn_coststo_bg_incl">
+                                    <label class="form-check-label" for="trn_coststo_bg_incl">Транспортни разходи до България</label>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-md-3">
+                                  <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="arefoodvouchersincluded" name="arefoodvouchersincluded">
+                                    <label class="form-check-label" for="arefoodvouchersincluded">Ваучери за храна</label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </section>
+
+                  <h2 class="text-left h3">Описание на изискванията за заемане на работното място</h2>
+
+                  <section>
+                    <h3><span class="primary-bgr">Основни изисквания</span></h3>
+
+                    <div class="row">
+                      <div class="col">
+                        <label for="">Степен на образование</label>
+                        <select id="education_level" name="education_level" class="form-control">
+                          <option value="0">Моля, изберете</option>
+                          @foreach ($edu_lvl as $lvl)
+                            <option value="{{$lvl->id}}">{{$lvl->name}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+
+                      <div class="col">
+                        <label for="">Професия / специалност</label>
+                        <select id="education_level" name="education_level" class="form-control">
+                          <option value="0">Моля, изберете</option>
+                          @foreach ($specs as $spec)
+                            <option value="{{$spec->id}}">{{$spec->name}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+
+                      <div class="col">
+                        <label for="">Трудов стаж по специалността</label>
+                        <select id="work_experience" name="work_experience" class="form-control">
+                          <option value="0">Моля, изберете</option>
+                          @foreach ($experiances as $exper)
+                            <option value="{{$exper->id}}">{{$exper->name}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                    </div>
+
+
+
+
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="c-1">
+                          <label class="form-check-label" for="c-1">Чрез ТП</label>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="c-2">
+                          <label class="form-check-label" for="c-2">Свободно</label>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="c-3">
+                          <label class="form-check-label" for="c-3">Косвено</label>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="c-4">
+                          <label class="form-check-label" for="c-4">Друг</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <label for="">Пояснения, ако сте отбелязали (Друг):</label>
+                        <input type="text" class="form-control" id="">
+                      </div>
+                    </div>
+                  </section>
+
+                  <section>
+                    <h3><span class="primary-bgr">Начин на кандидатстване по линия на EURES</span></h3>
+                    <div class="row">
+                      <div class="col">
+                        <label for="">Начин:</label>
+                        <select id="" class="form-control">
+                          <option selected>Моля, изберете</option>
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                        </select>
+                      </div>
+                      <div class="col">
+                        <label for="">Пояснения</label>
+                        <input type="text" class="form-control" id="" placeholder="">
+                      </div>
+                    </div>
+                  </section>
+
+                  <section>
+                    <h3><span class="primary-bgr">Условия за наемане</span></h3>
+                    <div class="row">
+
+
+                      <div class="col-md-2">
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                          <label class="custom-control-label" for="customRadioInline1">Срочно</label>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                          <label class="custom-control-label" for="customRadioInline2">Безсрочно</label>
+                        </div>
+                      </div>
+                      <div class="col-md-6" style="margin-top: -.5em;">
+                        <label for="">Брой месеци:*</label>
+                        <input type="text" class="form-control" id="" placeholder="" style="display: inline-block; width: auto;">
+                      </div>
+                    </div>
+                  </section>
+
+                  <section>
+                    <h3><span class="primary-bgr">Процедура по селекция и подбор</span></h3>
+                    <div class="row">
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="r-1" name="customRadioInline1" class="custom-control-input">
+                        <label class="custom-control-label" for="r-1">Директно насочване и ТРЛ към работодателя</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="r-2" name="customRadioInline1" class="custom-control-input">
+                        <label class="custom-control-label" for="r-2">Предоставяне на списък с подходящи ТРЛ от ТП на работодателя</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="r-3" name="customRadioInline1" class="custom-control-input">
+                        <label class="custom-control-label" for="r-3">Първоначална селекция по документи от ТП</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="r-4" name="customRadioInline1" class="custom-control-input">
+                        <label class="custom-control-label" for="r-4">Подбор чрез събеседване с ТП (интервю)</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="r-5" name="customRadioInline1" class="custom-control-input">
+                        <label class="custom-control-label" for="r-5">Директно кандидатстване с документи</label>
+                      </div>
+                    </div>
+                  </section>
+
+                  <p class="text-center"><button type="submit" class="btn btn-primary btn-lg">Подай</button> <span class="sep-line "> | </span>  <a href="/" class="btn btn-outline-danger btn-lg">Отказ</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+@endsection
+
+@section('scripts')
+  <script type="text/javascript">
+    //date config
+    var datepicker, config;
+    config = {
+        locale: 'bg-bg',
+        uiLibrary: 'bootstrap4',
+        format: 'dd.mm.yyyy'
+    };
+
+    $(document).ready(function () {
+        datepicker = $('#datepicker').datepicker(config);
+    });
+    $(document).ready(function () {
+        datepicker = $('#datepicker2').datepicker(config);
+    });
+
+    //Profession
+    //Populate the n_professions object based on the selected profession_group
+    $('select[name="profession_group"]').on('change', function(){ //listens to changes in "mAddrRegion"
+        var prof_id = $(this).val();
+        var flag = 1; //initializing the first row flag
+        //console.log(prof_id);
+        if(prof_id){
+            $.ajax({
+                url: '/CPM/getProf/'+(prof_id), //use the getMuni method from the Controller
+                type: 'GET',
+                dataType: 'json',
+                success: function(data){
+                    //empty the prof dropdown
+                    console.log(data);
+                    $('select[name="prof"]').empty();
+
+                    $.each(data, function(key, value){
+                        //Populate
+                        if (flag === 1){
+                          flag = 2;
+                          $('select[name="prof"]').append('<option value="">'+ 'Моля, изберете' + '</option>');
+                          $('select[name="prof"]').append('<option value="'+key+'">'+ key + '  '+ value + '</option>');
+                        }else{
+                          $('select[name="prof"]').append('<option value="'+key+'">'+ key + '  '+ value + '</option>');
+                        }
+                    });
+                }
+            });
+        } else {
+            //If nothing was selected - empty the dropdown
+            $('select[name="prof"]').empty();
+        }
+    });
+
+    //Address
+    //If another country is selected - hide Region/Municipaty/City/District
+    $('select[name="mCountry"]').on('change', function(){ //listens to changes in "mCountry"
+        var id = $(this).val();
+        if(id !== '1'){
+            $("#mAddrRegion1").css('display', 'none');
+            $("#mAddrMuni1").css('display', 'none');
+            $("#mAddrCity1").css('display', 'none');
+            $("#mAddrCityDistr1").css('display', 'none');
+        } else {
+            $("#mAddrRegion1").css('display', 'block');
+            $("#mAddrMuni1").css('display', 'block');
+            $("#mAddrCity1").css('display', 'block');
+            $("#mAddrCityDistr1").css('display', 'block');
+          }
+    });
+
+    //Populate the first municipaty object based on the selected refion
+    $('select[name="mAddrRegion"]').on('change', function(){ //listens to changes in "mAddrRegion"
+        var region_id = $(this).val();
+        var flag = 1; //initializing the first row flag
+        //alert("region_id");
+        if(region_id){
+            $.ajax({
+                url: 'CPM/getMuni/'+region_id, //use the getMuni method from the Controller
+                type: 'GET',
+                dataType: 'json',
+                success: function(data){
+                    //empty the mAddrMuni and mAddrCity dropdowns
+                    $('select[name="mAddrMuni"]').empty();
+                    $('select[name="mAddrCity"]').empty();
+                    $('select[name="mAddrCityDistr"]').empty();
+
+                    $.each(data, function(key, value){
+                        //Populate
+                        if (flag === 1){
+                          flag = 2;
+                          $('select[name="mAddrMuni"]').append('<option value="">'+ 'Моля, изберете' +'</option>');
+                          $('select[name="mAddrMuni"]').append('<option value="'+key+'">'+ value +'</option>');
+                        }else{
+                          $('select[name="mAddrMuni"]').append('<option value="'+key+'">'+ value +'</option>');
+                        }
+                    });
+                }
+            });
+        } else {
+            //If nothing was selected - empty the dropdowns
+            $('select[name="mAddrMuni"]').empty();
+            $('select[name="mAddrCity"]').empty();
+            $('select[name="mAddrCityDistr"]').empty();
+        }
+    });
+
+    //Populate the first city object based on the selected municipaty
+    $('select[name="mAddrMuni"]').on('change', function(){ //listens to changes in "mAddrMuni"
+        var muni_id = $(this).val();
+        flag = 1; //initializing the first row flag
+        if(muni_id){
+            $.ajax({
+                url: 'CPM/getCity/'+muni_id, //use the getCity method from the Controller
+                type: 'GET',
+                dataType: 'json',
+                success: function(data){
+                    $('select[name="mAddrCity"]').empty(); //empty the dropdown
+                    $('select[name="mAddrCityDistr"]').empty();
+
+                    $.each(data, function(key, value){
+                        //Populate
+                        if (flag === 1){
+                          flag = 2;
+                          $('select[name="mAddrCity"]').append('<option value="">'+ 'Моля, изберете' +'</option>');
+                          $('select[name="mAddrCity"]').append('<option value="'+key+'">'+ value +'</option>');
+                        }else{
+                          $('select[name="mAddrCity"]').append('<option value="'+key+'">'+ value +'</option>');
+                        }
+                    });
+                }
+            });
+        } else {
+            //If nothing was selected - empty the dropdown
+            $('select[name="mAddrCity"]').empty();
+            $('select[name="mAddrCityDistr"]').empty();
+        }
+    });
+
+    //Populate the first city district object based on the selected city
+    $('select[name="mAddrCity"]').on('change', function(){ //listens to changes in "mAddrCity"
+        var city_id = $(this).val();
+        flag = 1; //initializing the first row flag
+        //alert(city_id);
+        if(city_id){
+            $.ajax({
+                url: 'CPM/getCityDistrict/'+city_id, //use the getCityDistrict method from the Controller
+                type: 'GET',
+                dataType: 'json',
+                success: function(data){
+                    //console.log(data);
+                    $('select[name="mAddrCityDistr"]').empty(); //empty the dropdown
+
+                    $.each(data, function(key, value){
+                        //Populate
+                        if (flag === 1){
+                          flag = 2;
+                          $('select[name="mAddrCityDistr"]').append('<option value="">'+ 'Моля, изберете' +'</option>');
+                          $('select[name="mAddrCityDistr"]').append('<option value="'+key+'">'+ value +'</option>');
+                        }else{
+                          $('select[name="mAddrCityDistr"]').append('<option value="'+key+'">'+ value +'</option>');
+                        }
+                    });
+                }
+            });
+        } else {
+            //If nothing was selected - empty the dropdown
+            $('select[name="mAddrCityDistr"]').empty();
+        }
+    });
+
+  </script>
+
+@endsection

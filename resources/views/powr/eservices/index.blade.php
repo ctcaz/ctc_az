@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 <?php /*
 <!--
 		File:	resources\views\powr\eservices\index.blade.php
+=======
+<?php /* <!--
+		File:	resources\views\powr\home\index.blade.php
+>>>>>>> 8919d46813dbbf5754011e3c4293fbafe6b39236
 		 Ver:	1.00.000
  Purpose:	eServices content for POWR index blade
 Author/s:	Christopher Georgiev

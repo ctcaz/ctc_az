@@ -16,6 +16,7 @@ use App\Models\General\Snumber;
 class N_professionclass extends Model
 {
     protected $table = 'n_profession_classes';
+
     //accessor for IS_ACTIVE
     public function getIsactiveAttribute($attribute)
     {
@@ -41,9 +42,25 @@ class N_professionclass extends Model
       return $query->where('is_active', 'Y');
     }
 
+    public function scopeLvl1($query)
+    {
+      return $query->where('lvl', 1);
+    }
+
+    public function scopeLvl2($query)
+    {
+      return $query->where('lvl', 2);
+    }
+
+    public function scopeLvl3($query)
+    {
+      return $query->where('lvl', 3);
+    }
+
     public function scopeInactive($query)
     {
       return $query->where('is_active', 'N');
     }
+
 
 }

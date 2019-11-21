@@ -79,12 +79,18 @@ Route::namespace('Expert')->prefix('expert')->name('expert.')->middleware('can:e
   Route::resource('/jobs/found', 'FoundController');
 });
 
+
 Route::namespace('RA')->prefix('ra')->name('ra.')->group(function(){
   Route::resource('/start', 'StartPageController', ['except' => ['show','create','store','edit','update','destroy']]);
   Route::resource('/agent', 'AgentPageController', ['except' => ['show','create','store','edit','update','destroy']]);
+
   Route::resource('/jobs', 'JobsPageController', ['except' => ['show','edit','update','destroy']]);
   Route::get('/jobs/create/getProf/{id}', 'JobsPageController@getProf');
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8919d46813dbbf5754011e3c4293fbafe6b39236
   Route::resource('/help', 'HelpPageController', ['except' => ['show','create','store','edit','update','destroy']]);
 });
 
@@ -102,11 +108,18 @@ Route::namespace('Powr')->prefix('powr')->name('powr.')->group(function(){
 
 Route::namespace('powr_bo')->prefix('powr_bo')->name('powr_bo.')->group(function(){
   //Route::resource('/registered', 'PowrRegisteredController', ['except' => ['show','create','store','edit','update','destroy']]);
+<<<<<<< HEAD
 //TODO add middewate security
   Route::resource('/registered', 'PowrRegisteredController', ['except' => ['show','create','store','destroy']]);
   Route::resource('/registrationrequests', 'PowrRegistrationRequestsController', ['except' => ['show','create','store','destroy']]);
   Route::resource('/registeredchangerequests', 'PowrRegisteredChangeRequestsController', ['except' => ['show','create','store','destroy']]);
   Route::resource('/registrationrequestsrejected', 'PowrRegistrationRequestsRejectedController', ['except' => ['show','create','store','destroy']]);
+=======
+  //Route::resource('/registered', 'PowrRegisteredController', ['except' => ['show','create','store','destroy']]);
+  Route::resource('/registered', 'PowrRegisteredController', ['except' => ['show','create','store','destroy']]);
+  //Route::resource('/registrationrequests', 'PowrRegistrationRequestsController', ['except' => ['show','create','store','destroy']]);
+
+>>>>>>> 8919d46813dbbf5754011e3c4293fbafe6b39236
 });
 
 Route::resource('/CPM', 'CPM\CPMController', ['except' => ['show','edit','update','destroy']]);
@@ -114,5 +127,8 @@ Route::get('/CPM/getProf/{id}', 'CPM\CPMController@getProf');
 Route::get('/CPM/getMuni/{id}', 'CPM\CPMController@getMuni');
 Route::get('/CPM/getCity/{id}', 'CPM\CPMController@getCity');
 Route::get('/CPM/getCityDistrict/{id}', 'CPM\CPMController@getCityDistrict');
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 8919d46813dbbf5754011e3c4293fbafe6b39236

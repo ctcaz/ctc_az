@@ -33,9 +33,15 @@ class PowrRegisteredController extends Controller
         //$powr_regs = RegPOWR::paginate(10); //active()->
         //$powr_eik = "205740423";
 
+<<<<<<< HEAD
         $powr_regs = DB::table('recruitmentagencyprototype')
               ->where('recruitmentagencyprototype.status','=','АКТИВНА РЕГИСТРАЦИЯ')
               ->join('registrationrequest', 'recruitmentagencyprototype.id', '=', 'registrationrequest.applicant_id')
+=======
+        $powr_regs = DB::table('registrationrequest')
+              ->where('state','LIKE','%ПОВР%')
+              ->join('recruitmentagencyprototype', 'recruitmentagencyprototype.id', '=', 'registrationrequest.applicant_id')
+>>>>>>> 8919d46813dbbf5754011e3c4293fbafe6b39236
               ->join('legalentity', 'legalentity.id', '=', 'recruitmentagencyprototype.legalentity_id')
               ->join('n_company_types', 'n_company_types.id', '=', 'legalentity.type_id')
               ->join('address as maddr', 'maddr.id', '=', 'recruitmentagencyprototype.managementaddress_id')

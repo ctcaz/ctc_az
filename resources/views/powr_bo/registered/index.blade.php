@@ -17,11 +17,26 @@ Author/s:	Christopher Georgiev
 
 
 @section('contents')
+<<<<<<< HEAD
 
 
 
 		<div class="container-fluid clearfix">
 			<div class="row">
+=======
+		<div class="container-fluid clearfix">
+			<div class="row">
+				<div class="col col-md-1">
+					<div class="side-bar" style="height:100%;>
+	            <div class="inner">
+	            	<ul class="side-nav" style="list-style: none;>
+	                    <li><a href="bo-01.htm">ЧТП</a></li>
+	                    <li class="active"><a href="povr-01.htm">ПОВР</a></li>
+	                </ul>
+	            </div>
+	        </div>
+				</div>
+>>>>>>> 8919d46813dbbf5754011e3c4293fbafe6b39236
 				<div class="col col-md-10">
 					<div class="container-fluid clearfix">
 		        <div class="content">
@@ -55,7 +70,11 @@ Author/s:	Christopher Georgiev
                               <td>{{ $row->date_valid }}</td>
                               <td>{{ $row->lastupdated }}</td>
 
+<<<<<<< HEAD
 ->get()    												</tr>
+=======
+    												</tr>
+>>>>>>> 8919d46813dbbf5754011e3c4293fbafe6b39236
     											@endforeach
 
                           <?php /*

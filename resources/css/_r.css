@@ -5,3 +5,24 @@
 		.index-items .col-md-4 {padding-left: 24px; padding-right: 24px;}
 }
 
+@media only screen and (max-width: 1280px) {
+.index-items h4, :root .btn-more {font-size: 1.1rem;}
+}
+
+@media only screen and (max-width: 767px) {
+#header .level-1 .container-fluid {padding: 0;}
+.index #header .level-2 .container-fluid {padding-top: 15px;}
+	.site-logo.float-left {width: 100%; max-width: 360px; font-size: .8rem;}
+	.site-logo.float-right + hr {top: 12px; margin-bottom: 36px;}
+	.site-logo h1, .site-logo h3 {white-space: normal;}
+}
+
+@media only screen and (max-width: 480px) {
+#header .level-1 a {min-width: 48px;}
+.header-btn {padding-left: 1.2em; padding-right: 1.2em;}
+.login-btn i {left: .5em;}
+#header .level-1 > .container-fluid > div > a {border-width: 0;}
+
+.form-items .col, .form-items .row > div, .fancybox-inner .row > div {width: 100%;}
+
+}
