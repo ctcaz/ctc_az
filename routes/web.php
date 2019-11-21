@@ -84,7 +84,21 @@ Route::namespace('RA')->prefix('ra')->name('ra.')->group(function(){
 Route::namespace('Powr')->prefix('powr')->name('powr.')->group(function(){
   Route::resource('/home', 'PowrHomeController', ['except' => ['show','create','store','edit','update','destroy']]);
   Route::resource('/profile', 'PowrHomeController', ['except' => ['show','create','store','edit','update','destroy']]);
-  Route::resource('/eservices', 'PowrHomeController', ['except' => ['show','create','store','edit','update','destroy']]);
+  Route::resource('/eservices', 'PowrEServiceController', ['except' => ['show','create','store','edit','update','destroy']]);
   Route::resource('/srm', 'PowrSRMController', ['except' => ['show','create','store','edit','update','destroy']]);
   Route::resource('/help', 'PowrHelpController', ['except' => ['show','create','store','edit','update','destroy']]);
+Route::resource('/CPM', 'CPMController', ['except' => ['show','edit','update','destroy']]);
+Route::get('/CPM/getProf/{id}', 'CPMController@getProf');
+
+
 });
+
+Route::namespace('powr_bo')->prefix('powr_bo')->name('powr_bo.')->group(function(){
+  //Route::resource('/registered', 'PowrRegisteredController', ['except' => ['show','create','store','edit','update','destroy']]);
+//TODO add middewate security
+  Route::resource('/registered', 'PowrRegisteredController', ['except' => ['show','create','store','destroy']]);
+  Route::resource('/registrationrequests', 'PowrRegistrationRequestsController', ['except' => ['show','create','store','destroy']]);
+  Route::resource('/registeredchangerequests', 'PowrRegisteredChangeRequestsController', ['except' => ['show','create','store','destroy']]);
+  Route::resource('/registrationrequestsrejected', 'PowrRegistrationRequestsRejectedController', ['except' => ['show','create','store','destroy']]);
+});
+

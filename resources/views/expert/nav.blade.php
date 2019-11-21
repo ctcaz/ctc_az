@@ -1,4 +1,16 @@
 
+<div class="side-bar">
+            <div class="inner">
+                <ul class="side-nav">
+                    <li class="active"><a href="">ЧТП</a></li>
+                    <li><a href="{{route('powr_bo.registrationrequests.index')}}">ПОВР</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+
+
 <h2 class="text-center h4">Административен интерфейс Регистър на частните трудови посредници</h2>
   <nav class="site-nav">
     <ul class="nav-x center">

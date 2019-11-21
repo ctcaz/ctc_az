@@ -1,0 +1,814 @@
+[33mcommit 7e0262b813b2900fec5f269f943c962e4b6f4ca9[m[33m ([m[1;35mrefs/stash[m[33m)[m
+Merge: 7f0ba72 cfbb6e3
+Author: ctc_az <ctc_az@yahoo.com>
+Date:   Tue Nov 12 18:39:05 2019 +0000
+
+    WIP on master: 7f0ba72 adding files
+
+[1mdiff --cc app/Http/Controllers/POWRregReqController.php[m
+[1mindex 0b52d0e,0b52d0e..e28141b[m
+[1m--- a/app/Http/Controllers/POWRregReqController.php[m
+[1m+++ b/app/Http/Controllers/POWRregReqController.php[m
+[36m@@@ -18,6 -18,6 +18,11 @@@[m [muse App\Models\Nom\N_municipality[m
+  use App\Models\Nom\N_city;[m
+  use App\Models\General\Snumber;[m
+  use App\Models\General\Address;[m
+[32m++[m
+[32m++use App\Models\General\person;[m
+[32m++[m
+[32m++use App\Models\General\Office;[m
+[32m++[m
+  use App\Models\POWR\Registration\RegPOWR;[m
+  [m
+  class POWRregReqController extends Controller[m
+[36m@@@ -104,12 -104,12 +109,44 @@@[m
+  			*/[m
+  [m
+  				$count = Snumber::getLastNumber((new RegPOWR)->getTable());[m
+[31m--[m
+[32m++				info("TEST_INFO");[m
+[32m++				info($request);[m
+[32m++				info($request->addedOffices);[m
+  				//$maddr = new Address().[m
+  				//$maddr->country_id = 1;[m
+  				//$maddr_id = Snumber::getLastNumber((new Address)->getTable());[m
+[31m--				$maddr = [[m
+[31m--									/*'id' => $maddr_id,*/[m
+[32m++[m
+[32m++				$arrOffices = explode("*",$request->addedOffices);[m
+[32m++					[m
+[32m++				info("000000000000");[m
+[32m++				info($arrOffices);[m
+[32m++				info(person::all());[m
+[32m++				info("---------------------000000000000");[m
+[32m++			 //	info($arrOffices[0]);[m
+[32m++[m
+[32m++				foreach($arrOffices as $arrOffice){[m
+[32m++[m
+[32m++					$arrOfficeVals = explode("|",$arrOffice);[m
+[32m++					//foreach($arrOfficeVals as $arrItem){[m
+[32m++					//info(count($arrOfficeVals));[m
+[32m++				if(count($arrOfficeVals)==4){[m
+[32m++					//info($arrOfficeVals);[m
+[32m++					info($arrOfficeVals[0]);[m
+[32m++					info($arrOfficeVals[1]);[m
+[32m++					info($arrOfficeVals[2]);[m
+[32m++					info($arrOfficeVals[3]);[m
+[32m++				}[m
+[32m++[m
+[32m++[m
+[32m++[m
+[32m++[m
+[32m++					//}[m
+[32m++[m
+[32m++				}[m
+[32m++[m
+[32m++				$maddrid =  Address::max('id')+1;[m
+[32m++				$maddra = [[m
+[32m++									'id' => $maddrid,[m
+  									'dtype' => '1',[m
+  									'country_id' => '1',[m
+  									'region_id' => '1',[m
+[36m@@@ -118,9 -118,9 +155,10 @@@[m
+  									'district_id' => '1',[m
+  									'street' => 'Dunav str.'[m
+  									];[m
+[31m--				//Address::create($maddr);[m
+[32m++				$maddr = Address::create($maddra);[m
+[32m++				[m
+[32m++						[m
+  [m
+[31m--				$maddr = new Address.[m
+  				//$maddr->dtype = "jlkjlkjl";[m
+  				$maddr->save();[m
+  [m
+[1mdiff --cc app/Models/General/Address.php[m
+[1mindex c8e195e,c8e195e..2441372[m
+[1m--- a/app/Models/General/Address.php[m
+[1m+++ b/app/Models/General/Address.php[m
+[36m@@@ -22,7 -22,7 +22,7 @@@[m [mclass Address extends Mode[m
+        /**[m
+         * @var array[m
+         */[m
+[31m--      protected $fillable = ['dtype', 'country_id', 'region_id', 'municipality_id', 'setlement_id', 'district_id', 'street'];[m
+[32m++      protected $fillable = ['id','dtype', 'country_id', 'region_id', 'municipality_id', 'setlement_id', 'district_id', 'street'];[m
+  [m
+        /**[m
+         * Indicates if the model should be timestamped.[m
+[1mdiff --cc app/Models/Nom/N_municipality.php[m
+[1mindex b78dea3,b78dea3..a62fbce[m
+[1m--- a/app/Models/Nom/N_municipality.php[m
+[1m+++ b/app/Models/Nom/N_municipality.php[m
+[36m@@@ -6,5 -6,5 +6,26 @@@[m [muse Illuminate\Database\Eloquent\Model[m
+  [m
+  class N_municipality extends Model[m
+  {[m
+[31m--    //[m
+[32m++	[m
+[32m++	[m
+[32m++	[m
+[32m++	  public static function getMunicipalities()[m
+[32m++    {[m
+[32m++	   // return $this->activeOptions()[$attribute];[m
+[32m++[m
+[32m++	    $tmp = \App\Models\Nom\N_municipality::selectRaw('CONCAT(region_id,"<option value=\"",id,"\">", name,"</option>") as tst')[m
+[32m++		    //->where('region_id', '=', $region)	 [m
+[32m++   	->get();[m
+[32m++[m
+[32m++	$aasd=json_decode($tmp, JSON_UNESCAPED_UNICODE);[m
+[32m++	$bsd=[];[m
+[32m++[m
+[32m++	foreach($aasd as $item){[m
+[32m++	array_push($bsd,$item['tst']);[m
+[32m++	}[m
+[32m++	return $bsd;[m
+[32m++    }[m
+[32m++[m
+[32m++	[m
+[32m++	//[m
+  }[m
+[1mdiff --cc app/Models/Nom/N_region.php[m
+[1mindex fd85372,fd85372..85ed639[m
+[1m--- a/app/Models/Nom/N_region.php[m
+[1m+++ b/app/Models/Nom/N_region.php[m
+[36m@@@ -6,5 -6,5 +6,24 @@@[m [muse Illuminate\Database\Eloquent\Model[m
+  [m
+  class N_region extends Model[m
+  {[m
+[31m--    //[m
+[32m++    [m
+[32m++    public static function getRegions()[m
+[32m++    {[m
+[32m++           // return $this->activeOptions()[$attribute];[m
+[32m++[m
+[32m++	    $tmp = \App\Models\Nom\N_region::selectRaw('CONCAT("<option value=\"",id,"\">", name,"</option>") as tst')[m
+[32m++		   // ->where('region_id', '=', $region)[m
+[32m++        ->get();[m
+[32m++[m
+[32m++        $aasd=json_decode($tmp, JSON_UNESCAPED_UNICODE);[m
+[32m++        $bsd=[];[m
+[32m++[m
+[32m++        foreach($aasd as $item){[m
+[32m++        array_push($bsd,$item['tst']);[m
+[32m++        }[m
+[32m++        return $bsd;[m
+[32m++    }[m
+[32m++[m
+[32m++[m
+[32m++//[m
+  }[m
+[1mdiff --cc config/database.php[m
+[1mindex 199382d,199382d..3583f4e[m
+[1m--- a/config/database.php[m
+[1m+++ b/config/database.php[m
+[36m@@@ -53,7 -53,7 +53,7 @@@[m [mreturn [m
+              'password' => env('DB_PASSWORD', ''),[m
+              'unix_socket' => env('DB_SOCKET', ''),[m
+              'charset' => 'utf8mb4',[m
+[31m--            'collation' => 'utf8mb4_unicode_ci',[m
+[32m++            'collation' => 'utf8mb4_bin',[m
+              'prefix' => '',[m
+              'prefix_indexes' => true,[m
+              'strict' => true,[m
+[1mdiff --cc resources/views/layouts/index.blade.php[m
+[1mindex 9ed2b5a,9ed2b5a..53e354a[m
+[1m--- a/resources/views/layouts/index.blade.php[m
+[1m+++ b/resources/views/layouts/index.blade.php[m
+[36m@@@ -2,7 -2,7 +2,7 @@@[m
+  <html>[m
+  <head>[m
+  <meta charset="utf-8">[m
+[31m--<title>Информационно-комуникационна платформа "Частни трудови посредници"</title>[m
+[32m++<title>---Информационно-комуникационна платформа "Частни трудови посредници"</title>[m
+  <meta name="description" content="">[m
+  <meta name="keywords" content="">[m
+  <link rel="icon" href="../favicon.ico">[m
+[1mdiff --cc resources/views/layouts/login.blade - Copy.html[m
+[1mindex e8ebb1b,e8ebb1b..0000000[m
+[1mdeleted file mode 100644,100644[m
+[1m--- a/resources/views/layouts/login.blade - Copy.html[m
+[1m+++ /dev/null[m
+[36m@@@ -1,209 -1,209 +1,0 @@@[m
+[31m--<!doctype html>[m
+[31m--<html>[m
+[31m--<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">[m
+[31m--[m
+[31m--<head>[m
+[31m--	<meta charset="utf-8">[m
+[31m--	<meta name="viewport" content="width=device-width, initial-scale=1">[m
+[31m--[m
+[31m--	<!-- CSRF Token -->[m
+[31m--	<meta name="csrf-token" content="{{ csrf_token() }}">[m
+[31m--[m
+[31m--	<title>Информационно-комуникационна платформа "Частни трудови посредници"</title>[m
+[31m--[m
+[31m--	<meta name="description" content="">[m
+[31m--	<meta name="keywords" content="">[m
+[31m--	<link rel="icon" href="../favicon.ico">[m
+[31m--	<meta name="viewport" content="width=device-width">[m
+[31m--[m
+[31m--	<!-- Styles -->[m
+[31m--	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">[m
+[31m--	<link href="{{ asset('css/_m.css') }}" rel="stylesheet">[m
+[31m--	<link href="{{ asset('css/_c.css') }}" rel="stylesheet">[m
+[31m--	<link href="{{ asset('css/_r.css') }}" rel="stylesheet">[m
+[31m--[m
+[31m--	<!-- Scripts -->[m
+[31m--	<script src="{{ asset('js/jquery-3.3.1.slim.min.js') }}" defer></script>[m
+[31m--	<script src="{{ asset('js/bootstrap.bundle.min.js') }}" defer></script>[m
+[31m--[m
+[31m--	<script>[m
+[31m--[m
+[31m--		$(document).ready(function() {[m
+[31m--[m
+[31m--			// Responsive nav[m
+[31m--[m
+[31m--			$(".nav-collapse").bind("click", function(){[m
+[31m--[m
+[31m--			$("body").toggleClass("nav-on");[m
+[31m--[m
+[31m--			return false;[m
+[31m--			});[m
+[31m--[m
+[31m--[m
+[31m--			// Padding for main, based on footer's height[m
+[31m--[m
+[31m--			var bumpIt = function() {[m
+[31m--		      $('main').css('padding-bottom', $('#footer').outerHeight());[m
+[31m--				  },[m
+[31m--				  didResize = false;[m
+[31m--[m
+[31m--			  bumpIt();[m
+[31m--[m
+[31m--			  $(window).resize(function() {[m
+[31m--				didResize = true;[m
+[31m--			  });[m
+[31m--			  setInterval(function() {[m
+[31m--				if(didResize) {[m
+[31m--				  didResize = false;[m
+[31m--				  bumpIt();[m
+[31m--				}[m
+[31m--			  }, 250);[m
+[31m--[m
+[31m--		});[m
+[31m--[m
+[31m--		$(document).ready(function(){$(".lang-change").bind("click",function(){return $(this).parent().toggleClass("on"),!1}),$("html").click(function(){$(".lang-change").parent().removeClass("on")})});[m
+[31m--[m
+[31m--	</script>[m
+[31m--</head>[m
+[31m--[m
+[31m--<body class="index sticky-footer">[m
+[31m--	<div id="site">[m
+[31m--	    <header id="header">[m
+[31m--	      <div class="level-1">[m
+[31m--	      	<div class="container-fluid clearfix">[m
+[31m--	        	<div class="float-left"><a href="https://www.az.government.bg/" class="header-btn"><strong>www.az.government.bg</strong></a></div>[m
+[31m--	            <div class="meta float-right">[m
+[31m--	            	<div class="lang"> <a href="#" title="English" class="lang-change"><img src="../img/flags/24/EN.png" alt="EN"> <span>English</span></a>[m
+[31m--	                    <ul>[m
+[31m--	                        <li class="current"><a href="#" title="English" style="background-image: url(../img/flags/24/EN.png);"><span>English</span></a></li>[m
+[31m--	                        <li class=""><a href="#" title="Български" style="background-image: url(../img/flags/24/BG.png);"><span>Български</span></a></li>[m
+[31m--	                    </ul>[m
+[31m--	                </div>[m
+[31m--	                <div class="login logged-out">[m
+[31m--	                	<a href="#" class="header-btn login-btn"><i><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><style>.st0{fill:none;stroke:#fff;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10}</style><circle class="st0" cx="16" cy="11.7" r="4.6"/><path class="st0" d="M26.4 26.2c-1-5.7-5.3-9.8-10.4-9.8-5.1 0-9.4 4.2-10.4 9.8h20.8z"/></svg></i></a>[m
+[31m--	                </div>[m
+[31m--	            </div>[m
+[31m--	        </div>[m
+[31m--	      </div>[m
+[31m--	      <div class="level-2">[m
+[31m--	      	<div class="container-fluid clearfix">[m
+[31m--	        	<div class="site-logo float-left clearfix">[m
+[31m--	            	<i class="float-left"><img src="../img/coat-of-arms-bg.png" alt=""/></i>[m
+[31m--	                <h3 class="sub-title">Министерство на труда и социалната политика</h3>[m
+[31m--	                <h1 class="main-title">Агенция по заетостта</h1>[m
+[31m--	            </div>[m
+[31m--	            <div class="site-logo float-right clearfix">[m
+[31m--	            	<i><img src="../img/az-logo-bg.png" width="72" height="80" alt="Агенция по заетостта" /> <span class="text-hide">Агенция по заетостта</span></i>[m
+[31m--	            </div>[m
+[31m--	            <hr>[m
+[31m--	        </div>[m
+[31m--	      </div>[m
+[31m--	    </header>[m
+[31m--[m
+[31m--			<main role="main">[m
+[31m--			  <div class="container-fluid">[m
+[31m--			    	<h2 class="text-center h3">Информационно-комуникационна платформа "Частни трудови посредници"</h2>[m
+[31m--			      <div class="index-items">[m
+[31m--			        	<div class="row">[m
+[31m--			                <div class="col-md-4">[m
+[31m--			                  <h4 class="success-bgr text-center">Регистрация на Частен Трудов Посредник</h4>[m
+[31m--			                  <p>Информационно-комуникационна платформа &quot;Частни трудови посредници&quot; предоставя функционална възможност за попълване на Заявка за регистрация като частен трудов посредник.</p>[m
+[31m--			                  <p>Кандидатстващото лице може да попълни заявката като избере бутона Заявка за регистрация на частен трудов посредник и попълни нужните данни. Задължително изискване е комплекта от документи по чл. 7 и чл. 8 от Наредбата за условията и реда за извършване на посредническа дейност по наемане на работа да се подаде или изпрати в Агенцията по заетостта, бул. “Княз Ал. Дондуков” №3, София 1000.</p>[m
+[31m--			                  <p>За по-подробна информация свалете приложения файл с линк Изтегли инструкциите под параграфа.<br><br></p>[m
+[31m--			                  <p><a href="#" class="btn btn-light pdf">Изтегли инструкции</a></p>[m
+[31m--			                  <p><a href="inside-01.htm" class="btn btn-outline btn-outline-success btn-lg btn-block btn-more">Заявка за регистрация на ЧТП</a></p>[m
+[31m--			                </div>[m
+[31m--			                <div class="col-md-4">[m
+[31m--			                  <h4 class="warning-bgr text-center">Уведомление за временно/еднократно предоставяне на услуги</h4>[m
+[31m--			                  <p>Информационно-комуникационна платформа &quot;Частни трудови посредници&quot; предоставя функционална възможност за попълване на Уведомление (Приложение 4 към чл. 18а, алинея 1 от Наредба за условията и реда за извършване на посредническа дейност по наемане на работа).</p>[m
+[31m--			        					<p>Кандидатстващото лице може да попълни уведомлението като избере бутона Уведомление за временно/еднократно предоставяне на посреднически услуги и попълни нужните данни. Попълненото Уведомление се разпечатва, подписва и подпечатва от заявителят и се подава или изпраща в Агенцията по заетостта, бул. “Княз Ал. Дондуков” №3, 1000, София.</p>[m
+[31m--			        					<p>За по-подробна информация свалете приложения файл с линк Изтегли инструкциите под параграфа.</p>[m
+[31m--[m
+[31m--			                  <p><a href="#" class="btn btn-light pdf">Изтегли инструкции</a></p>[m
+[31m--			                  <p><a href="inside-01.htm" class="btn btn-outline btn-outline-warning btn-lg btn-block btn-more">Подаване на Уведомление</a></p>[m
+[31m--[m
+[31m--												<br>[m
+[31m--												<br>[m
+[31m--												<br>[m
+[31m--												<br>[m
+[31m--[m
+[31m--			                </div>[m
+[31m--[m
+[31m--			                <div class="col-md-4">[m
+[31m--			                  <h4 class="primary-bgr text-center">Вход като регистриран частен трудов посредник</h4>[m
+[31m--			                  <div class="login-bar">[m
+[31m--[m
+[31m--								<form method="POST" action="{{ route('login') }}">[m
+[31m--									@csrf[m
+[31m--[m
+[31m--									<div class="form-group row">[m
+[31m--											<label for="e-mail">Email</label>[m
+[31m--											<input type="email" class="form-control form-control-lg" id="e-mail" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>[m
+[31m--											@error('email')[m
+[31m--													<span class="invalid-feedback" role="alert">[m
+[31m--															<strong>{{ $message }}</strong>[m
+[31m--													</span>[m
+[31m--											@enderror[m
+[31m--									</div>[m
+[31m--[m
+[31m--									<div class="form-group row">[m
+[31m--											<label for="password">Парола</label>[m
+[31m--											<input type="password" class="form-control form-control-lg" id="password" name="password" required autocomplete="current-password">[m
+[31m--[m
+[31m--											@error('password')[m
+[31m--													<span class="invalid-feedback" role="alert">[m
+[31m--															<strong>{{ $message }}</strong>[m
+[31m--													</span>[m
+[31m--											@enderror[m
+[31m--									</div>[m
+[31m--[m
+[31m--									<div class="form-group">[m
+[31m--										<!--<a href="inside-01.htm" class="btn btn-primary btn-block btn-lg">Вход</a>[m
+[31m--										<!-<button type="submit" class="btn btn-primary btn-block btn-lg">Вход</button>-->[m
+[31m--										<button type="submit" class="btn btn-primary btn-block btn-lg">[m
+[31m--												{{ __('Вход') }}[m
+[31m--										</button>[m
+[31m--[m
+[31m--										@if (Route::has('password.request'))[m
+[31m--											<a class="btn btn-link" href="{{ route('password.request') }}">[m
+[31m--												{{ __('Забравена парола?') }}[m
+[31m--											</a>[m
+[31m--										@endif[m
+[31m--[m
+[31m--									</div>[m
+[31m--[m
+[31m--								</form>[m
+[31m--[m
+[31m--			                  </div>[m
+[31m--			                </div>[m
+[31m--			              </div>[m
+[31m--			        </div>[m
+[31m--			  </div>[m
+[31m--[m
+[31m--			</main>[m
+[31m--[m
+[31m--			<footer id="footer">[m
+[31m--				<div class="level-1">[m
+[31m--					<div class="container-fluid">[m
+[31m--							<div style="text-align: center; font-size: 12px; font-weight: bold;">[m
+[31m--								<span style="">[m
+[31m--									При проблем, свързан с работата на системата, достъп на потребители или предоставената[m
+[31m--									функционалност на частните трудови посредници, свържете се със служителите на дирекция[m
+[31m--									"Разрешения за работа и регистрация на частни посредници" на адрес[m
+[31m--									<a href="mailto:az_support_posrednici@az.government.bg" class="link" style="float: none">az_support_posrednici@az.government.bg</a>[m
+[31m--								</span>[m
+[31m--							</div>[m
+[31m--					</div>[m
+[31m--				</div>[m
+[31m--[m
+[31m--[m
+[31m--[m
+[31m--			  <div class="level-3">[m
+[31m--			  	<div class="container-fluid">[m
+[31m--			    	<p class="footer-copy">© 2019 Агенция по заетостта</p>[m
+[31m--			  	</div>[m
+[31m--			  </div>[m
+[31m--			</footer>[m
+[31m--	</div>[m
+[31m--</body>[m
+[31m--</html>[m
+[1mdiff --cc resources/views/layouts/prr.blade - Copy.html[m
+[1mindex 8334dbd,8334dbd..0000000[m
+[1mdeleted file mode 100644,100644[m
+[1m--- a/resources/views/layouts/prr.blade - Copy.html[m
+[1m+++ /dev/null[m
+[36m@@@ -1,117 -1,117 +1,0 @@@[m
+[31m--<!doctype html>[m
+[31m--<html>[m
+[31m--<head>[m
+[31m--<meta charset="utf-8">[m
+[31m--<title>Информационно-комуникационна платформа "Частни трудови посредници"</title>[m
+[31m--<meta name="description" content="">[m
+[31m--<meta name="keywords" content="">[m
+[31m--<link rel="icon" href="{{asset('favicon.ico')}}">[m
+[31m--<meta name="viewport" content="width=device-width">[m
+[31m--[m
+[31m--<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">[m
+[31m--<link rel="stylesheet" href="{{asset('css/_m.css')}}">[m
+[31m--<link rel="stylesheet" href="{{asset('css/_c.css')}}">[m
+[31m--<link rel="stylesheet" href="{{asset('css/_r.css')}}">[m
+[31m--[m
+[31m--[m
+[31m--<script src="{{asset('js/jquery-3.3.1.slim.min.js')}}"></script>[m
+[31m--<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>[m
+[31m--<script src="{{asset('js/jquery.js')}}"></script>[m
+[31m--<script>[m
+[31m--[m
+[31m--$(document).ready(function() {[m
+[31m--[m
+[31m--	// Responsive nav[m
+[31m--[m
+[31m--	$(".nav-collapse").bind("click", function(){[m
+[31m--[m
+[31m--	$("body").toggleClass("nav-on");[m
+[31m--[m
+[31m--	return false;[m
+[31m--	});[m
+[31m--[m
+[31m--[m
+[31m--	// Padding for main, based on footer's height[m
+[31m--[m
+[31m--	var bumpIt = function() {[m
+[31m--      $('main').css('padding-bottom', $('#footer').outerHeight());[m
+[31m--		  },[m
+[31m--		  didResize = false;[m
+[31m--[m
+[31m--	  bumpIt();[m
+[31m--[m
+[31m--	  $(window).resize(function() {[m
+[31m--		didResize = true;[m
+[31m--	  });[m
+[31m--	  setInterval(function() {[m
+[31m--		if(didResize) {[m
+[31m--		  didResize = false;[m
+[31m--		  bumpIt();[m
+[31m--		}[m
+[31m--	  }, 250);[m
+[31m--[m
+[31m--});[m
+[31m--[m
+[31m--$(document).ready(function(){$(".lang-change").bind("click",function(){return $(this).parent().toggleClass("on"),!1}),$("html").click(function(){$(".lang-change").parent().removeClass("on")})});[m
+[31m--[m
+[31m--</script>[m
+[31m--</head>[m
+[31m--[m
+[31m--<body class="index sticky-footer">[m
+[31m--<div id="site">[m
+[31m--    <header id="header">[m
+[31m--			@yield('header-1')[m
+[31m--[m
+[31m--      <div class="level-2">[m
+[31m--      	<div class="container-fluid clearfix">[m
+[31m--        	<div class="site-logo float-left clearfix">[m
+[31m--            	<i class="float-left"><img src="{{asset('img/coat-of-arms-bg.png')}}" alt=""/></i>[m
+[31m--                <h3 class="sub-title">Министерство на труда и социалната политика</h3>[m
+[31m--                <h1 class="main-title">Агенция по заетостта</h1>[m
+[31m--            </div>[m
+[31m--            <div class="site-logo float-right clearfix">[m
+[31m--            	<i><img src="{{asset('img/az-logo-bg.png')}}" width="72" height="80" alt="Агенция по заетостта" /> <span class="text-hide">Агенция по заетостта</span></i>[m
+[31m--            </div>[m
+[31m--            <hr>[m
+[31m--[m
+[31m--						@yield('nav')[m
+[31m--        </div>[m
+[31m--      </div>[m
+[31m--    </header>[m
+[31m--[m
+[31m--		<main role="main">[m
+[31m--			@yield('content')[m
+[31m--		</main>[m
+[31m--[m
+[31m--[m
+[31m--<footer id="footer">[m
+[31m--  <div class="level-1">[m
+[31m--  	<div class="container-fluid">[m
+[31m--    	<p>При проблем, свързан с работата на системата, достъп на потребители или предоставената функционалност на частните трудови посредници, свържете се със служителите на дирекция "Разрешения за работа и регистрация на частни посредници" на адрес <strong><script>[m
+[31m--document.write(unescape('%3C%61%20%68%72%65%66%3D%22%6D%61%69%6C%74%6F%3A%61%7A%5F%73%75%70%70%6F%72%74%5F%70%6F%73%72%65%64%6E%69%63%69%40%61%7A%2E%67%6F%76%65%72%6E%6D%65%6E%74%2E%62%67%22%3E%61%7A%5F%73%75%70%70%6F%72%74%5F%70%6F%73%72%65%64%6E%69%63%69%40%61%7A%2E%67%6F%76%65%72%6E%6D%65%6E%74%2E%62%67%3C%2F%61%3E'));[m
+[31m--</script></strong></p>[m
+[31m--    </div>[m
+[31m--  </div>[m
+[31m--  <div class="level-2">[m
+[31m--  	<div class="container-fluid">[m
+[31m--    	<span class="flag float-left"><i><svg xmlns="http://www.w3.org/2000/svg" width="70" height="48"><path fill="#039" d="M0 0h70v48H0z"/><path d="M34.2 10.3l-1.4-1h1.7l.5-1.6.5 1.6h1.7l-1.4 1 .5 1.6-1.4-1-1.4 1 .7-1.6zm-7.7 3.5l1.4-1 1.4 1-.5-1.6 1.4-1h-1.7L28 9.6l-.5 1.6h-1.7l1.4 1-.7 1.6zm-3.8 1l-.5 1.6h-1.7l1.4 1-.6 1.6 1.4-1 1.4 1-.5-1.6 1.4-1h-1.7l-.6-1.6zm-1.9 10.3l1.4 1-.5-1.6 1.4-1h-1.7l-.5-1.6-.5 1.6h-1.7l1.4 1-.5 1.6 1.2-1zm2.4 5.5l-.5-1.6-.5 1.6h-1.7l1.4 1-.5 1.6 1.4-1 1.4 1-.5-1.6 1.4-1h-1.9zm5.2 5.2l-.5-1.6-.5 1.6h-1.7l1.4 1-.5 1.6 1.4-1 1.4 1-.5-1.6 1.4-1h-1.9zm7.1 1.9l-.5-1.6-.5 1.6h-1.7l1.4 1-.5 1.6 1.4-1 1.4 1-.5-1.6 1.4-1h-1.9zm7.1-1.9l-.5-1.6-.5 1.6h-1.7l1.4 1-.5 1.6 1.4-1 1.4 1-.5-1.6 1.4-1h-1.9zm5.2-5.2l-.5-1.6-.5 1.6h-1.7l1.4 1-.5 1.6 1.4-1 1.4 1-.5-1.6 1.4-1h-1.9zm3.6-7.1h-1.7l-.5-1.6-.5 1.6H47l1.4 1-.5 1.6 1.4-1 1.4 1-.7-1.6 1.4-1zM45.9 19l1.4-1 1.4 1-.5-1.6 1.4-1h-1.7l-.5-1.6-.5 1.6h-1.7l1.4 1-.7 1.6zm-3.8-9.4l-.5 1.6h-1.7l1.4 1-.5 1.6 1.4-1 1.4 1-.6-1.6 1.4-1h-1.7l-.6-1.6z" fill="#fc0"/></svg></i><small class="title">Европейски съюз</small></span>[m
+[31m--        <span class="flag float-right"><i><img src="{{asset('img/esf-logo-bg.png')}}" alt="Европейски социален фонд"/></i><small class="title">Европейски социален фонд</small></span>[m
+[31m--        <p>Оперативна програма "Развитие на човешките ресурси"(2007-2013), Агенция по заетостта[m
+[31m--BG 0501 РО001-6.1.05- <strong>"ПОВИШАВАНЕ КАЧЕСТВОТО НА ПРЕДСТАВЯНИТЕ ОТ АГЕНЦИЯ ПО ЗАЕТОСТТА УСЛУГИ НА ГРАЖДАНИТЕ И БИЗНЕСА С ФОКУС ВЪРХУ УЯЗВИМИТЕ ГРУПИ НА ПАЗАРА НА ТРУДА" - "ДА УСПЕЕМ ЗАЕДНО"</strong><br>[m
+[31m--Проектът се осъществява с финансовата подкрепа на Оперативна програма "Развитие на човешките ресурси", съфинансирана от Европейския социален фонд на Европейския съюз<br>[m
+[31m--<strong>Инвестира във вашето бъдеще!</strong></p>[m
+[31m--		<p><small>Този подсайт е изготвен с финансовата помощ на Европейския социален фонд. Агенция по заетостта носи цялата отговорност за съдържанието на настоящия подсайт, и при никакви обстоятелства не може да се приеме като официална позиция на Европейския съюз или Договарящия орган.</small></p>[m
+[31m--    </div>[m
+[31m--  </div>[m
+[31m--  <div class="level-3">[m
+[31m--  	<div class="container-fluid">[m
+[31m--    	<p class="footer-copy">© 2019 Агенция по заетостта</p>[m
+[31m--  	</div>[m
+[31m--  </div>[m
+[31m--</footer>[m
+[31m--</div>[m
+[31m--[m
+[31m--		@yield('scripts')[m
+[31m--[m
+[31m--</body>[m
+[31m--</html>[m
+[1mdiff --cc resources/views/powr_regreq.blade.php[m
+[1mindex 90ea448,90ea448..6ae6705[m
+[1m--- a/resources/views/powr_regreq.blade.php[m
+[1m+++ b/resources/views/powr_regreq.blade.php[m
+[36m@@@ -46,44 -46,44 +46,46 @@@[m [mAuthor/s:	Christopher Georgie[m
+  [m
+            @csrf[m
+  [m
+[31m--        <div class="form-items">[m
+[32m++	<div class="form-items">[m
+[32m++		[m
+                  <section>[m
+                  	<h3><span class="primary-bgr">Данни за заявител</span></h3>[m
+                        <div class="row">[m
+                          <div class="col">[m
+                            <label for="">Име: *</label>[m
+[31m--													<input type="text" class="form-control" id="" value="{{ old('name') }}">[m
+[32m++												[m
+[32m++	<input type="text" class="form-control" id="applicantFirstName" value="{{ old('name') }}">[m
+  [m
+                          </div>[m
+                          <div class="col">[m
+                            <label for="">Презиме:</label>[m
+[31m--                          <input type="text" class="form-control" id="">[m
+[32m++                          <input type="text" class="form-control" id="applicantSecondName">[m
+                          </div>[m
+                          <div class="col">[m
+                            <label for="">Фамилия: *</label>[m
+[31m--                          <input type="text" class="form-control" id="">[m
+[32m++                          <input type="text" class="form-control" id="applicantLastName">[m
+                          </div>[m
+                        </div>[m
+                        <div class="row">[m
+                        	<div class="col">[m
+                          	<div class="col-25">[m
+                              	<div class="form-check-inline">[m
+[31m--                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">[m
+[32m++                                  <input class="form-check-input" type="checkbox" id="applicantLnchFlag" value="applicantLnchFlagSet">[m
+                                    <label class="form-check-label" for="inlineCheckbox1">ЛНЧ</label>[m
+                                  </div>[m
+                              </div>[m
+                              <div class="col-75">[m
+                              	<label for="">ЕГН/ЛНЧ: *</label>[m
+[31m--                            	<input type="text" class="form-control" id="">[m
+[32m++                            	<input type="text" class="form-control" id="applicantEgnLnch">[m
+                              </div>[m
+                          </div>[m
+                          <div class="col">[m
+                          	<label for="">Email: *</label>[m
+[31m--                            <input type="text" class="form-control" id="">[m
+[32m++                            <input type="text" class="form-control" id="applicantEmail">[m
+                          </div>[m
+                          <div class="col">[m
+                          	<label for="">Длъжност: *</label>[m
+[31m--                            <input type="text" class="form-control" id="">[m
+[32m++                            <input type="text" class="form-control" id="applicantPosition">[m
+                          </div>[m
+                        </div>[m
+                  </section>[m
+[36m@@@ -92,11 -92,11 +94,11 @@@[m
+                      <h6><strong>Вид Юридическо лице:</strong></h6>[m
+                      <div class="row">[m
+                      	<div class="form-check form-check-inline">[m
+[31m--                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">[m
+[32m++                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="legalEntityRegisteredBG" value="legalEntityRegisteredBG_SET">[m
+                            <label class="form-check-label" for="inlineRadio1">с регистрация в България</label>[m
+                          </div>[m
+                          <div class="form-check form-check-inline">[m
+[31m--                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">[m
+[32m++          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="legalEntityRegisteredAbroad" value="legalEntityRegisteredAbroad_SET">[m
+                            <label class="form-check-label" for="inlineRadio2">с регистрация в друга държава</label>[m
+                          </div>[m
+                      </div>[m
+[36m@@@ -104,28 -104,28 +106,28 @@@[m
+                        <div class="row">[m
+                          <div class="col">[m
+                            <label for="">ЕИК/БУЛСТАТ:*</label>[m
+[31m--                          <input type="text" class="form-control" id="">[m
+[32m++                          <input type="text" class="form-control" id="legalEntityUicBulstat">[m
+                          </div>[m
+                          <div class="col">[m
+                            <label for="inputCity">Наименование:*</label>[m
+[31m--                          <input type="text" class="form-control" id="">[m
+[32m++                          <input type="text" class="form-control" id="legalEntityName">[m
+                          </div>[m
+                          <div class="col">[m
+                            <label for="">Вид на фирмата:</label>[m
+[31m--                          <select id="" class="form-control">[m
+[32m++                          <select id="legalEntityType" class="form-control">[m
+                              <option selected="">Моля, изберете</option>[m
+[31m--                            <option>ЕООД</option>[m
+[31m--                            <option>ООД</option>[m
+[31m--                            <option>ЕАД</option>[m
+[31m--                            <option>АД</option>[m
+[31m--                            <option>ЕТ</option>[m
+[32m++                            <option value="eood">ЕООД</option>[m
+[32m++                            <option value="ood" >ООД</option>[m
+[32m++                            <option value="ead" >ЕАД</option>[m
+[32m++                            <option value="ad"  >АД</option>[m
+[32m++                            <option value="et"  >ЕТ</option>[m
+                            </select>[m
+                          </div>[m
+                        </div>[m
+                        <div class="row">[m
+                        	<div class="col-md-4">[m
+                          	<label for="">Идентификационен номер на удостоверението за вписване в регистъра по чл. 10, ал. 1, т. 2 ЗЗЛД:</label>[m
+[31m--                          	<input type="text" class="form-control" id="">[m
+[32m++                          	<input type="text" class="form-control" id="legalEntityZzldcode">[m
+                          </div>[m
+                        </div>[m
+                  </section>[m
+[36m@@@ -137,7 -137,7 +139,7 @@@[m
+                          <div class="col">[m
+  [m
+  													<label for="mAddrCountry">Държава:*</label>[m
+[31m--													<select id="mAddrCountry" class="form-control">[m
+[32m++													<select name="mAddrCountry" id="mAddrCountry" class="form-control">[m
+  														<!--<option selected="">Моля, изберете</option>-->[m
+  														@foreach ($countries as $country)[m
+  															<option value="{{ $country->id }}" {{ ( $country->id == 1) ? 'selected' : '' }}>[m
+[36m@@@ -242,7 -242,7 +244,10 @@@[m
+                        </div>[m
+  [m
+                        <h6 class="mt-4"><strong>Адрес на офиса/офисите за извършване на дейност по осигуряване на временна работа</strong></h6>[m
+[31m--                    <table id="offices" name="Offices" class="table">[m
+[32m++		    [m
+[32m++		[m
+[32m++[m
+[32m++		     <table id="offices" name="offices" class="table">[m
+                        <thead>[m
+                          <tr>[m
+                            <th scope="col">Адрес</th>[m
+[36m@@@ -253,7 -253,7 +258,7 @@@[m
+                        </thead>[m
+                        <tbody>[m
+                          <tr>[m
+[31m--                          <td>София, ул.Братя Миладинови 16, ет.1, офис 1</td>[m
+[32m++                          <td>София, ул.Братя Миладинови 16, ет.1, офис 2</td>[m
+                            <td>0884777372</td>[m
+                            <td>office@ctc.bg</td>[m
+                            <td>Боряна Андонова</td>[m
+[36m@@@ -271,9 -271,9 +276,29 @@@[m
+  [m
+                        <form>[m
+                          <fieldset>[m
+[31m--                          <label for="address">Адрес</label>[m
+[31m--                          <input type="text" name="address" id="address" value="" class="text ui-widget-content ui-corner-all">[m
+[31m--                          <label for="tel_fax">Телефон,Факс</label>[m
+[32m++			  <label for="address">Адрес</label>[m
+[32m++[m
+[32m++[m
+[32m++[m
+[32m++[m
+[32m++<input type="text" name="oaCountry" id="oaCountry" value="" class="text ui-widget-content ui-corner-all">[m
+[32m++                          <select name="oaRegion" id="oaRegion" value="" class="text ui-widget-content ui-corner-all">[m
+[32m++			  [m
+[32m++				 <option value="" disabled selected> Моля, изберете</option>[m
+[32m++</select>[m
+[32m++[m
+[32m++				<select name="oaMunicipality" id="oaMunicipality" value="" class="text ui-widget-content ui-corner-all" >[m
+[32m++				 <option value="" disabled selected> Моля, изберете</option>[m
+[32m++[m
+[32m++[m
+[32m++			  </select>[m
+[32m++                          <input type="text" name="oaDistrict" id="oaDistrict" value="" class="text ui-widget-content ui-corner-all">[m
+[32m++			  [m
+[32m++                          <input type="text" name="oaSetlement" id="oaSetlement" value="" class="text ui-widget-content ui-corner-all">[m
+[32m++			  [m
+[32m++                          <input type="text" name="oaStreet" id="oaStreet" value="" class="text ui-widget-content ui-corner-all">[m
+[32m++[m
+[32m++			  <label for="tel_fax">Телефон,Факс</label>[m
+                            <input type="text" name="tel_fax" id="tel_fax" value="" class="text ui-widget-content ui-corner-all">[m
+                            <label for="email">Email</label>[m
+                            <input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all">[m
+[36m@@@ -290,6 -290,6 +315,17 @@@[m
+  [m
+                  </section>[m
+  [m
+[32m++		<section >[m
+[32m++			<div id="formpage_2"  style="visibility: hidden; display: none;">[m
+[32m++[m
+[32m++                        <input type="text" class="form-control" name="cAddr12" id="cAddr12" placeholder="aaa">[m
+[32m++				 <input name = "addedOfficess" id ="addedOfficess" list="addedOffices">[m
+[32m++[m
+[32m++				<textarea  name="addedOffices" id="addedOffices">[m
+[32m++				</textarea>[m
+[32m++[m
+[32m++			</div>[m
+[32m++		</section>[m
+  [m
+                <p class="text-center"><button type="submit" class="btn btn-primary btn-lg">Запази/Подай</button> <span class="sep-line "> | </span>  <a href="/" class="btn btn-outline-danger btn-lg">Отказ</a></p>[m
+  [m
+[36m@@@ -390,6 -390,6 +426,61 @@@[m
+                  }[m
+  						});[m
+  [m
+[32m++		//TODO add here add-new-office event click handler[m
+[32m++	    $('a[id="add-new-office"]').on('click', function(){[m
+[32m++		    console.log('');[m
+[32m++<?php[m
+[32m++$tmpr = \App\Models\Nom\N_region::getRegions();[m
+[32m++$tmpr = implode($tmpr);[m
+[32m++?>[m
+[32m++			[m
+[32m++var regions = {!! json_encode($tmpr) !!};[m
+[32m++$("#oaRegion").empty();[m
+[32m++$("#oaRegion").append(" <option value="" disabled selected> Моля, изберете</option>");[m
+[32m++[m
+[32m++$("#oaRegion").append(regions);[m
+[32m++//TPDP add jere oznerete[m
+[32m++[m
+[32m++[m
+[32m++[m
+[32m++	    });[m
+[32m++[m
+[32m++[m
+[32m++ $('#oaRegion').on('click', function(){[m
+[32m++                    $("#oaMunicipality").empty();[m
+[32m++<?php[m
+[32m++$tmpm = \App\Models\Nom\N_municipality::getMunicipalities();[m
+[32m++//$tmpr = implode($tmpr);[m
+[32m++?>[m
+[32m++[m
+[32m++var muns = {!! json_encode($tmpm) !!};[m
+[32m++console.log(typeof(muns));[m
+[32m++[m
+[32m++var selectedreg = $("#oaRegion").find(":selected").val();[m
+[32m++console.log(selectedreg);[m
+[32m++muns.forEach(element => {[m
+[32m++var pos = element.indexOf('<');[m
+[32m++var reg = element.substring(0, element.indexOf('<'));[m
+[32m++var rest = element.substring(pos);[m
+[32m++[m
+[32m++[m
+[32m++console.log(reg);[m
+[32m++console.log("-------");[m
+[32m++if(selectedreg === reg){[m
+[32m++[m
+[32m++	[m
+[32m++$("#oaMunicipality").append(rest);[m
+[32m++[m
+[32m++	}[m
+[32m++[m
+[32m++});[m
+[32m++[m
+[32m++[m
+[32m++[m
+[32m++[m
+[32m++[m
+[32m++[m
+[32m++            });[m
+  [m
+  [m
+              //Populate the first city object based on the selected municipaty[m
+[36m@@@ -550,8 -550,8 +641,9 @@@[m
+                  $("#cAddrCity :selected").val($("#mAddrCity :selected").val());[m
+                  $("#cAddrCityDistr :selected").text($("#mAddrCityDistr :selected").text());[m
+                  $("#cAddrCityDistr :selected").val($("#mAddrCityDistr :selected").val());[m
+[32m++		$("#cAddr").val( $("#mAddr").val());[m
+  [m
+[31m--								document.getElementById('cAddr').value = document.getElementById('mAddr').value;[m
+[32m++							//	document.getElementById('cAddr').value = document.getElementById('mAddr').value;[m
+  [m
+  [m
+  								//alert($val+" := "+$txt);[m
+[36m@@@ -578,7 -578,7 +670,9 @@@[m
+  [m
+              			// From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=email%29[m
+              			emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,[m
+[31m--                  address = $( "#address" ),[m
+[32m++		   [m
+[32m++				//TODO: add here all the address fieds[m
+[32m++				address = $( "#address" ),[m
+              			email = $( "#email" ),[m
+              			tel_fax = $( "#tel_fax" ),[m
+                    name = $( "#name" ),[m
+[36m@@@ -639,8 -639,8 +733,12 @@@[m
+                        "<td>" + email.val() + "</td>" +[m
+                        "<td>" + name.val() + "</td>" +[m
+  [m
+[31m--            				"</tr>" );[m
+[31m--            				dialog.dialog( "close" );[m
+[32m++		      "</tr>" );[m
+[32m++[m
+[32m++[m
+[32m++$("#addedOffices").val($("#addedOffices").val()+ ""+address.val() + "|" + email.val()  + "|" + tel_fax.val()+"|"+name.val() +"*" );	[m
+[32m++[m
+[32m++dialog.dialog( "close" );[m
+              			}[m
+              			return valid;[m
+              		}[m

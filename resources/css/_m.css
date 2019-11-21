@@ -67,6 +67,31 @@ body {
 /* :: Navigations 
 ===================================================================================================== :: */
 
+/* :: Sidebar nav mod :: */
+#side-bar-ex {
+    position: fixed;
+    width: 72px;
+    height: 100%;
+    z-index: 980;
+    padding-top: 60px;
+    top: 0;
+    left: 0;
+    font-size: .9em;
+}
+
+
+.side-bar-ex a {
+    background-color: #333;
+}
+
+.side-bar-ex ul {
+    height: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+
 #site .nav-collapse {display: none;}
 
 /* :: Main Navigation :: */

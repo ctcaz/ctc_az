@@ -46,44 +46,46 @@ Author/s:	Christopher Georgiev
 
           @csrf
 
-        <div class="form-items">
+	<div class="form-items">
+		
                 <section>
                 	<h3><span class="primary-bgr">Данни за заявител</span></h3>
                       <div class="row">
                         <div class="col">
                           <label for="">Име: *</label>
-													<input type="text" class="form-control" id="" value="{{ old('name') }}">
+												
+	<input type="text" class="form-control" id="applicantFirstName" name="applicantFirstName"   value="{{ old('name') }}">
 
                         </div>
                         <div class="col">
                           <label for="">Презиме:</label>
-                          <input type="text" class="form-control" id="">
+                          <input type="text" class="form-control" id="applicantSecondName" name="applicantSecondName">
                         </div>
                         <div class="col">
                           <label for="">Фамилия: *</label>
-                          <input type="text" class="form-control" id="">
+                          <input type="text" class="form-control" id="applicantLastName" name="applicantLastName">
                         </div>
                       </div>
                       <div class="row">
                       	<div class="col">
                         	<div class="col-25">
                             	<div class="form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                  <input class="form-check-input" type="checkbox" id="applicantLnchFlag" name="applicantLnchFlag" value="1">
                                   <label class="form-check-label" for="inlineCheckbox1">ЛНЧ</label>
                                 </div>
                             </div>
                             <div class="col-75">
                             	<label for="">ЕГН/ЛНЧ: *</label>
-                            	<input type="text" class="form-control" id="">
+                            	<input type="text" class="form-control" id="applicantEgnLnch" name="applicantEgnLnch">
                             </div>
                         </div>
                         <div class="col">
                         	<label for="">Email: *</label>
-                            <input type="text" class="form-control" id="">
+                            <input type="text" class="form-control" id="applicantEmail" name="applicantEmail">
                         </div>
                         <div class="col">
                         	<label for="">Длъжност: *</label>
-                            <input type="text" class="form-control" id="">
+                            <input type="text" class="form-control" id="applicantPosition" name="applicantPosition">
                         </div>
                       </div>
                 </section>
@@ -92,11 +94,11 @@ Author/s:	Christopher Georgiev
                     <h6><strong>Вид Юридическо лице:</strong></h6>
                     <div class="row">
                     	<div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="legalEntityRegisteredBG"  name="legalEntityRegisteredBG"    value="legalEntityRegisteredBG_SET">
                           <label class="form-check-label" for="inlineRadio1">с регистрация в България</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="legalEntityRegisteredAbroad" name= "legalEntityRegisteredAbroad"   value="legalEntityRegisteredAbroad_SET">
                           <label class="form-check-label" for="inlineRadio2">с регистрация в друга държава</label>
                         </div>
                     </div>
@@ -104,28 +106,400 @@ Author/s:	Christopher Georgiev
                       <div class="row">
                         <div class="col">
                           <label for="">ЕИК/БУЛСТАТ:*</label>
-                          <input type="text" class="form-control" id="">
+                          <input type="text" class="form-control" id="legalEntityUicBulstat" name="legalEntityUicBulstat"  >
                         </div>
                         <div class="col">
                           <label for="inputCity">Наименование:*</label>
-                          <input type="text" class="form-control" id="">
+                          <input type="text" class="form-control" id="legalEntityName"  name="legalEntityName" >
                         </div>
                         <div class="col">
                           <label for="">Вид на фирмата:</label>
-                          <select id="" class="form-control">
+                          <select id="legalEntityType"    name="legalEntityType"  class="form-control">
                             <option selected="">Моля, изберете</option>
-                            <option>ЕООД</option>
-                            <option>ООД</option>
-                            <option>ЕАД</option>
-                            <option>АД</option>
-                            <option>ЕТ</option>
-                          </select>
+			
+                                                    <option value="-999">
+                              Търговец публично предприятие
+                            </option>
+                                                    <option value="-2">
+                              Физическо лице
+                            </option>
+                                                    <option value="-1">
+                              ЕАДСИЦ
+                            </option>
+                                                    <option value="455">
+                              СД
+                            </option>
+                                                    <option value="456">
+                              ООД
+                            </option>
+                                                    <option value="457">
+                              ЕООД
+                            </option>
+                                                    <option value="458">
+                              АД
+                            </option>
+                                                    <option value="459">
+                              ЕАД
+                            </option>
+                                                    <option value="460">
+                              КД
+                            </option>
+                                                    <option value="461">
+                              КДА
+                            </option>
+                                                    <option value="462">
+                              ЕТ
+                            </option>
+                                                    <option value="463">
+                              ДФ
+                            </option>
+                                                    <option value="464">
+                              ОФ
+                            </option>
+                                                    <option value="465">
+                              ДщФ
+                            </option>
+                                                    <option value="466">
+                              Кооперация
+                            </option>
+                                                    <option value="467">
+                              Кооперативен съюз
+                            </option>
+                                                    <option value="468">
+                              Кооперативна федерация
+                            </option>
+                                                    <option value="469">
+                              Кооперативно предприятие
+                            </option>
+                                                    <option value="470">
+                              Междукооперативно предприятие
+                            </option>
+                                                    <option value="471">
+                              ЖСК
+                            </option>
+                                                    <option value="472">
+                              ДЗЗД
+                            </option>
+                                                    <option value="473">
+                              Предприятие (по ПМС 50/68)
+                            </option>
+                                                    <option value="474">
+                              Публ. предпр., създ. с спец закон
+                            </option>
+                                                    <option value="475">
+                              Клон на чуждестранно лице
+                            </option>
+                                                    <option value="476">
+                              ТП
+                            </option>
+                                                    <option value="477">
+                              Представителство на межд. организ.
+                            </option>
+                                                    <option value="478">
+                              Дипломатическо представителство
+                            </option>
+                                                    <option value="479">
+                              Консулско представителство
+                            </option>
+                                                    <option value="480">
+                              Представит. на чужд. радио/телев.
+                            </option>
+                                                    <option value="481">
+                              Представителство на чуждестр. АП
+                            </option>
+                                                    <option value="482">
+                              Представит. на чужд. авиокомпания
+                            </option>
+                                                    <option value="483">
+                              Представит. на друго чуждестр.лице
+                            </option>
+                                                    <option value="484">
+                              Културен център на друга държава
+                            </option>
+                                                    <option value="485">
+                              Фондация
+                            </option>
+                                                    <option value="486">
+                              Сдружение
+                            </option>
+                                                    <option value="487">
+                              Синдикална организация
+                            </option>
+                                                    <option value="488">
+                              Народно читалище
+                            </option>
+                                                    <option value="489">
+                              Политическа организация
+                            </option>
+                                                    <option value="490">
+                              Религиозна организация
+                            </option>
+                                                    <option value="491">
+                              Адвокатска колегия
+                            </option>
+                                                    <option value="492">
+                              Нотариална камара
+                            </option>
+                                                    <option value="493">
+                              Неправит.орг.,създ.с нарочно основ.
+                            </option>
+                                                    <option value="494">
+                              Администрация на президента на РБ
+                            </option>
+                                                    <option value="495">
+                              Народно събрание
+                            </option>
+                                                    <option value="496">
+                              Институция, създ. със спец. закон
+                            </option>
+                                                    <option value="497">
+                              Министерски съвет
+                            </option>
+                                                    <option value="498">
+                              Министерство
+                            </option>
+                                                    <option value="499">
+                              Комитет
+                            </option>
+                                                    <option value="500">
+                              Агенция
+                            </option>
+                                                    <option value="502">
+                              Съд
+                            </option>
+                                                    <option value="503">
+                              Прокуратура
+                            </option>
+                                                    <option value="504">
+                              Следствена служба
+                            </option>
+                                                    <option value="505">
+                              община
+                            </option>
+                                                    <option value="506">
+                              Кметство
+                            </option>
+                                                    <option value="507">
+                              Театър
+                            </option>
+                                                    <option value="508">
+                              Опера
+                            </option>
+                                                    <option value="509">
+                              Музей, галерия
+                            </option>
+                                                    <option value="510">
+                              Филхармония
+                            </option>
+                                                    <option value="511">
+                              Ансамбъл
+                            </option>
+                                                    <option value="512">
+                              Цирк
+                            </option>
+                                                    <option value="514">
+                              Библиотека
+                            </option>
+                                                    <option value="515">
+                              Научна организация
+                            </option>
+                                                    <option value="516">
+                              Научен институт
+                            </option>
+                                                    <option value="517">
+                              Висше училище
+                            </option>
+                                                    <option value="518">
+                              Организация в състава на ВУ
+                            </option>
+                                                    <option value="519">
+                              Колеж извън състава на ВУ
+                            </option>
+                                                    <option value="520">
+                              Колеж в състава на ВУ
+                            </option>
+                                                    <option value="521">
+                              Училище
+                            </option>
+                                                    <option value="522">
+                              Детска градина
+                            </option>
+                                                    <option value="523">
+                              Амбулаторно-поликл. заведение
+                            </option>
+                                                    <option value="524">
+                              Болнично заведение
+                            </option>
+                                                    <option value="525">
+                              Диспансер
+                            </option>
+                                                    <option value="526">
+                              Завед.за опазв.здр. на майка и дете
+                            </option>
+                                                    <option value="527">
+                              Нац. център.за опазв. на общ. здраве
+                            </option>
+                                                    <option value="528">
+                              Сaнaт.-курортно и леч.-оздрав. завед.
+                            </option>
+                                                    <option value="529">
+                              клон
+                            </option>
+                                                    <option value="530">
+                              поделение
+                            </option>
+                                                    <option value="531">
+                              ОП
+                            </option>
+                                                    <option value="532">
+                              Физическо лице - субект на Булстат
+                            </option>
+                                                    <option value="533">
+                              ЮЛ в сферата на държ. власт
+                            </option>
+                                                    <option value="534">
+                              Друг вид субект
+                            </option>
+                                                    <option value="535">
+                              чуждестранно нефизическо лице
+                            </option>
+                                                    <option value="536">
+                              друго нефиз. лице без право на ЕИК
+                            </option>
+                                                    <option value="1003">
+                              централна банка
+                            </option>
+                                                    <option value="1185">
+                              ДСК
+                            </option>
+                                                    <option value="1186">
+                              ДЗИ
+                            </option>
+                                                    <option value="1187">
+                              Областна администрация
+                            </option>
+                                                    <option value="1188">
+                              Полувисш институт
+                            </option>
+                                                    <option value="1189">
+                              Място за лишаване от свобода
+                            </option>
+                                                    <option value="1190">
+                              Взаимноспомагателна каса
+                            </option>
+                                                    <option value="1191">
+                              Юр. лице към културна институция
+                            </option>
+                                                    <option value="1192">
+                              Юрид. лице към научна орг.
+                            </option>
+                                                    <option value="1193">
+                              Обсл.звено в с-мата на образов.
+                            </option>
+                                                    <option value="1200">
+                              Районна колегия
+                            </option>
+                                                    <option value="1215">
+                              Национална здравно-осигурителна каса
+                            </option>
+                                                    <option value="1216">
+                              Държавна агенция
+                            </option>
+                                                    <option value="1217">
+                              Държавна комисия
+                            </option>
+                                                    <option value="1218">
+                              Изпълнителна агенция
+                            </option>
+                                                    <option value="1219">
+                              Лечебно завед. за извънболн.помощ
+                            </option>
+                                                    <option value="1220">
+                              Лечебно заведение за болнична помощ
+                            </option>
+                                                    <option value="1221">
+                              Друго лечебно заведение
+                            </option>
+                                                    <option value="1222">
+                              Хигиенно-епидемиологична инспекция
+                            </option>
+                                                    <option value="1223">
+                              Културен институт
+                            </option>
+                                                    <option value="1234">
+                              Чужд. НФЛ с място на стоп. дейност
+                            </option>
+                                                    <option value="1235">
+                              Чужд. ФЛ с място на стоп. дейност
+                            </option>
+                                                    <option value="1249">
+                              Чужд. нефизическо лице - наемодател
+                            </option>
+                                                    <option value="1300">
+                              Пенсионен фонд
+                            </option>
+                                                    <option value="1307">
+                              Клон на ЧЮЛ с нестопанска цел
+                            </option>
+                                                    <option value="1317">
+                              Сдружение за напояване
+                            </option>
+                                                    <option value="1322">
+                              Фирма на обществена организация
+                            </option>
+                                                    <option value="1324">
+                              държавно предприятие (чл.62,ал.3 от ТЗ)
+                            </option>
+                                                    <option value="1329">
+                              ЧЮЛ, притежаващо имущество в страната
+                            </option>
+                                                    <option value="1342">
+                              религиозна институция
+                            </option>
+                                                    <option value="1348">
+                              Местно поделение (ЮЛ)
+                            </option>
+                                                    <option value="1509">
+                              Занаятчийско предприятие
+                            </option>
+                                                    <option value="1515">
+                              Религиозна институция (БПЦ)
+                            </option>
+                                                    <option value="1516">
+                              Местно поделение на БПЦ (ЮЛ)
+                            </option>
+                                                    <option value="1533">
+                              Адвокатско дружество
+                            </option>
+                                                    <option value="1534">
+                              Адвокатско съдружие
+                            </option>
+                                                    <option value="1537">
+                              Компенсационен фонд
+                            </option>
+                                                    <option value="1540">
+                              АДСИЦ
+                            </option>
+                                                    <option value="1559">
+                              Договорен фонд
+                            </option>
+                                                    <option value="1566">
+                              ЧЮЛ с ефективно управление
+                            </option>
+                                                    <option value="1575">
+                              Нефизическо лице - осигурител
+                            </option>
+                                                    <option value="1579">
+                              Чуждестр. лице регистрирано по ЗДДС
+                            </option>
+
+			  </select>
                         </div>
                       </div>
                       <div class="row">
                       	<div class="col-md-4">
                         	<label for="">Идентификационен номер на удостоверението за вписване в регистъра по чл. 10, ал. 1, т. 2 ЗЗЛД:</label>
-                          	<input type="text" class="form-control" id="">
+                          	<input type="text" class="form-control" id="legalEntityZzldcode" name="legalEntityZzldcode">
                         </div>
                       </div>
                 </section>
@@ -137,7 +511,7 @@ Author/s:	Christopher Georgiev
                         <div class="col">
 
 													<label for="mAddrCountry">Държава:*</label>
-													<select id="mAddrCountry" class="form-control">
+													<select name="mAddrCountry" id="mAddrCountry" class="form-control">
 														<!--<option selected="">Моля, изберете</option>-->
 														@foreach ($countries as $country)
 															<option value="{{ $country->id }}" {{ ( $country->id == 1) ? 'selected' : '' }}>
@@ -242,7 +616,10 @@ Author/s:	Christopher Georgiev
                       </div>
 
                       <h6 class="mt-4"><strong>Адрес на офиса/офисите за извършване на дейност по осигуряване на временна работа</strong></h6>
-                    <table id="offices" name="Offices" class="table">
+		    
+		
+
+		     <table id="offices" name="offices" class="table">
                       <thead>
                         <tr>
                           <th scope="col">Адрес</th>
@@ -253,10 +630,6 @@ Author/s:	Christopher Georgiev
                       </thead>
                       <tbody>
                         <tr>
-                          <td>София, ул.Братя Миладинови 16, ет.1, офис 1</td>
-                          <td>0884777372</td>
-                          <td>office@ctc.bg</td>
-                          <td>Боряна Андонова</td>
                         </tr>
                       </tbody>
                     </table>
@@ -271,9 +644,56 @@ Author/s:	Christopher Georgiev
 
                       <form>
                         <fieldset>
-                          <label for="address">Адрес</label>
-                          <input type="text" name="address" id="address" value="" class="text ui-widget-content ui-corner-all">
-                          <label for="tel_fax">Телефон,Факс</label>
+			<!--  <label for="address">Адрес</label>-->
+
+
+
+			  <label for="tel_fax">Държава</label>
+
+<select  type="text" name="oaCountry" id="oaCountry" value="" class="text ui-widget-content ui-corner-all">
+			 
+
+				 <option value="1"  selected>България</option>
+</select>
+
+
+			  <label for="tel_fax">Регион</label>
+ <select name="oaRegion" id="oaRegion" value="" class="text ui-widget-content ui-corner-all">
+			  
+
+				 <option value="" disabled selected> Моля, изберете</option>
+</select>
+
+
+			  <label for="tel_fax">Община</label>
+			<select name="oaMunicipality" id="oaMunicipality" value="" class="text ui-widget-content ui-corner-all" >
+
+
+				 <option value="" disabled selected> Моля, изберете</option>   
+				</select>
+
+			  <label for="tel_fax">Населено място</label>
+				<select name="oaCity" id="oaCity" value="" class="text ui-widget-content ui-corner-all" >
+
+				 <option value="" disabled selected> Моля, изберете</option>   
+				</select>
+			 
+			
+
+			  <label for="tel_fax">Квартал</label>
+				 <select name="oaDistrict" id="oaDistrict" value="" class="text ui-widget-content ui-corner-all" >
+                                 <option value="-9999" disabled selected> Моля, изберете</option>
+                                </select>
+
+
+<br>
+			  
+			  
+			  <label for="tel_fax">Адрес</label>
+                          <input type="text" name="oaStreet" id="oaStreet" value="" class="text ui-widget-content ui-corner-all">
+
+
+			  <label for="tel_fax">Телефон,Факс</label>
                           <input type="text" name="tel_fax" id="tel_fax" value="" class="text ui-widget-content ui-corner-all">
                           <label for="email">Email</label>
                           <input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all">
@@ -290,6 +710,24 @@ Author/s:	Christopher Georgiev
 
                 </section>
 
+
+<section>
+                  <h3><span class="primary-bgr">Данни за предоставени документи</span></h3>
+                  <h6><strong>Прикачени файлове</strong> <span class="sep-line "> | </span> няма</h6>
+                  <p><a href="#" class="btn btn-primary">Добави</a></p>
+              </section>
+
+ <section >
+                        <div id="formpage_2"  style="visibility: hidden; display: none;">
+
+
+                                <textarea  name="addedOffices" id="addedOffices">
+                                </textarea>
+
+                        </div>
+                </section>
+
+	
 
               <p class="text-center"><button type="submit" class="btn btn-primary btn-lg">Запази/Подай</button> <span class="sep-line "> | </span>  <a href="/" class="btn btn-outline-danger btn-lg">Отказ</a></p>
 
@@ -390,13 +828,183 @@ Author/s:	Christopher Georgiev
                 }
 						});
 
+		//TODO add here add-new-office event click handler
+	    $('a[id="add-new-office"]').on('click', function(){
+		    //console.log('');
+<?php
+$tmpr = \App\Models\Nom\N_region::getRegions();
+$tmpr = implode($tmpr);
+?>
+			
+var regions = {!! json_encode($tmpr) !!};
+$("#oaRegion").empty();
+
+$("#oaRegion").append('<option value="" disabled selected> Моля, изберете</option>');
+$("#oaRegion").append(regions);
 
 
-            //Populate the first city object based on the selected municipaty
+$("#oaMunicipality").empty();
+
+$("#oaMunicipality").append('<option value="" disabled selected> Моля, изберете</option>');
+$("#oaCity").empty();
+
+$("#oaCity").append('<option value="" disabled selected> Моля, изберете</option>');
+
+$("#oaDistrict").empty();
+
+$("#oaDistrict").append('<option value="-9999" disabled selected> Моля, изберете</option>');
+
+
+//TPDP add jere ozneret
+ });
+
+
+
+//////////////////////////////////////////////////////////////////
+ $('#oaRegion').on('click', function(){
+	 $("#oaMunicipality").empty();
+		 
+$("#oaMunicipality").append('<option value="" disabled selected> Моля, изберете</option>');
+         $("#oaCity").empty();
+
+$("#oaCity").append('<option value="" disabled selected> Моля, изберете</option>');
+
+$("#oaDistrict").empty();
+
+$("#oaDistrict").append('<option value="-9999" disabled selected> Моля, изберете</option>');
+
+
+
+
+<?php
+$tmpm = \App\Models\Nom\N_municipality::getMunicipalities();
+//$tmpr = implode($tmpr);
+?>
+
+var muns = {!! json_encode($tmpm) !!};
+//console.log(typeof(muns));
+
+var selectedreg = $("#oaRegion").find(":selected").val();
+//console.log(selectedreg);
+muns.forEach(element => {
+var pos = element.indexOf('<');
+var reg = element.substring(0, element.indexOf('<'));
+var rest = element.substring(pos);
+
+
+//console.log(reg);
+//console.log("-------");
+if(selectedreg === reg){
+
+	
+$("#oaMunicipality").append(rest);
+
+	}
+
+});
+     });
+
+///////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+ $('#oaMunicipality').on('click', function(){
+
+         $("#oaCity").empty();
+$("#oaCity").append('<option value="" disabled selected> Моля, изберете</option>');
+
+
+
+
+	 
+	 $("#oaDistrict").empty();
+
+$("#oaDistrict").append('<option value="-9999" disabled selected> Моля, изберете</option>');
+
+
+<?php
+$tmpm = \App\Models\Nom\N_city::getCity();
+//$tmpr = implode($tmpr);
+?>
+
+var city = {!! json_encode($tmpm) !!};
+//console.log(typeof(city));
+
+var selectedreg = $("#oaMunicipality").find(":selected").val();
+//console.log(selectedreg);
+city.forEach(element => {
+var pos = element.indexOf('<');
+var reg = element.substring(0, element.indexOf('<'));
+var rest = element.substring(pos);
+
+
+//console.log(reg);
+//console.log("-------");
+if(selectedreg === reg){
+
+
+$("#oaCity").append(rest);
+
+        }
+
+});
+     });
+
+///////////////////////////////
+
+//////////////////////////////////////////////////////////////////
+ $('#oaCity').on('click', function(){
+
+         $("#oaDistrict").empty();
+$("#oaDistrict").append('<option value="-9999" disabled selected> Моля, изберете</option>');
+
+
+
+
+
+
+
+<?php
+$tmpm = \App\Models\Nom\N_city::getCityWithParent();
+//$tmpr = implode($tmpr);
+?>
+
+var citywp = {!! json_encode($tmpm) !!};
+//console.log(typeof(city));
+
+var selectedcity = $("#oaCity").find(":selected").val();
+//console.log(selectedreg);
+citywp.forEach(element => {
+var pos = element.indexOf('<');
+var par = element.substring(0, element.indexOf('<'));
+var rest = element.substring(pos);
+
+
+//console.log(reg);
+//console.log("-------");
+if(selectedcity === par){
+
+
+$("#oaDistrict").append(rest);
+
+        }
+
+});
+     });
+
+///////////////////////////////
+
+
+
+
+
+	    //Populate the first city object based on the selected municipaty
             $('select[name="mAddrMuni"]').on('change', function(){ //listens to changes in "mAddrMuni"
-                var muni_id = $(this).val();
+		    
+		    
+		    var muni_id = $(this).val();
                 flag = 1; //initializing the first row flag
-                if(muni_id){
+		
+			
+			if(muni_id){
                     $.ajax({
                         url: 'application/getCity/'+muni_id, //use the getCity method from the Controller
                         type: 'GET',
@@ -408,7 +1016,9 @@ Author/s:	Christopher Georgiev
                                 //Populate
                                 if (flag === 1){
                                   flag = 2;
-                                  $('select[name="mAddrCity"]').append('<option value="">'+ 'Моля, изберете' +'</option>');
+				 
+
+				  $('select[name="mAddrCity"]').append('<option value="">'+ 'Моля, изберете' +'</option>');
                                   $('select[name="mAddrCity"]').append('<option value="'+key+'">'+ value +'</option>');
                                 }else{
                                   $('select[name="mAddrCity"]').append('<option value="'+key+'">'+ value +'</option>');
@@ -541,16 +1151,7 @@ Author/s:	Christopher Georgiev
                 $("#cAddrCityDistr").empty();
 								$("#cAddrCityDistr").append($("#mAddrCityDistr").html());
 
-                //var e = document.getElementById("mAddrMuni");
-                //var id = e.options[e.selectedIndex].value;
-                //alert(id);
 
-                document.getElementById("cAddrRegion").selectedIndex = document.getElementById("mAddrRegion").selectedIndex;
-                document.getElementById("cAddrMuni").selectedIndex = document.getElementById("mAddrMuni").selectedIndex;
-                document.getElementById("cAddrCity").selectedIndex = document.getElementById("mAddrCity").selectedIndex;
-                document.getElementById("cAddrCityDistr").selectedIndex = document.getElementById("mAddrCityDistr").selectedIndex;
-
-                /*
                 $("#cAddrRegion :selected").text($("#mAddrRegion :selected").text());
                 $("#cAddrRegion :selected").val($("#mAddrRegion :selected").val());
                 $("#cAddrMuni :selected").text($("#mAddrMuni :selected").text());
@@ -559,19 +1160,25 @@ Author/s:	Christopher Georgiev
                 $("#cAddrCity :selected").val($("#mAddrCity :selected").val());
                 $("#cAddrCityDistr :selected").text($("#mAddrCityDistr :selected").text());
                 $("#cAddrCityDistr :selected").val($("#mAddrCityDistr :selected").val());
-                */
+		$("#cAddr").val( $("#mAddr").val());
 
-								document.getElementById('cAddr').value = document.getElementById('mAddr').value;
+							//	document.getElementById('cAddr').value = document.getElementById('mAddr').value;
 
 
-                //alert(document.getElementById("mAddrRegion").value);
-                //alert(document.getElementById("mAddrRegion").selectedIndex);
-                //alert(document.getElementById("mAddrRegion").html);
-                //alert($("#cAddrRegion :selected").text() + $("#cAddrRegion :selected").val() + $("#mAddrRegion :selected").html());
-                //alert($("#mAddrRegion :selected").html());
+								//alert($val+" := "+$txt);
+								//$('#cAddrRegion').val('33');
+								//$('#cAddrRegion').val($val);
 							} else {
 								//alert("No");
 							}
+							//alert(document.querySelector('#c_as_m').checked);
+							//alert(document.querySelector('#cAddrRegion').value);
+							/*
+							if(document.querySelector('#c_as_m').checked) == true) {
+								//$('#select1 option').clone().appendTo('#select2');
+								//$('#mAddrRegion option').clone().appendTo('#cAddrRegion');
+							}
+							*/
 
 						});
 
@@ -582,11 +1189,21 @@ Author/s:	Christopher Georgiev
 
             			// From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=email%29
             			emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
-                  address = $( "#address" ),
+		   
+				//TODO: add here all the address fieds
+				country=$("#oaCountry"),
+				region=$("#oaRegion"),
+				municipality=$("#oaMunicipality"),
+				city = $("#oaCity"),
+				district = $("#oaDistrict"),
+	
+				address = $("#oaStreet"),//$( "#oaCountry" ).$("#oaRegion")   ,
             			email = $( "#email" ),
             			tel_fax = $( "#tel_fax" ),
-                  name = $( "#name" ),
-            			allFields = $( [] ).add( address ).add( email ).add( tel_fax ).add( name ),
+                  		name = $( "#name" ),
+				allFields = $([])
+			//	.add( address )
+				.add( email ).add( tel_fax ).add( name ),
             			tips = $( ".validateTips" );
 
             		function updateTips( t ) {
@@ -643,8 +1260,16 @@ Author/s:	Christopher Georgiev
                       "<td>" + email.val() + "</td>" +
                       "<td>" + name.val() + "</td>" +
 
-            				"</tr>" );
-            				dialog.dialog( "close" );
+		      "</tr>" );
+
+console.log("(((((((((((((((((((()))))))))))))))))))");
+console.log( $("#addedOffices").val  );
+$("#addedOffices").val($("#addedOffices").val()+ 
+country.val() + "|"+region.val() + "|" + municipality.val()+"|"+city.val()+"|"+ district.val()+
+
+"|"+address.val() + "|" + email.val()  + "|" + tel_fax.val()+"|"+name.val() +"*" );	
+
+dialog.dialog( "close" );
             			}
             			return valid;
             		}

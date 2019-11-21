@@ -1,27 +1,29 @@
 <?php
-/*
-		File:	App\Http\Controllers\Nom\PowrSRMController.php
-		 Ver:	1.00.000
- Purpose:	POWR SRM Controller
+/*	File:	App\Http\Controllers\powr_bo\PowrRegisteredController.php
+		 Ver:	1.00.003
+ Purpose:	POWR Backoffice Registered Controller
 Author/s:	Christopher Georgiev
  Created:	2019-10-07
 	Modify:	2019-10-26
 */
 
-namespace App\Http\Controllers\Powr;
+namespace App\Http\Controllers\powr;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Auth;
+
 use Gate;
+use DB;
 use App\Models\General\Snumber;
+use App\Models\POWR\Registration\RegPOWR;
 
 class PowrSRMController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
     /**
      * Display a listing of the resource.
      *
@@ -29,14 +31,28 @@ class PowrSRMController extends Controller
      */
     public function index()
     {
-		    /*
-        if(Gate::denies('expert-user')){
-          return redirect(route('logout'));
-        };
-				*/
+        //
+        //$powr_regs = RegPOWR::paginate(10); //active()->
 
-        //$registrationrequest = registrationrequest::all(); //passing the users data to the view
-        return view('powr.srm.index');
+
+	 $person_id =  Auth::user()->person_id;
+       $powr_regs = DB::table('recruitmentagencyprototype')
+
+                ->leftJoin('legalentity','legalentity.id','=','legalentity_id')
+
+		->where('submittor_id','=',$person_id)
+		->select('legalentity.*','recruitmentagencyprototype.*','recruitmentagencyprototype.id as protoId')
+                 ->paginate(10,array('legalentity.*','recruitmentagencyprototype.*','protoId'));
+
+
+	 info("ISDEL=!!!==============");
+		;
+
+	 info('ASDF');
+	info($powr_regs);
+
+        //return view('powr_bo.registered.index', compact('powr_regs','powr_eik'));
+        return view('powr.srm.index', compact('powr_regs'));
     }
 
     /**

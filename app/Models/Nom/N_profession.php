@@ -30,6 +30,12 @@ class N_profession extends Model
       ];
     }
 
+    //Concatenate code and prof_group_id
+    public function getCodeProfAttribute()
+    {
+        return "{$this->prof_group_id}-{$this->code}";
+    }
+
     //public $timestamps = false;
     const CREATED_AT = 'created_on';
     const UPDATED_AT = 'updated_on';

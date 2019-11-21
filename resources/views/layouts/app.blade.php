@@ -13,21 +13,23 @@
 <link rel="stylesheet" href="{{asset('css/_c.css')}}">
 <link rel="stylesheet" href="{{asset('css/_r.css')}}">
 
-<link rel="stylesheet" href="C:/Projects/sswaz/resources/css/jquery-ui.min.css" rel="stylesheet">
-<link rel="stylesheet" href="C:/Projects/sswaz/resources/css/jquery-ui.css">
-<link rel="stylesheet" href="C:/Projects/sswaz/resources/css/style.css">
-<link rel="stylesheet" href="C:/Projects/sswaz/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="{{asset('css/jquery-ui.min.css')}}">
+<link rel="stylesheet" href="{{asset('css/jquery-ui.css')}}">
+<link rel="stylesheet" href="{{asset('css/style.css')}}">
 
+<link rel="stylesheet" href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" type="text/css" />
 
 <script src="{{asset('js/jquery-3.3.1.slim.min.js')}}"></script>
 <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('js/jquery.js')}}"></script>
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="C:/Projects/sswaz/resources/js/jquery-ui.js"></script>
+<script src="{{asset('js/jquery-ui.js')}}"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="C:/Projects/sswaz/resources/js/jquery-ui.min.js"></script>
+<script src="{{asset('js/jquery-ui.min.js')}}"></script>
 
+ <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+ <script src="https://unpkg.com/gijgo@1.9.13/js/messages/messages.bg-bg.js" type="text/javascript"></script>
 
 <script>
 

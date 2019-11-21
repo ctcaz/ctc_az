@@ -87,7 +87,7 @@
                         @if (auth()->user()->hasRole('Експерт'))
                           <input type="radio" name="role">
                           <span class="cr"><i class="cr-icon fa fa-circle"></i></span>
-                          <a href="{{route('expert.registration.index')}}">Експерт</a>
+			  <a href="{{route('expert.registration.index')}}">Експерт</a>
                         @endif
                         <br>
                         @if (auth()->user()->hasRole('Трудов посредник'))

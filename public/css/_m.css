@@ -67,6 +67,32 @@ body {
 /* :: Navigations 
 ===================================================================================================== :: */
 
+/* :: Sidebar nav mod :: */
+.side-bar-ex {
+    position: fixed;
+    width: 72px;
+    height: 100%;
+    z-index: 980;
+    padding-top: 60px;
+    top: 0;
+    left: 0;
+    font-size: .9em;
+}
+
+
+.side-bar-ex a {
+    background-color: #333;
+}
+
+.side-bar-ex ul {
+    height: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+
+
 #site .nav-collapse {display: none;}
 
 /* :: Main Navigation :: */
@@ -191,7 +217,30 @@ span.sep-line.size-xl, span.sep-text.size-xl {margin: 0 3.2em; line-height: 3.42
 /* :: Side Bar 
 ===================================================================================================== :: */
 
-.side-bar {padding: 3%;}
+/*.side-bar {padding: 3%;}*/
+
+
+/* :: Side Bar 
+===================================================================================================== :: */
+
+main .container-fluid, #footer .container-fluid {padding: 0 24px 0 96px; overflow: hidden;}
+	
+	.side-bar {position: fixed; width: 72px; height: 100%; z-index: 980; padding-top: 60px; top: 0; left: 0; font-size: .9em;}
+	
+		.side-bar .inner {height: 100%; padding: 0 0 24px; box-sizing: border-box;}
+		
+			.side-bar ul {
+				height: 100%; list-style: none; margin: 0; padding: 0; overflow: auto;
+			}
+				.side-bar li {margin: 0;}
+					.side-nav a {
+						display: block; padding: 1.1em .5em; text-decoration: none; text-align: center;
+						border-bottom: 1px solid;
+					}
+					.side-nav .active a {font-weight: bold;}
+
+
+
 
 /* :: Footer
 ===================================================================================================== :: */
