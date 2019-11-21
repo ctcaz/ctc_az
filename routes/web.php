@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::get('/thanks', function () {
+    return view('thank_you');
+})->name('thanks');
+
+
 Route::resource('/application', 'ApplicationController');
 Route::get('/application/getMuni/{id}', 'ApplicationController@getMuni');
 Route::get('/application/getCity/{id}', 'ApplicationController@getCity');
@@ -78,6 +83,8 @@ Route::namespace('RA')->prefix('ra')->name('ra.')->group(function(){
   Route::resource('/start', 'StartPageController', ['except' => ['show','create','store','edit','update','destroy']]);
   Route::resource('/agent', 'AgentPageController', ['except' => ['show','create','store','edit','update','destroy']]);
   Route::resource('/jobs', 'JobsPageController', ['except' => ['show','edit','update','destroy']]);
+  Route::get('/jobs/create/getProf/{id}', 'JobsPageController@getProf');
+
   Route::resource('/help', 'HelpPageController', ['except' => ['show','create','store','edit','update','destroy']]);
 });
 
@@ -87,8 +94,8 @@ Route::namespace('Powr')->prefix('powr')->name('powr.')->group(function(){
   Route::resource('/eservices', 'PowrEServiceController', ['except' => ['show','create','store','edit','update','destroy']]);
   Route::resource('/srm', 'PowrSRMController', ['except' => ['show','create','store','edit','update','destroy']]);
   Route::resource('/help', 'PowrHelpController', ['except' => ['show','create','store','edit','update','destroy']]);
-Route::resource('/CPM', 'CPMController', ['except' => ['show','edit','update','destroy']]);
-Route::get('/CPM/getProf/{id}', 'CPMController@getProf');
+  Route::resource('/CPM', 'CPMController', ['except' => ['show','edit','update','destroy']]);
+  Route::get('/CPM/getProf/{id}', 'CPMController@getProf');
 
 
 });
@@ -101,4 +108,11 @@ Route::namespace('powr_bo')->prefix('powr_bo')->name('powr_bo.')->group(function
   Route::resource('/registeredchangerequests', 'PowrRegisteredChangeRequestsController', ['except' => ['show','create','store','destroy']]);
   Route::resource('/registrationrequestsrejected', 'PowrRegistrationRequestsRejectedController', ['except' => ['show','create','store','destroy']]);
 });
+
+Route::resource('/CPM', 'CPM\CPMController', ['except' => ['show','edit','update','destroy']]);
+Route::get('/CPM/getProf/{id}', 'CPM\CPMController@getProf');
+Route::get('/CPM/getMuni/{id}', 'CPM\CPMController@getMuni');
+Route::get('/CPM/getCity/{id}', 'CPM\CPMController@getCity');
+Route::get('/CPM/getCityDistrict/{id}', 'CPM\CPMController@getCityDistrict');
+
 
