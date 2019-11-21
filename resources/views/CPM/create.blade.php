@@ -107,6 +107,7 @@
                         <div class="gj-margin-top-10">
                             <input name="jobvalidityperiod" id="datepicker2" width="276" />
                         </div>
+
                       </div>
                     </div>
 
@@ -123,12 +124,69 @@
 
                     <div class="row">
                       <div class="col">
-                        <label for="">Обект на работодателя</label>
-                        <select id="" class="form-control">
-                          <option selected>Моля, изберете</option>
-                          <option>1</option>
-                          <option>2</option>
-                        </select>
+                        <label for="">Адрес на работното място*:</label>
+
+                        <div class="row">
+                          <div class="col">
+                            <label for="country">Държава:*</label>
+                            <select name="mCountry" id="mCountry" class="form-control">
+                                <option selected="">Моля, изберете</option>
+                                @foreach ($countries as $country)
+                                    <option value="{{ $country->id }}" {{ ( $country->id == 1) ? 'selected' : '' }}>
+                                        {{ $country->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                          </div>
+
+                          <div class="col">
+                            <div class="form-group" id="mAddrRegion1" style="display: block;">
+                              <label for="region">Област:*</label>
+                              <select name="mAddrRegion" id="mAddrRegion" class="form-control">
+                                <option selected="">Моля, изберете</option>
+                                @foreach ($regions as $key => $value)
+                                  <option value="{{ $key }}">
+                                    {{$value}}
+                                  </option>
+                                @endforeach
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="col">
+                            <div class="" id="mAddrMuni1" style="display: block;">
+                              <label for="">Община:*</label>
+                              <select name="mAddrMuni" id="mAddrMuni" class="form-control">
+                                <option selected="">Моля, изберете</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="col">
+                            <div class="" id="mAddrCity1" style="display: block;">
+                              <label for="">Населено място:*</label>
+                              <select name="mAddrCity" id="mAddrCity" class="form-control">
+                                <option selected="">Моля, изберете</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="col">
+                            <div class="" id="mAddrCityDistr1" style="display: block;">
+                              <label for="mAddrCityDistr">Район:*</label>
+                              <select name="mAddrCityDistr" id="mAddrCityDistr" class="form-control">
+                                <option selected="">Моля, изберете</option>
+                              </select>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="form-group">
+                          <label for="">Адрес:*</label>
+                          <input type="text" class="form-control" id="mAddr" name="mAddr" placeholder="">
+                        </div>
+
                       </div>
                     </div>
                   </section>
@@ -209,7 +267,7 @@
                             Работодателят е склонен да наема работници от ЕС и предлага
                           </div>
                           <div class="card-body">
-                            <h5 class="card-title">Трудово възнаграждение</h5>
+                            <h5 class="card-title">Трудово възнаграждение:</h5>
 
                             <div class="card-block">
                               <div class="row">
@@ -419,6 +477,7 @@
 
 @section('scripts')
   <script type="text/javascript">
+    //date config
     var datepicker, config;
     config = {
         locale: 'bg-bg',
@@ -428,21 +487,9 @@
 
     $(document).ready(function () {
         datepicker = $('#datepicker').datepicker(config);
-        $('#ddlLanguage').on('change', function () {
-            var newLang = $(this).val();
-            config.locale = newLang;
-            datepicker.destroy();
-            datepicker = $('#datepicker').datepicker(config);
-        });
     });
     $(document).ready(function () {
         datepicker = $('#datepicker2').datepicker(config);
-        $('#ddlLanguage').on('change', function () {
-            var newLang = $(this).val();
-            config.locale = newLang;
-            datepicker.destroy();
-            datepicker = $('#datepicker2').datepicker(config);
-        });
     });
 
     //Profession
@@ -476,6 +523,123 @@
         } else {
             //If nothing was selected - empty the dropdown
             $('select[name="prof"]').empty();
+        }
+    });
+
+    //Address
+    //If another country is selected - hide Region/Municipaty/City/District
+    $('select[name="mCountry"]').on('change', function(){ //listens to changes in "mCountry"
+        var id = $(this).val();
+        if(id !== '1'){
+            $("#mAddrRegion1").css('display', 'none');
+            $("#mAddrMuni1").css('display', 'none');
+            $("#mAddrCity1").css('display', 'none');
+            $("#mAddrCityDistr1").css('display', 'none');
+        } else {
+            $("#mAddrRegion1").css('display', 'block');
+            $("#mAddrMuni1").css('display', 'block');
+            $("#mAddrCity1").css('display', 'block');
+            $("#mAddrCityDistr1").css('display', 'block');
+          }
+    });
+
+    //Populate the first municipaty object based on the selected refion
+    $('select[name="mAddrRegion"]').on('change', function(){ //listens to changes in "mAddrRegion"
+        var region_id = $(this).val();
+        var flag = 1; //initializing the first row flag
+        //alert("region_id");
+        if(region_id){
+            $.ajax({
+                url: 'CPM/getMuni/'+region_id, //use the getMuni method from the Controller
+                type: 'GET',
+                dataType: 'json',
+                success: function(data){
+                    //empty the mAddrMuni and mAddrCity dropdowns
+                    $('select[name="mAddrMuni"]').empty();
+                    $('select[name="mAddrCity"]').empty();
+                    $('select[name="mAddrCityDistr"]').empty();
+
+                    $.each(data, function(key, value){
+                        //Populate
+                        if (flag === 1){
+                          flag = 2;
+                          $('select[name="mAddrMuni"]').append('<option value="">'+ 'Моля, изберете' +'</option>');
+                          $('select[name="mAddrMuni"]').append('<option value="'+key+'">'+ value +'</option>');
+                        }else{
+                          $('select[name="mAddrMuni"]').append('<option value="'+key+'">'+ value +'</option>');
+                        }
+                    });
+                }
+            });
+        } else {
+            //If nothing was selected - empty the dropdowns
+            $('select[name="mAddrMuni"]').empty();
+            $('select[name="mAddrCity"]').empty();
+            $('select[name="mAddrCityDistr"]').empty();
+        }
+    });
+
+    //Populate the first city object based on the selected municipaty
+    $('select[name="mAddrMuni"]').on('change', function(){ //listens to changes in "mAddrMuni"
+        var muni_id = $(this).val();
+        flag = 1; //initializing the first row flag
+        if(muni_id){
+            $.ajax({
+                url: 'CPM/getCity/'+muni_id, //use the getCity method from the Controller
+                type: 'GET',
+                dataType: 'json',
+                success: function(data){
+                    $('select[name="mAddrCity"]').empty(); //empty the dropdown
+                    $('select[name="mAddrCityDistr"]').empty();
+
+                    $.each(data, function(key, value){
+                        //Populate
+                        if (flag === 1){
+                          flag = 2;
+                          $('select[name="mAddrCity"]').append('<option value="">'+ 'Моля, изберете' +'</option>');
+                          $('select[name="mAddrCity"]').append('<option value="'+key+'">'+ value +'</option>');
+                        }else{
+                          $('select[name="mAddrCity"]').append('<option value="'+key+'">'+ value +'</option>');
+                        }
+                    });
+                }
+            });
+        } else {
+            //If nothing was selected - empty the dropdown
+            $('select[name="mAddrCity"]').empty();
+            $('select[name="mAddrCityDistr"]').empty();
+        }
+    });
+
+    //Populate the first city district object based on the selected city
+    $('select[name="mAddrCity"]').on('change', function(){ //listens to changes in "mAddrCity"
+        var city_id = $(this).val();
+        flag = 1; //initializing the first row flag
+        //alert(city_id);
+        if(city_id){
+            $.ajax({
+                url: 'CPM/getCityDistrict/'+city_id, //use the getCityDistrict method from the Controller
+                type: 'GET',
+                dataType: 'json',
+                success: function(data){
+                    //console.log(data);
+                    $('select[name="mAddrCityDistr"]').empty(); //empty the dropdown
+
+                    $.each(data, function(key, value){
+                        //Populate
+                        if (flag === 1){
+                          flag = 2;
+                          $('select[name="mAddrCityDistr"]').append('<option value="">'+ 'Моля, изберете' +'</option>');
+                          $('select[name="mAddrCityDistr"]').append('<option value="'+key+'">'+ value +'</option>');
+                        }else{
+                          $('select[name="mAddrCityDistr"]').append('<option value="'+key+'">'+ value +'</option>');
+                        }
+                    });
+                }
+            });
+        } else {
+            //If nothing was selected - empty the dropdown
+            $('select[name="mAddrCityDistr"]').empty();
         }
     });
 

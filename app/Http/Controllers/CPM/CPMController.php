@@ -12,7 +12,12 @@ use App\Models\Nom\N_workregime;
 use App\Models\Nom\N_educationlevel;
 use App\Models\Nom\N_speciality;
 use App\Models\Nom\n_work_experience;
+use App\Models\Nom\N_country;
+use App\Models\Nom\N_region;
+use App\Models\Nom\N_municipality;
+use App\Models\Nom\N_city;
 use App\Models\JV\jvspecification;
+
 
 class CPMController extends Controller
 {
@@ -29,6 +34,28 @@ class CPMController extends Controller
 
       return json_encode($specs);
     }
+
+    public function getMuni($id)
+    {
+        $munies = N_municipality::where('region_id', $id)->orderBy('name', 'desc')->pluck('name', 'id');
+
+        return json_encode($munies);
+    }
+
+    public function getCity($id)
+    {
+        $cities = N_city::where('muni_id', $id)->where('parent_id', null)->orderBy('name', 'desc')->pluck('name', 'id');
+
+        return json_encode($cities);
+    }
+
+    public function getCityDistrict($id)
+    {
+				$city_districts =N_city::where('parent_id',$id)->orderBy('name', 'desc')->pluck('name', 'id');
+        //dd($city_districts);
+        return json_encode($city_districts);
+    }
+
 
     public function index()
     {
@@ -47,7 +74,25 @@ class CPMController extends Controller
         $experiances = n_work_experience::all();
         //dd($lvl1);
 
-        return view('CPM.create', compact('lvl1', 'lvl2', 'lvl3', 'currencies', 'regimes', 'edu_lvl', 'specs', 'experiances'));
+        $countries = N_country::active()->get();
+        $regions = N_region::all()->pluck('name', 'id');
+        $municipalities = N_municipality::all()->pluck('name', 'id');
+        $cities = N_city::all();
+
+        return view('CPM.create', compact(
+          'lvl1',
+          'lvl2',
+          'lvl3',
+          'currencies',
+          'regimes',
+          'edu_lvl',
+          'specs',
+          'experiances',
+          'countries',
+          'regions',
+          'municipalities',
+          'cities'
+        ));
     }
 
     public function create()
@@ -67,7 +112,25 @@ class CPMController extends Controller
         $experiances = n_work_experience::all();
         //dd($lvl1);
 
-        return view('CPM.create', compact('lvl1', 'lvl2', 'lvl3', 'currencies', 'regimes', 'edu_lvl', 'specs', 'experiances'));
+        $countries = N_country::active()->get();
+        $regions = N_region::all()->pluck('name', 'id');
+        $municipalities = N_municipality::all()->pluck('name', 'id');
+        $cities = N_city::all();
+
+        return view('CPM.create', compact(
+          'lvl1',
+          'lvl2',
+          'lvl3',
+          'currencies',
+          'regimes',
+          'edu_lvl',
+          'specs',
+          'experiances',
+          'countries',
+          'regions',
+          'municipalities',
+          'cities'
+        ));
     }
 
     /**

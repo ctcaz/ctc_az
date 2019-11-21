@@ -109,3 +109,6 @@ Route::namespace('powr_bo')->prefix('powr_bo')->name('powr_bo.')->group(function
 
 Route::resource('/CPM', 'CPM\CPMController', ['except' => ['show','edit','update','destroy']]);
 Route::get('/CPM/getProf/{id}', 'CPM\CPMController@getProf');
+Route::get('/CPM/getMuni/{id}', 'CPM\CPMController@getMuni');
+Route::get('/CPM/getCity/{id}', 'CPM\CPMController@getCity');
+Route::get('/CPM/getCityDistrict/{id}', 'CPM\CPMController@getCityDistrict');
